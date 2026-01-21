@@ -232,7 +232,7 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 gap-4">
           <Link href="/" className="flex items-center gap-2" data-testid="logo-container">
-            <img src={logoUrl} alt="Univaciti" className="h-9 w-9" data-testid="img-logo" />
+            <img src={logoUrl} alt="Univaciti" className="h-9 w-9 rounded-lg" data-testid="img-logo" />
             <span className="text-lg font-bold text-foreground" data-testid="text-brand-name">Univaciti</span>
           </Link>
           
@@ -628,7 +628,7 @@ function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <img src={logoUrl} alt="Univaciti" className="h-8 w-8" data-testid="img-footer-logo" />
+            <img src={logoUrl} alt="Univaciti" className="h-8 w-8 rounded-lg" data-testid="img-footer-logo" />
             <span className="text-lg font-bold" data-testid="text-footer-brand">Univaciti</span>
           </div>
           <p className="text-xs text-foreground/60" data-testid="text-footer-copyright">
