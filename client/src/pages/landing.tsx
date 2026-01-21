@@ -7,6 +7,12 @@ import { apiRequest } from "@/lib/queryClient";
 import { useTheme } from "@/components/theme-provider";
 import { Link } from "wouter";
 import logoUrl from "@assets/logo_1769031259580.png";
+import pepsiLogo from "@assets/stock_images/pepsi_logo_corporate_6c3ede8b.jpg";
+import unionBankLogo from "@assets/stock_images/union_bank_nigeria_l_b60b232a.jpg";
+import stanbicLogo from "@assets/stock_images/stanbic_ibtc_bank_lo_bc5408f7.jpg";
+import polarisLogo from "@assets/stock_images/polaris_bank_nigeria_4309137e.jpg";
+import citiLogo from "@assets/stock_images/citibank_logo_corpor_d8eb114d.jpg";
+import firstBankLogo from "@assets/stock_images/firstbank_nigeria_lo_8ea1dda7.jpg";
 import {
   Menu,
   X,
@@ -298,14 +304,13 @@ function HeroSection() {
           
           <div className="flex justify-center lg:justify-end">
             <div 
-              className="w-64 h-64 lg:w-80 lg:h-80 rounded-3xl flex flex-col items-center justify-center border border-border/30"
-              style={{ 
-                background: 'linear-gradient(135deg, rgba(230,240,250,0.9) 0%, rgba(200,220,240,0.7) 100%)',
-                boxShadow: '0 8px 32px rgba(0,0,0,0.08)'
-              }}
+              className="w-64 h-64 lg:w-80 lg:h-80 rounded-3xl flex flex-col items-center justify-center border border-border/30 bg-muted/50 dark:bg-muted/30"
+              style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.08)' }}
               data-testid="card-hero-image"
             >
-              <GraduationCapIcon className="w-20 h-20 text-primary mb-4" />
+              <span style={{ color: THEME_PRIMARY }}>
+                <GraduationCapIcon className="w-20 h-20 mb-4" />
+              </span>
               <p className="text-sm text-foreground/60 font-light">Your Journey Starts Here</p>
             </div>
           </div>
@@ -329,12 +334,11 @@ function ThreePillarsSection() {
           {pillars.map((pillar, index) => (
             <div key={index} className="text-center" data-testid={`card-pillar-${index}`}>
               <div 
-                className="w-24 h-24 rounded-2xl mx-auto mb-4 flex items-center justify-center border border-border/30"
-                style={{ 
-                  background: 'linear-gradient(135deg, rgba(230,240,250,0.9) 0%, rgba(210,225,245,0.7) 100%)'
-                }}
+                className="w-24 h-24 rounded-2xl mx-auto mb-4 flex items-center justify-center border border-border/30 bg-muted/50 dark:bg-muted/30"
               >
-                <pillar.icon className="w-12 h-12 text-primary" />
+                <span style={{ color: THEME_PRIMARY }}>
+                  <pillar.icon className="w-12 h-12" />
+                </span>
               </div>
               <h3 className="text-lg font-semibold mb-2 text-foreground" data-testid={`text-pillar-title-${index}`}>{pillar.title}</h3>
               <p className="text-sm text-foreground/70 leading-relaxed" data-testid={`text-pillar-description-${index}`}>{pillar.description}</p>
@@ -500,17 +504,10 @@ function CertifySection() {
   );
 }
 
-function RecruiterLogo({ name, color, bgColor }: { name: string; color: string; bgColor?: string }) {
+function RecruiterLogoImg({ src, alt }: { src: string; alt: string }) {
   return (
-    <div 
-      className="px-4 py-2 rounded-lg font-semibold text-sm"
-      style={{ 
-        color: bgColor ? '#ffffff' : color, 
-        backgroundColor: bgColor || 'transparent', 
-        border: bgColor ? 'none' : `2px solid ${color}` 
-      }}
-    >
-      {name}
+    <div className="h-12 px-4 flex items-center justify-center bg-white dark:bg-white rounded-lg">
+      <img src={src} alt={alt} className="h-8 w-auto object-contain" />
     </div>
   );
 }
@@ -533,13 +530,12 @@ function RecruitersSection() {
         </Link>
         
         <div className="flex flex-wrap items-center justify-center gap-4 mt-8" data-testid="recruiter-logos">
-          <RecruiterLogo name="Pepsi" color="#004B93" bgColor="#004B93" />
-          <RecruiterLogo name="Union Bank" color="#0066B3" bgColor="#0066B3" />
-          <RecruiterLogo name="Stanbic IBTC" color="#0033A0" bgColor="#0033A0" />
-          <RecruiterLogo name="Polaris Bank" color="#6B2D8B" bgColor="#6B2D8B" />
-          <RecruiterLogo name="Citi" color="#003B70" bgColor="#003B70" />
-          <RecruiterLogo name="FirstBank" color="#002D62" bgColor="#002D62" />
-          <RecruiterLogo name="Adino Capital" color="#B8860B" bgColor="#B8860B" />
+          <RecruiterLogoImg src={pepsiLogo} alt="Pepsi" />
+          <RecruiterLogoImg src={unionBankLogo} alt="Union Bank" />
+          <RecruiterLogoImg src={stanbicLogo} alt="Stanbic IBTC" />
+          <RecruiterLogoImg src={polarisLogo} alt="Polaris Bank" />
+          <RecruiterLogoImg src={citiLogo} alt="Citi" />
+          <RecruiterLogoImg src={firstBankLogo} alt="FirstBank" />
         </div>
         
         <div className="mt-12">
@@ -550,30 +546,10 @@ function RecruitersSection() {
               <span className="text-xs text-foreground/70">AWS</span>
             </div>
             <div className="flex flex-col items-center gap-2">
-              <svg className="w-14 h-14" viewBox="0 0 96 96" fill="none">
-                <defs>
-                  <linearGradient id="azure-gradient-1" x1="58.97" y1="9.92" x2="35.69" y2="87.76" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#114A8B"/>
-                    <stop offset="1" stopColor="#0669BC"/>
-                  </linearGradient>
-                  <linearGradient id="azure-gradient-2" x1="60.01" y1="45.55" x2="53.88" y2="47.87" gradientUnits="userSpaceOnUse">
-                    <stop stopOpacity="0.3"/>
-                    <stop offset="0.07" stopOpacity="0.2"/>
-                    <stop offset="0.32" stopOpacity="0.1"/>
-                    <stop offset="0.62" stopOpacity="0.05"/>
-                    <stop offset="1" stopOpacity="0"/>
-                  </linearGradient>
-                  <linearGradient id="azure-gradient-3" x1="37.37" y1="9.08" x2="75.24" y2="86.94" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#3CCBF4"/>
-                    <stop offset="1" stopColor="#2892DF"/>
-                  </linearGradient>
-                </defs>
-                <path d="M33.34 9.28h22.62l-23.67 67.65c-.38 1.1-1.41 1.83-2.57 1.83H11.57c-1.5 0-2.71-1.22-2.71-2.71 0-.35.07-.69.2-1.01L30.77 11.11c.38-1.1 1.41-1.83 2.57-1.83z" fill="url(#azure-gradient-1)"/>
-                <path d="M67.52 63.22H31.7c-.7 0-1.13.76-.78 1.36l21.77 35.93c.2.35.58.56.98.56h20.25c1.26 0 2.05-1.35 1.42-2.43L51.21 63.8a.94.94 0 0 1 0-.94c.18-.35.53-.56.91-.56l15.4-.08z" fill="#0078D4"/>
-                <path d="M30.77 11.11a2.74 2.74 0 0 0-2.6 1.89L8.7 75.09a2.7 2.7 0 0 0 .01 1.94 2.7 2.7 0 0 0 2.56 1.73h18.63c.71-.12 1.33-.52 1.73-1.08.4-.57.57-1.27.46-1.95l4.01-11.42h19.11l-10.32-16.89 14.85-39.36c.26-.7.07-1.48-.47-2.04a2.7 2.7 0 0 0-1.93-.91H33.34z" fill="url(#azure-gradient-2)"/>
-                <path d="M62.42 11.11c-.38-1.1-1.41-1.83-2.57-1.83H33.63c1.16 0 2.19.73 2.57 1.83l21.71 63.93c.13.32.2.66.2 1.01 0 1.49-1.21 2.71-2.71 2.71h26.22c1.5 0 2.71-1.22 2.71-2.71 0-.35-.07-.69-.2-1.01L62.42 11.11z" fill="url(#azure-gradient-3)"/>
+              <svg className="w-14 h-14" viewBox="0 0 64 64" fill="#3B82F6">
+                <path d="M52 28c0-1.1-.03-2.18-.1-3.26A16 16 0 0 0 22.18 20 12 12 0 0 0 8 32a12 12 0 0 0 12 12h30a10 10 0 0 0 2-19.8V28z"/>
               </svg>
-              <span className="text-xs text-foreground/70">Microsoft Azure</span>
+              <span className="text-xs text-foreground/70">Azure</span>
             </div>
             <div className="flex flex-col items-center gap-2">
               <SiGooglecloud className="w-14 h-14" style={{ color: "#4285F4" }} />

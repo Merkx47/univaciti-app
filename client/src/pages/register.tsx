@@ -3,11 +3,28 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Link, useLocation } from "wouter";
+import { useTheme } from "@/components/theme-provider";
 import logoUrl from "@assets/logo_1769031259580.png";
-import { Eye, EyeOff, Mail, Lock, User, GraduationCap, Rocket, Target, Zap, ChevronLeft, ChevronRight } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, User, GraduationCap, Rocket, Target, Zap, ChevronLeft, ChevronRight, Sun, Moon } from "lucide-react";
 import { SiApple, SiGoogle, SiFacebook, SiLinkedin } from "react-icons/si";
 
 const THEME_PRIMARY = "#1E9AD6";
+
+function ThemeToggle() {
+  const { theme, setTheme } = useTheme();
+  const isDark = theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  
+  return (
+    <Button
+      size="icon"
+      variant="ghost"
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      data-testid="button-theme-toggle"
+    >
+      {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+    </Button>
+  );
+}
 
 function XIcon({ className }: { className?: string }) {
   return (
@@ -106,6 +123,9 @@ export default function Register() {
 
   return (
     <div className="min-h-screen flex">
+      <div className="absolute top-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
       <div className="flex-1 flex flex-col justify-center px-8 lg:px-16 xl:px-24 bg-background">
         <div className="w-full max-w-md mx-auto">
           <Link href="/" className="inline-block mb-8">
@@ -293,49 +313,47 @@ export default function Register() {
         }}
       >
         <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-20 w-64 h-64 rounded-full bg-white/20 blur-3xl animate-pulse" />
-          <div className="absolute bottom-32 right-32 w-80 h-80 rounded-full bg-white/15 blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
-          <div className="absolute top-1/2 left-1/2 w-48 h-48 rounded-full bg-white/10 blur-2xl animate-pulse" style={{ animationDelay: "2s" }} />
+          <svg viewBox="0 0 1000 500" className="w-full h-full" preserveAspectRatio="xMidYMid slice">
+            <path fill="white" d="M150,100 Q200,80 250,100 T350,90 T450,100 T550,85 T650,100 T750,90 T850,100 L850,150 Q800,170 750,150 T650,160 T550,145 T450,160 T350,150 T250,165 T150,150 Z M100,200 Q150,180 200,200 T300,190 T400,200 T500,185 T600,200 T700,190 T800,200 T900,190 L900,280 Q850,300 800,280 T700,290 T600,275 T500,290 T400,280 T300,295 T200,280 T100,290 Z M120,320 Q170,300 220,320 T320,310 T420,320 T520,305 T620,320 T720,310 T820,320 L820,380 Q770,400 720,380 T620,390 T520,375 T420,390 T320,380 T220,395 T120,380 Z" />
+          </svg>
         </div>
 
         <div className="flex flex-col items-center justify-center w-full p-12 relative z-10">
           <div 
-            className={`bg-white/10 backdrop-blur-sm rounded-2xl p-8 w-full max-w-lg transition-all duration-300 ${
+            className={`transition-all duration-500 ${
               isAnimating ? "opacity-0 transform translate-y-4" : "opacity-100 transform translate-y-0"
             }`}
           >
-            <div className="flex items-center justify-center mb-6">
-              <div className="flex items-center gap-4">
-                <div className="w-16 h-16 rounded-xl bg-white/20 flex items-center justify-center">
-                  <CurrentIcon className="w-8 h-8 text-white" />
-                </div>
+            <div className="flex items-center justify-center mb-8">
+              <div className="w-20 h-20 rounded-2xl bg-white/20 flex items-center justify-center">
+                <CurrentIcon className="w-10 h-10 text-white" />
               </div>
             </div>
 
-            <h2 className="text-2xl font-bold text-white text-center mb-2" data-testid="text-slide-title">
+            <h2 className="text-3xl font-bold text-white text-center mb-3" data-testid="text-slide-title">
               {slides[currentSlide].title}
             </h2>
-            <p className="text-white/80 text-center mb-4" data-testid="text-slide-subtitle">
+            <p className="text-white/80 text-center mb-6 text-lg" data-testid="text-slide-subtitle">
               {slides[currentSlide].subtitle}
             </p>
 
-            <p className="text-white/70 text-center mb-6 text-sm leading-relaxed" data-testid="text-slide-description">
+            <p className="text-white/70 text-center mb-8 leading-relaxed max-w-md mx-auto" data-testid="text-slide-description">
               {slides[currentSlide].description}
             </p>
 
-            <div className="space-y-2">
+            <div className="flex flex-wrap justify-center gap-4 mb-8">
               {slides[currentSlide].features.map((feature, index) => (
-                <div key={index} className="flex items-center gap-2 text-white/90">
+                <div key={index} className="flex items-center gap-2 text-white/90 bg-white/10 px-4 py-2 rounded-full">
                   <div className="w-2 h-2 rounded-full bg-green-400" />
                   <span className="text-sm">{feature}</span>
                 </div>
               ))}
             </div>
 
-            <div className="mt-8 flex justify-center">
+            <div className="flex justify-center">
               <Button
                 variant="outline"
-                className="border-white/30 text-white backdrop-blur-sm"
+                className="border-white/30 text-white"
                 data-testid="button-learn-more"
               >
                 Learn more →
@@ -343,10 +361,10 @@ export default function Register() {
             </div>
           </div>
 
-          <div className="flex items-center gap-4 mt-8">
+          <div className="flex items-center gap-4 mt-12">
             <button
               onClick={prevSlide}
-              className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+              className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white transition-colors"
               data-testid="button-prev-slide"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -358,7 +376,7 @@ export default function Register() {
                   key={index}
                   onClick={() => goToSlide(index)}
                   className={`h-2 rounded-full transition-all duration-300 ${
-                    index === currentSlide ? "w-8 bg-white" : "w-2 bg-white/40 hover:bg-white/60"
+                    index === currentSlide ? "w-8 bg-white" : "w-2 bg-white/40"
                   }`}
                   data-testid={`button-slide-${index}`}
                 />
@@ -367,7 +385,7 @@ export default function Register() {
 
             <button
               onClick={nextSlide}
-              className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors"
+              className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white transition-colors"
               data-testid="button-next-slide"
             >
               <ChevronRight className="w-5 h-5" />
