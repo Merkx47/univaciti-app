@@ -128,7 +128,7 @@ export default function Login() {
                   placeholder="name@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="pl-10 h-12"
+                  className="pl-10"
                   data-testid="input-email"
                 />
               </div>
@@ -145,7 +145,7 @@ export default function Login() {
                   placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="pl-10 pr-10 h-12"
+                  className="pl-10 pr-10"
                   data-testid="input-password"
                 />
                 <button
@@ -178,7 +178,7 @@ export default function Login() {
 
             <Button
               type="submit"
-              className="w-full h-12 text-white font-semibold text-base"
+              className="w-full text-white font-semibold"
               style={{ backgroundColor: THEME_PRIMARY }}
               data-testid="button-sign-in"
             >
@@ -287,7 +287,7 @@ export default function Login() {
             <div className="mt-8 flex justify-center">
               <Button
                 variant="outline"
-                className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm"
+                className="border-white/30 text-white backdrop-blur-sm"
                 data-testid="button-learn-more"
               >
                 Learn more →
