@@ -24,8 +24,22 @@ The frontend follows a component-based architecture with:
   - Programme pages: `programmes/tesa.tsx`, `programmes/stem.tsx`, `programmes/nest.tsx`
   - Certification pages: `certifications/cloud-engineering.tsx`, `certifications/data-analytics.tsx`, `certifications/software-java.tsx`, `certifications/quality-assurance.tsx`, `certifications/software-react.tsx`, `certifications/solutions-architecture.tsx`, `certifications/ai-ml.tsx`
 - Reusable UI components in `client/src/components/ui/`
+- Shared programme components in `client/src/components/programme-shared.tsx`:
+  - CalendarTimetable: Calendar-style timetable showing cohort schedules (like Teams/Google Calendar)
+  - CoursesContent: Detailed course modules, skills, and tools for each specialization
+  - StructureContent: Programme structure with timeline and phases
+  - WorldMapBackground: SVG world map watermark background
+  - Cloud provider icons: AWS (SiAmazon), GCP (SiGooglecloud), Huawei (SiHuawei)
 - Custom hooks in `client/src/hooks/`
 - Utility functions in `client/src/lib/`
+
+### Programme Page Structure
+Each programme page (TESA, STEM, NEST) features:
+- Tabbed sidebar navigation: Home, Courses, Structure, Time-Table, Internship, Fees, Funding
+- Programme and specialization dropdowns for quick navigation
+- Calendar-style timetable displaying cohort schedules with color-coded dates
+- World map watermark background (opacity 0.03-0.05)
+- Rich content including icons from lucide-react
 
 ### Routes
 - `/` - Landing page with hero, programmes, certifications
