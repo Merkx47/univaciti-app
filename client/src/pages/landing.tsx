@@ -430,22 +430,25 @@ function CertificationsSection() {
           </p>
         </div>
         
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 max-w-4xl mx-auto">
           {specializations.map((spec, index) => (
             <Link key={index} href={`/certifications/${spec.id}`}>
               <div 
-                className="rounded-2xl p-5 flex flex-col h-52 cursor-pointer transition-transform hover:scale-[1.02] border border-white/20"
+                className="rounded-2xl p-4 flex flex-col h-64 cursor-pointer transition-transform hover:scale-[1.02] border border-white/20"
                 style={{ backgroundColor: THEME_PRIMARY }}
                 data-testid={`card-specialization-${spec.id}`}
               >
-                <h3 className="text-sm font-semibold text-white leading-tight mb-auto" data-testid={`text-specialization-name-${index}`}>
-                  {spec.name}
-                </h3>
-                <p className="text-xs text-white/80 leading-relaxed mb-4" data-testid={`text-specialization-description-${index}`}>
+                <div className="flex items-start justify-between mb-3">
+                  <h3 className="text-sm font-semibold text-white leading-tight flex-1 pr-2" data-testid={`text-specialization-name-${index}`}>
+                    {spec.name}
+                  </h3>
+                  <spec.icon className="w-10 h-10 text-white/80 flex-shrink-0" />
+                </div>
+                <p className="text-xs text-white/80 leading-relaxed flex-1" data-testid={`text-specialization-description-${index}`}>
                   {spec.description}
                 </p>
                 <div 
-                  className="self-end py-1.5 px-4 rounded-full text-white text-xs font-medium border border-white/50"
+                  className="self-end py-1.5 px-4 rounded-full text-white text-xs font-medium border border-white/50 mt-3"
                   style={{ backgroundColor: THEME_LIGHT }}
                   data-testid={`button-specialization-more-${index}`}
                 >
