@@ -48,19 +48,15 @@ function RocketIcon({ className }: { className?: string }) {
   );
 }
 
-// STEM Icon - Microscope/Science
+// STEM Icon - Pi/Math Symbol
 function StemIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="40" cy="20" r="10"/>
-      <path d="M40 30V45"/>
-      <path d="M30 45H50"/>
-      <path d="M32 45L28 65"/>
-      <path d="M48 45L52 65"/>
-      <path d="M22 65H58"/>
-      <circle cx="40" cy="20" r="4"/>
-      <path d="M25 18L30 20"/>
-      <path d="M55 18L50 20"/>
+    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20 25H60"/>
+      <path d="M30 25V60"/>
+      <path d="M50 25V45C50 55 55 60 60 60"/>
+      <circle cx="25" cy="15" r="3" fill="currentColor"/>
+      <circle cx="55" cy="15" r="3" fill="currentColor"/>
     </svg>
   );
 }
@@ -115,17 +111,14 @@ function ChartIcon({ className }: { className?: string }) {
   );
 }
 
-// Official Java Logo - Blue cup with red steam
+// Java Icon - Coffee cup
 function JavaIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 80 80" className={className}>
-      <path d="M28 8C28 8 32 16 38 16C44 16 44 8 44 8" stroke="#E32934" strokeWidth="3" fill="none" strokeLinecap="round"/>
-      <path d="M38 10C38 10 42 18 48 18C54 18 54 10 54 10" stroke="#E32934" strokeWidth="3" fill="none" strokeLinecap="round"/>
-      <path d="M18 26C18 26 22 32 40 32C58 32 62 26 62 26" stroke="currentColor" strokeWidth="3" fill="none"/>
-      <path d="M16 34C16 34 22 42 40 42C58 42 64 34 64 34" stroke="currentColor" strokeWidth="3" fill="none"/>
-      <path d="M18 42C18 42 24 52 40 52C56 52 62 42 62 42" stroke="currentColor" strokeWidth="3" fill="none"/>
-      <path d="M22 52C22 52 28 60 40 60C52 60 58 52 58 52" stroke="currentColor" strokeWidth="3" fill="none"/>
-      <path d="M26 60C26 60 32 68 40 68C48 68 54 60 54 60" stroke="currentColor" strokeWidth="3" fill="none"/>
+    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20 30H50V60C50 65 45 70 35 70C25 70 20 65 20 60V30Z"/>
+      <path d="M50 35H58C62 35 65 38 65 42C65 46 62 50 58 50H50"/>
+      <path d="M28 18C28 18 30 22 35 22C40 22 40 18 40 18"/>
+      <path d="M35 20C35 20 37 24 42 24C47 24 47 20 47 20"/>
     </svg>
   );
 }
@@ -151,15 +144,17 @@ function ReactLogoIcon({ className }: { className?: string }) {
   );
 }
 
-// Solutions Architecture Icon - Layers/Stack
+// Solutions Architecture Icon - Network diagram
 function ArchitectureIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M40 10L65 22L40 34L15 22L40 10Z"/>
-      <path d="M15 32L40 44L65 32"/>
-      <path d="M15 42L40 54L65 42"/>
-      <path d="M15 52L40 64L65 52"/>
-      <circle cx="40" cy="22" r="4" fill="currentColor"/>
+      <rect x="30" y="10" width="20" height="14" rx="2"/>
+      <rect x="10" y="56" width="16" height="14" rx="2"/>
+      <rect x="32" y="56" width="16" height="14" rx="2"/>
+      <rect x="54" y="56" width="16" height="14" rx="2"/>
+      <path d="M40 24V40"/>
+      <path d="M18 56V46H62V56"/>
+      <path d="M40 40V56"/>
     </svg>
   );
 }
@@ -379,30 +374,30 @@ function LearningProgrammeSection() {
           </p>
         </div>
         
-        <div className="grid sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
+        <div className="grid sm:grid-cols-3 gap-3 max-w-3xl mx-auto">
           {programmes.map((programme, index) => (
             <Link key={index} href={programme.link}>
               <div 
-                className="rounded-xl p-5 flex flex-col h-full cursor-pointer transition-transform hover:scale-[1.02] border border-white/20"
+                className="rounded-lg p-3 flex flex-col cursor-pointer transition-transform hover:scale-[1.02] border border-white/20"
                 style={{ backgroundColor: THEME_PRIMARY }}
                 data-testid={`card-programme-${programme.id}`}
               >
-                <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-base font-semibold text-white tracking-wider" data-testid={`text-programme-name-${index}`}>
+                <div className="flex items-center gap-2 mb-2">
+                  <programme.icon className="w-8 h-8 text-white/90 flex-shrink-0" />
+                  <h3 className="text-sm font-semibold text-white" data-testid={`text-programme-name-${index}`}>
                     {programme.name}
                   </h3>
-                  <programme.icon className="w-12 h-12 text-white/90 flex-shrink-0" />
                 </div>
-                <p className="text-xs text-white/80 mb-4 flex-grow leading-relaxed" data-testid={`text-programme-description-${index}`}>
+                <p className="text-xs text-white/80 mb-2 leading-relaxed" data-testid={`text-programme-description-${index}`}>
                   {programme.description}
                 </p>
                 <div 
-                  className="flex items-center justify-center gap-1 py-1.5 px-3 rounded-full text-white text-xs font-medium border border-white/40"
+                  className="self-start flex items-center gap-0.5 py-1 px-2 rounded-full text-white text-[10px] font-medium border border-white/40"
                   style={{ backgroundColor: THEME_LIGHT }}
                   data-testid={`button-programme-more-${index}`}
                 >
                   <span>More</span>
-                  <ChevronRight className="w-3 h-3" />
+                  <ChevronRight className="w-2.5 h-2.5" />
                 </div>
               </div>
             </Link>
@@ -439,30 +434,30 @@ function CertificationsSection() {
           </p>
         </div>
         
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
           {specializations.map((spec, index) => (
             <Link key={index} href={`/certifications/${spec.id}`}>
               <div 
-                className="rounded-lg p-4 flex flex-col h-full cursor-pointer transition-transform hover:scale-[1.02] border border-white/20"
+                className="rounded-lg p-3 flex flex-col cursor-pointer transition-transform hover:scale-[1.02] border border-white/20"
                 style={{ backgroundColor: THEME_PRIMARY }}
                 data-testid={`card-specialization-${spec.id}`}
               >
-                <div className="flex items-start justify-between mb-2">
-                  <h3 className="text-sm font-semibold text-white leading-tight flex-1 pr-2" data-testid={`text-specialization-name-${index}`}>
+                <div className="flex items-center gap-2 mb-1">
+                  <spec.icon className="w-7 h-7 text-white/90 flex-shrink-0" />
+                  <h3 className="text-xs font-semibold text-white leading-tight" data-testid={`text-specialization-name-${index}`}>
                     {spec.name}
                   </h3>
-                  <spec.icon className="w-9 h-9 text-white/90 flex-shrink-0" />
                 </div>
-                <p className="text-xs text-white/75 mb-3 flex-grow leading-relaxed" data-testid={`text-specialization-description-${index}`}>
+                <p className="text-[10px] text-white/75 mb-2 leading-relaxed" data-testid={`text-specialization-description-${index}`}>
                   {spec.description}
                 </p>
                 <div 
-                  className="flex items-center justify-center gap-1 py-1 px-2 rounded-full text-white text-xs font-medium border border-white/40"
+                  className="self-start flex items-center gap-0.5 py-0.5 px-1.5 rounded-full text-white text-[10px] font-medium border border-white/40"
                   style={{ backgroundColor: THEME_LIGHT }}
                   data-testid={`button-specialization-more-${index}`}
                 >
                   <span>More</span>
-                  <ChevronRight className="w-3 h-3" />
+                  <ChevronRight className="w-2.5 h-2.5" />
                 </div>
               </div>
             </Link>
