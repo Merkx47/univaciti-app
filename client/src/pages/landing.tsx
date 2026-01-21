@@ -374,30 +374,26 @@ function LearningProgrammeSection() {
           </p>
         </div>
         
-        <div className="grid sm:grid-cols-3 gap-3 max-w-3xl mx-auto">
+        <div className="grid sm:grid-cols-3 gap-3 max-w-4xl mx-auto">
           {programmes.map((programme, index) => (
             <Link key={index} href={programme.link}>
               <div 
-                className="rounded-lg p-3 flex flex-col cursor-pointer transition-transform hover:scale-[1.02] border border-white/20"
+                className="rounded-2xl p-5 flex flex-col h-52 cursor-pointer transition-transform hover:scale-[1.02] border border-white/20"
                 style={{ backgroundColor: THEME_PRIMARY }}
                 data-testid={`card-programme-${programme.id}`}
               >
-                <div className="flex items-center gap-2 mb-2">
-                  <programme.icon className="w-8 h-8 text-white/90 flex-shrink-0" />
-                  <h3 className="text-sm font-semibold text-white" data-testid={`text-programme-name-${index}`}>
-                    {programme.name}
-                  </h3>
-                </div>
-                <p className="text-xs text-white/80 mb-2 leading-relaxed" data-testid={`text-programme-description-${index}`}>
+                <h3 className="text-base font-semibold text-white mb-auto" data-testid={`text-programme-name-${index}`}>
+                  {programme.name}
+                </h3>
+                <p className="text-sm text-white/80 leading-relaxed mb-4" data-testid={`text-programme-description-${index}`}>
                   {programme.description}
                 </p>
                 <div 
-                  className="self-start flex items-center gap-0.5 py-1 px-2 rounded-full text-white text-[10px] font-medium border border-white/40"
+                  className="self-end py-1.5 px-4 rounded-full text-white text-xs font-medium border border-white/50"
                   style={{ backgroundColor: THEME_LIGHT }}
                   data-testid={`button-programme-more-${index}`}
                 >
-                  <span>More</span>
-                  <ChevronRight className="w-2.5 h-2.5" />
+                  More
                 </div>
               </div>
             </Link>
@@ -434,30 +430,26 @@ function CertificationsSection() {
           </p>
         </div>
         
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
           {specializations.map((spec, index) => (
             <Link key={index} href={`/certifications/${spec.id}`}>
               <div 
-                className="rounded-lg p-3 flex flex-col cursor-pointer transition-transform hover:scale-[1.02] border border-white/20"
+                className="rounded-2xl p-5 flex flex-col h-52 cursor-pointer transition-transform hover:scale-[1.02] border border-white/20"
                 style={{ backgroundColor: THEME_PRIMARY }}
                 data-testid={`card-specialization-${spec.id}`}
               >
-                <div className="flex items-center gap-2 mb-1">
-                  <spec.icon className="w-7 h-7 text-white/90 flex-shrink-0" />
-                  <h3 className="text-xs font-semibold text-white leading-tight" data-testid={`text-specialization-name-${index}`}>
-                    {spec.name}
-                  </h3>
-                </div>
-                <p className="text-[10px] text-white/75 mb-2 leading-relaxed" data-testid={`text-specialization-description-${index}`}>
+                <h3 className="text-sm font-semibold text-white leading-tight mb-auto" data-testid={`text-specialization-name-${index}`}>
+                  {spec.name}
+                </h3>
+                <p className="text-xs text-white/80 leading-relaxed mb-4" data-testid={`text-specialization-description-${index}`}>
                   {spec.description}
                 </p>
                 <div 
-                  className="self-start flex items-center gap-0.5 py-0.5 px-1.5 rounded-full text-white text-[10px] font-medium border border-white/40"
+                  className="self-end py-1.5 px-4 rounded-full text-white text-xs font-medium border border-white/50"
                   style={{ backgroundColor: THEME_LIGHT }}
                   data-testid={`button-specialization-more-${index}`}
                 >
-                  <span>More</span>
-                  <ChevronRight className="w-2.5 h-2.5" />
+                  More
                 </div>
               </div>
             </Link>
