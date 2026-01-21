@@ -20,9 +20,31 @@ Preferred communication style: Simple, everyday language.
 
 The frontend follows a component-based architecture with:
 - Pages located in `client/src/pages/`
+  - Landing page: `landing.tsx`
+  - Programme pages: `programmes/tesa.tsx`, `programmes/stem.tsx`, `programmes/nest.tsx`
+  - Certification pages: `certifications/cloud-engineering.tsx`, `certifications/data-analytics.tsx`, `certifications/software-java.tsx`, `certifications/quality-assurance.tsx`, `certifications/software-react.tsx`, `certifications/solutions-architecture.tsx`, `certifications/ai-ml.tsx`
 - Reusable UI components in `client/src/components/ui/`
 - Custom hooks in `client/src/hooks/`
 - Utility functions in `client/src/lib/`
+
+### Routes
+- `/` - Landing page with hero, programmes, certifications
+- `/programmes/tesa` - TESA programme details
+- `/programmes/stem` - STEM programme details
+- `/programmes/nest` - NEST programme details
+- `/certifications/cloud-engineering` - Cloud Engineering certification
+- `/certifications/data-analytics` - Data Analytics certification
+- `/certifications/software-java` - Java Software Engineering certification
+- `/certifications/quality-assurance` - Quality Assurance certification
+- `/certifications/software-react` - React Software Engineering certification
+- `/certifications/solutions-architecture` - Solutions Architecture certification
+- `/certifications/ai-ml` - AI & Machine Learning certification
+
+### Design System
+- Primary teal card color: `#1a6985`
+- Lighter teal for buttons: `#2a8aa8`
+- Logo: `attached_assets/logo_1769031259580.png` (transparent PNG)
+- Custom SVG icons for programmes (beaver, atom, building) and certifications (cloud, chart, code, checkmark, react, layers, brain)
 
 Path aliases are configured:
 - `@/*` → `./client/src/*`
