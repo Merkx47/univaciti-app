@@ -239,8 +239,12 @@ function Navbar() {
           
           <div className="hidden lg:flex items-center gap-3">
             <ThemeToggle testId="button-theme-toggle-desktop" />
-            <Button variant="ghost" size="sm" className="font-medium" data-testid="button-register">Register</Button>
-            <Button size="sm" className="font-medium" data-testid="button-sign-in">Sign in</Button>
+            <Link href="/register">
+              <Button variant="ghost" size="sm" className="font-medium" data-testid="button-register">Register</Button>
+            </Link>
+            <Link href="/login">
+              <Button size="sm" className="font-medium" data-testid="button-sign-in">Sign in</Button>
+            </Link>
           </div>
           
           <div className="lg:hidden flex items-center gap-2">
@@ -261,8 +265,12 @@ function Navbar() {
             <Link href="/certify" className="block py-2 text-sm text-foreground/80 font-medium" data-testid="link-certify-mobile">Certify</Link>
             <Link href="/community" className="block py-2 text-sm text-foreground/80 font-medium" data-testid="link-community-mobile">Community</Link>
             <div className="pt-3 flex gap-2">
-              <Button variant="outline" size="sm" className="flex-1" data-testid="button-register-mobile">Register</Button>
-              <Button size="sm" className="flex-1" data-testid="button-sign-in-mobile">Sign in</Button>
+              <Link href="/register" className="flex-1">
+                <Button variant="outline" size="sm" className="w-full" data-testid="button-register-mobile">Register</Button>
+              </Link>
+              <Link href="/login" className="flex-1">
+                <Button size="sm" className="w-full" data-testid="button-sign-in-mobile">Sign in</Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -542,7 +550,29 @@ function RecruitersSection() {
               <span className="text-xs text-foreground/70">AWS</span>
             </div>
             <div className="flex flex-col items-center gap-2">
-              <div className="w-14 h-14 rounded-lg flex items-center justify-center text-white font-bold text-xl" style={{ backgroundColor: "#0078D4" }}>Az</div>
+              <svg className="w-14 h-14" viewBox="0 0 96 96" fill="none">
+                <defs>
+                  <linearGradient id="azure-gradient-1" x1="58.97" y1="9.92" x2="35.69" y2="87.76" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#114A8B"/>
+                    <stop offset="1" stopColor="#0669BC"/>
+                  </linearGradient>
+                  <linearGradient id="azure-gradient-2" x1="60.01" y1="45.55" x2="53.88" y2="47.87" gradientUnits="userSpaceOnUse">
+                    <stop stopOpacity="0.3"/>
+                    <stop offset="0.07" stopOpacity="0.2"/>
+                    <stop offset="0.32" stopOpacity="0.1"/>
+                    <stop offset="0.62" stopOpacity="0.05"/>
+                    <stop offset="1" stopOpacity="0"/>
+                  </linearGradient>
+                  <linearGradient id="azure-gradient-3" x1="37.37" y1="9.08" x2="75.24" y2="86.94" gradientUnits="userSpaceOnUse">
+                    <stop stopColor="#3CCBF4"/>
+                    <stop offset="1" stopColor="#2892DF"/>
+                  </linearGradient>
+                </defs>
+                <path d="M33.34 9.28h22.62l-23.67 67.65c-.38 1.1-1.41 1.83-2.57 1.83H11.57c-1.5 0-2.71-1.22-2.71-2.71 0-.35.07-.69.2-1.01L30.77 11.11c.38-1.1 1.41-1.83 2.57-1.83z" fill="url(#azure-gradient-1)"/>
+                <path d="M67.52 63.22H31.7c-.7 0-1.13.76-.78 1.36l21.77 35.93c.2.35.58.56.98.56h20.25c1.26 0 2.05-1.35 1.42-2.43L51.21 63.8a.94.94 0 0 1 0-.94c.18-.35.53-.56.91-.56l15.4-.08z" fill="#0078D4"/>
+                <path d="M30.77 11.11a2.74 2.74 0 0 0-2.6 1.89L8.7 75.09a2.7 2.7 0 0 0 .01 1.94 2.7 2.7 0 0 0 2.56 1.73h18.63c.71-.12 1.33-.52 1.73-1.08.4-.57.57-1.27.46-1.95l4.01-11.42h19.11l-10.32-16.89 14.85-39.36c.26-.7.07-1.48-.47-2.04a2.7 2.7 0 0 0-1.93-.91H33.34z" fill="url(#azure-gradient-2)"/>
+                <path d="M62.42 11.11c-.38-1.1-1.41-1.83-2.57-1.83H33.63c1.16 0 2.19.73 2.57 1.83l21.71 63.93c.13.32.2.66.2 1.01 0 1.49-1.21 2.71-2.71 2.71h26.22c1.5 0 2.71-1.22 2.71-2.71 0-.35-.07-.69-.2-1.01L62.42 11.11z" fill="url(#azure-gradient-3)"/>
+              </svg>
               <span className="text-xs text-foreground/70">Microsoft Azure</span>
             </div>
             <div className="flex flex-col items-center gap-2">

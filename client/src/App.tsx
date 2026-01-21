@@ -26,6 +26,10 @@ import RecruitmentPage from "@/pages/recruitment";
 import CertifyPage from "@/pages/certify";
 import CommunityPage from "@/pages/community";
 
+// Auth pages
+import LoginPage from "@/pages/login";
+import RegisterPage from "@/pages/register";
+
 function Router() {
   return (
     <Switch>
@@ -49,6 +53,10 @@ function Router() {
       <Route path="/recruitment" component={RecruitmentPage}/>
       <Route path="/certify" component={CertifyPage}/>
       <Route path="/community" component={CommunityPage}/>
+      
+      {/* Auth routes */}
+      <Route path="/login" component={LoginPage}/>
+      <Route path="/register" component={RegisterPage}/>
       
       <Route component={NotFound} />
     </Switch>
