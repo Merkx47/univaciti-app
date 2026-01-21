@@ -1,65 +1,27 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useTheme } from "@/components/theme-provider";
 import logoUrl from "@assets/logo_1769023265723.png";
-
-function UnivacitiLogo({ className, testId }: { className?: string; testId?: string }) {
-  return (
-    <svg 
-      viewBox="0 0 100 100" 
-      className={className}
-      data-testid={testId}
-      aria-label="Univaciti Logo"
-    >
-      <circle cx="50" cy="50" r="50" className="fill-primary" />
-      <path 
-        d="M25 30 L25 60 L35 60 L35 45 L50 60 L65 60 L65 30 L55 30 L55 45 L40 30 Z" 
-        className="fill-primary-foreground"
-      />
-      <path 
-        d="M50 25 L70 50 L60 50 L60 75 L40 75 L40 50 L30 50 Z" 
-        className="fill-primary-foreground"
-      />
-    </svg>
-  );
-}
 import {
-  GraduationCap,
-  BookOpen,
-  Users,
-  Award,
-  Briefcase,
-  ArrowRight,
-  ChevronRight,
   Menu,
   X,
   Sun,
   Moon,
-  Cloud,
-  Code,
-  Database,
-  Brain,
-  Monitor,
 } from "lucide-react";
 
 function ThemeToggle({ testId }: { testId: string }) {
   const { theme, setTheme } = useTheme();
   const isDark = theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
   
-  const toggleTheme = () => {
-    setTheme(isDark ? "light" : "dark");
-  };
-  
   return (
     <Button
       size="icon"
       variant="ghost"
-      onClick={toggleTheme}
+      onClick={() => setTheme(isDark ? "light" : "dark")}
       data-testid={testId}
     >
       {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
@@ -67,50 +29,150 @@ function ThemeToggle({ testId }: { testId: string }) {
   );
 }
 
+function GraduationCapIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 64 64" className={className} fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M32 8L4 24L32 40L60 24L32 8Z" strokeLinejoin="round"/>
+      <path d="M16 32V48C16 48 24 56 32 56C40 56 48 48 48 48V32" strokeLinejoin="round"/>
+      <path d="M32 40V56"/>
+    </svg>
+  );
+}
+
+function BookIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 64 64" className={className} fill="none" stroke="currentColor" strokeWidth="2.5">
+      <path d="M8 12C8 12 16 8 32 8C48 8 56 12 56 12V52C56 52 48 48 32 48C16 48 8 52 8 52V12Z"/>
+      <path d="M32 8V48"/>
+      <path d="M20 20H28"/>
+      <path d="M20 28H28"/>
+      <path d="M36 20H44"/>
+      <path d="M36 28H44"/>
+    </svg>
+  );
+}
+
+function CertificateIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 64 64" className={className} fill="none" stroke="currentColor" strokeWidth="2.5">
+      <rect x="8" y="12" width="48" height="36" rx="2"/>
+      <circle cx="32" cy="28" r="8"/>
+      <path d="M28 36L26 52L32 48L38 52L36 36"/>
+      <path d="M16 20H24"/>
+      <path d="M40 20H48"/>
+    </svg>
+  );
+}
+
+function BriefcaseIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 64 64" className={className} fill="none" stroke="currentColor" strokeWidth="2.5">
+      <rect x="8" y="20" width="48" height="36" rx="3"/>
+      <path d="M24 20V14C24 12 26 10 28 10H36C38 10 40 12 40 14V20"/>
+      <path d="M8 36H56"/>
+      <rect x="28" y="32" width="8" height="8" rx="1"/>
+    </svg>
+  );
+}
+
+function AcornIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 64 64" className={className} fill="none" stroke="currentColor" strokeWidth="2">
+      <ellipse cx="32" cy="40" rx="14" ry="18"/>
+      <path d="M18 30C18 30 22 20 32 20C42 20 46 30 46 30"/>
+      <path d="M32 20V10"/>
+      <path d="M28 12C28 12 30 14 32 14C34 14 36 12 36 12"/>
+    </svg>
+  );
+}
+
+function GlobeIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 64 64" className={className} fill="none" stroke="currentColor" strokeWidth="2">
+      <circle cx="32" cy="32" r="24"/>
+      <ellipse cx="32" cy="32" rx="10" ry="24"/>
+      <path d="M8 32H56"/>
+      <path d="M12 20H52"/>
+      <path d="M12 44H52"/>
+    </svg>
+  );
+}
+
+function DolphinIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 64 64" className={className} fill="none" stroke="currentColor" strokeWidth="2">
+      <path d="M8 32C8 32 12 24 24 24C32 24 36 28 40 28C48 28 52 24 56 28"/>
+      <path d="M24 24C24 24 20 16 28 12C32 10 36 14 36 18"/>
+      <path d="M40 28C40 28 44 36 40 44C36 52 24 52 20 48"/>
+      <path d="M56 28C56 28 60 32 58 38C56 44 48 48 40 44"/>
+      <circle cx="20" cy="28" r="2" fill="currentColor"/>
+    </svg>
+  );
+}
+
+function PatternIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 64 64" className={className} fill="none" stroke="currentColor" strokeWidth="2">
+      <circle cx="32" cy="16" r="6"/>
+      <circle cx="32" cy="48" r="6"/>
+      <circle cx="20" cy="32" r="6"/>
+      <circle cx="44" cy="32" r="6"/>
+      <path d="M32 22V42"/>
+      <path d="M26 32H38"/>
+      <path d="M24 20L28 26"/>
+      <path d="M40 20L36 26"/>
+      <path d="M24 44L28 38"/>
+      <path d="M40 44L36 38"/>
+    </svg>
+  );
+}
+
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50" data-testid="navbar">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border/30" data-testid="navbar">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 gap-4">
+        <div className="flex items-center justify-between h-20 gap-4">
           <div className="flex items-center gap-3" data-testid="logo-container">
-            <UnivacitiLogo className="h-10 w-10 flex-shrink-0" testId="img-logo" />
-            <span className="text-xl font-bold text-foreground" data-testid="text-brand-name">Univaciti</span>
+            <div className="h-12 w-12 rounded-full overflow-hidden flex-shrink-0">
+              <img src={logoUrl} alt="Univaciti" className="h-full w-full object-cover scale-125" data-testid="img-logo" />
+            </div>
+            <span className="text-2xl font-semibold text-primary" data-testid="text-brand-name">Univaciti.com</span>
           </div>
           
-          <div className="hidden md:flex items-center gap-8">
-            <a href="#programmes" className="text-muted-foreground transition-colors" data-testid="link-programmes">Programmes</a>
-            <a href="#certification" className="text-muted-foreground transition-colors" data-testid="link-certification">Certification</a>
-            <a href="#recruitment" className="text-muted-foreground transition-colors" data-testid="link-recruitment">Recruitment</a>
-            <a href="#community" className="text-muted-foreground transition-colors" data-testid="link-community">Community</a>
+          <div className="hidden lg:flex items-center gap-10">
+            <a href="#programmes" className="text-base text-foreground/80 font-medium" data-testid="link-programmes">Programmes</a>
+            <a href="#certification" className="text-base text-foreground/80 font-medium" data-testid="link-certification">Certification</a>
+            <a href="#recruitment" className="text-base text-foreground/80 font-medium" data-testid="link-recruitment">Recruitment</a>
+            <a href="#community" className="text-base text-foreground/80 font-medium" data-testid="link-community">Community</a>
           </div>
           
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-4">
             <ThemeToggle testId="button-theme-toggle-desktop" />
-            <Button variant="ghost" data-testid="button-register">Register</Button>
-            <Button data-testid="button-sign-in">Sign in</Button>
+            <Button variant="ghost" className="text-base font-medium" data-testid="button-register">Register</Button>
+            <Button className="text-base font-medium px-6" data-testid="button-sign-in">Sign in</Button>
           </div>
           
-          <div className="md:hidden flex items-center gap-2">
+          <div className="lg:hidden flex items-center gap-2">
             <ThemeToggle testId="button-theme-toggle-mobile" />
             <Button size="icon" variant="ghost" onClick={() => setIsOpen(!isOpen)} data-testid="button-mobile-menu">
-              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </Button>
           </div>
         </div>
       </div>
       
       {isOpen && (
-        <div className="md:hidden bg-background/95 backdrop-blur-md border-t border-border/50" data-testid="mobile-menu">
-          <div className="px-4 py-4 space-y-3">
-            <a href="#programmes" className="block py-2 text-muted-foreground" data-testid="link-programmes-mobile">Programmes</a>
-            <a href="#certification" className="block py-2 text-muted-foreground" data-testid="link-certification-mobile">Certification</a>
-            <a href="#recruitment" className="block py-2 text-muted-foreground" data-testid="link-recruitment-mobile">Recruitment</a>
-            <a href="#community" className="block py-2 text-muted-foreground" data-testid="link-community-mobile">Community</a>
-            <div className="pt-3 space-y-2">
-              <Button variant="outline" className="w-full" data-testid="button-register-mobile">Register</Button>
-              <Button className="w-full" data-testid="button-sign-in-mobile">Sign in</Button>
+        <div className="lg:hidden bg-background border-t border-border/30" data-testid="mobile-menu">
+          <div className="px-6 py-6 space-y-4">
+            <a href="#programmes" className="block py-3 text-lg text-foreground/80 font-medium" data-testid="link-programmes-mobile">Programmes</a>
+            <a href="#certification" className="block py-3 text-lg text-foreground/80 font-medium" data-testid="link-certification-mobile">Certification</a>
+            <a href="#recruitment" className="block py-3 text-lg text-foreground/80 font-medium" data-testid="link-recruitment-mobile">Recruitment</a>
+            <a href="#community" className="block py-3 text-lg text-foreground/80 font-medium" data-testid="link-community-mobile">Community</a>
+            <div className="pt-4 space-y-3">
+              <Button variant="outline" className="w-full text-base" data-testid="button-register-mobile">Register</Button>
+              <Button className="w-full text-base" data-testid="button-sign-in-mobile">Sign in</Button>
             </div>
           </div>
         </div>
@@ -121,43 +183,30 @@ function Navbar() {
 
 function HeroSection() {
   return (
-    <section className="relative pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-primary/5 to-background overflow-hidden" data-testid="section-hero">
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary/10 rounded-full blur-3xl" />
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-primary/5 rounded-full blur-3xl" />
-      </div>
-      
-      <div className="max-w-7xl mx-auto relative">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+    <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8" data-testid="section-hero">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6" data-testid="text-hero-title">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light leading-tight mb-8" data-testid="text-hero-title">
               <span className="text-foreground">Get an accelerated skill, from </span>
-              <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">Novice to Expertise.</span>
+              <span className="text-primary font-medium">Novis to Expertise.</span>
               <br />
               <span className="text-foreground">Get certified, get validated.</span>
             </h1>
-            
-            <div className="flex flex-wrap gap-4 mt-8">
-              <Button size="lg" data-testid="button-get-started-hero">
-                Get Started
-                <ArrowRight className="h-5 w-5 ml-2" />
-              </Button>
-              <Button size="lg" variant="outline" data-testid="button-learn-more-hero">
-                Learn More
-              </Button>
-            </div>
           </div>
           
-          <div className="hidden lg:block">
-            <Card className="p-8 bg-gradient-to-br from-primary/10 to-primary/5" data-testid="card-hero-image">
-              <div className="aspect-square bg-card rounded-lg flex items-center justify-center relative overflow-hidden border border-border">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent" />
-                <div className="relative z-10 text-center">
-                  <GraduationCap className="h-24 w-24 text-primary mx-auto mb-4" />
-                  <p className="text-muted-foreground font-medium">Your Journey Starts Here</p>
-                </div>
-              </div>
-            </Card>
+          <div className="flex justify-center lg:justify-end">
+            <div 
+              className="w-80 h-80 lg:w-96 lg:h-96 rounded-3xl flex flex-col items-center justify-center"
+              style={{ 
+                background: 'linear-gradient(135deg, rgba(230,240,250,0.8) 0%, rgba(200,220,240,0.6) 100%)',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(255,255,255,0.5)'
+              }}
+              data-testid="card-hero-image"
+            >
+              <GraduationCapIcon className="w-24 h-24 text-primary mb-6" />
+              <p className="text-lg text-foreground/60 font-light">Your Journey Starts Here</p>
+            </div>
           </div>
         </div>
       </div>
@@ -168,17 +217,17 @@ function HeroSection() {
 function ThreePillarsSection() {
   const pillars = [
     {
-      icon: BookOpen,
+      icon: BookIcon,
       title: "Learning",
       description: "Hop on any of the specialization course and learn on your own terms.",
     },
     {
-      icon: Award,
+      icon: CertificateIcon,
       title: "Certification",
       description: "Get certified to receive validation recruiters are looking for.",
     },
     {
-      icon: Briefcase,
+      icon: BriefcaseIcon,
       title: "Recruitment",
       description: "Get access to the pool of certified professionals.",
     },
@@ -187,15 +236,21 @@ function ThreePillarsSection() {
   return (
     <section className="py-20 px-4 sm:px-6 lg:px-8" data-testid="section-pillars">
       <div className="max-w-7xl mx-auto">
-        <div className="grid sm:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-3 gap-12">
           {pillars.map((pillar, index) => (
-            <Card key={index} className="p-8 text-center hover-elevate transition-all duration-300" data-testid={`card-pillar-${index}`}>
-              <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-6">
-                <pillar.icon className="h-10 w-10 text-primary" />
+            <div key={index} className="text-center" data-testid={`card-pillar-${index}`}>
+              <div 
+                className="w-32 h-32 rounded-3xl mx-auto mb-6 flex items-center justify-center"
+                style={{ 
+                  background: 'linear-gradient(135deg, rgba(230,240,250,0.9) 0%, rgba(210,225,245,0.7) 100%)',
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.06)'
+                }}
+              >
+                <pillar.icon className="w-16 h-16 text-primary" />
               </div>
-              <h3 className="text-xl font-bold mb-3" data-testid={`text-pillar-title-${index}`}>{pillar.title}</h3>
-              <p className="text-muted-foreground" data-testid={`text-pillar-description-${index}`}>{pillar.description}</p>
-            </Card>
+              <h3 className="text-xl font-semibold mb-3 text-foreground" data-testid={`text-pillar-title-${index}`}>{pillar.title}</h3>
+              <p className="text-base text-foreground/70 leading-relaxed" data-testid={`text-pillar-description-${index}`}>{pillar.description}</p>
+            </div>
           ))}
         </div>
       </div>
@@ -205,49 +260,50 @@ function ThreePillarsSection() {
 
 function LearningProgrammeSection() {
   const programmes = [
-    {
-      name: "TESA",
-      subtitle: "Tech Skills Accelerator",
-      description: "For beginners who need intensive courses in specialized skills",
-    },
-    {
-      name: "Startup Accelerator",
-      subtitle: "Entrepreneurship Track",
-      description: "For beginners who need intensive courses in specialized skills",
-    },
-    {
-      name: "Empowa",
-      subtitle: "Empowerment Programme",
-      description: "For beginners who need intensive courses in specialized skills",
-    },
+    { name: "TESA", icon: PatternIcon, description: "For beginners who need intensive courses in specialized skills" },
+    { name: "Startup Accelerator", icon: AcornIcon, description: "For beginners who need intensive courses in specialized skills" },
+    { name: "Empowa", icon: GlobeIcon, description: "For beginners who need intensive courses in specialized skills" },
+    { name: "TESA", icon: DolphinIcon, description: "For beginners who need intensive courses in specialized skills" },
+    { name: "TESA", icon: PatternIcon, description: "For beginners who need intensive courses in specialized skills" },
   ];
   
   return (
-    <section id="programmes" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30" data-testid="section-programmes">
+    <section id="programmes" className="py-20 px-4 sm:px-6 lg:px-8" data-testid="section-programmes">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4" data-testid="text-programmes-title">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl font-light mb-4" data-testid="text-programmes-title">
             Learning Programme
           </h2>
-          <p className="text-lg text-muted-foreground" data-testid="text-programmes-description">
+          <p className="text-lg text-foreground/70 max-w-2xl mx-auto" data-testid="text-programmes-description">
             Choose from the pool of Univaciti programs and start learning when and how you choose to.
           </p>
         </div>
         
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
           {programmes.map((programme, index) => (
-            <Card key={index} className="p-6 hover-elevate transition-all duration-300" data-testid={`card-programme-${index}`}>
-              <div className="w-16 h-16 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                <GraduationCap className="h-8 w-8 text-primary" />
+            <div 
+              key={index} 
+              className="rounded-2xl p-6 flex flex-col h-full"
+              style={{ backgroundColor: '#3d7a8c' }}
+              data-testid={`card-programme-${index}`}
+            >
+              <div className="flex items-start justify-between mb-4">
+                <h3 className="text-lg font-semibold text-white leading-tight" data-testid={`text-programme-name-${index}`}>
+                  {programme.name}
+                </h3>
+                <programme.icon className="w-12 h-12 text-white/80 flex-shrink-0" />
               </div>
-              <h3 className="text-xl font-bold mb-1" data-testid={`text-programme-name-${index}`}>{programme.name}</h3>
-              <p className="text-sm text-primary mb-3" data-testid={`text-programme-subtitle-${index}`}>{programme.subtitle}</p>
-              <p className="text-muted-foreground mb-4" data-testid={`text-programme-description-${index}`}>{programme.description}</p>
-              <Button variant="outline" className="w-full" data-testid={`button-programme-more-${index}`}>
+              <p className="text-sm text-white/80 mb-6 flex-grow" data-testid={`text-programme-description-${index}`}>
+                {programme.description}
+              </p>
+              <Button 
+                variant="outline"
+                className="w-full border-2 border-white/40 text-white bg-transparent"
+                data-testid={`button-programme-more-${index}`}
+              >
                 More
-                <ChevronRight className="h-4 w-4 ml-1" />
               </Button>
-            </Card>
+            </div>
           ))}
         </div>
       </div>
@@ -257,62 +313,51 @@ function LearningProgrammeSection() {
 
 function CertificationsSection() {
   const specializations = [
-    {
-      icon: Cloud,
-      name: "Cloud Engineering & Architecture",
-      description: "Choose from the key Hyperscalers and achieve advanced skills.",
-    },
-    {
-      icon: Code,
-      name: "Software Engineering - Backend",
-      description: "Achieve software engineering mastery with a specialization in React, Java and .Net Skills",
-    },
-    {
-      icon: Database,
-      name: "Data Analytics",
-      description: "Acquire problem solving skills, with specialization in a domain: Banking, Telecoms, Finance, Manufacturing, etc.",
-    },
-    {
-      icon: Brain,
-      name: "AI & Machine Learning",
-      description: "Acquire problem solving skills, with specialization in a domain: Banking, Telecoms, Finance, Manufacturing, etc.",
-    },
-    {
-      icon: Monitor,
-      name: "Software Engineering - Frontend",
-      description: "For beginners who need intensive courses in specialized skills",
-    },
+    { name: "Cloud Engineering & Architecture.", description: "Choose from the key Hyperscalers and achieve advanced skills." },
+    { name: "Software Engineering - Backend.", description: "Achieve software engineering mastery with a specialization in React, Java and .Net Skills" },
+    { name: "Data Analytics.", description: "Acquire problem solving skills, with specialization in a domain: Banking, Telecoms, Finance Manufacturing, etc" },
+    { name: "AI & Machine Learning.", description: "Acquire problem solving skills, with specialization in a domain: Banking, Telecoms, Finance Manufacturing, etc" },
+    { name: "Software Engineering - Frontend.", description: "For beginners who need intensive courses in specialized skills" },
   ];
   
   return (
-    <section id="certification" className="py-20 px-4 sm:px-6 lg:px-8" data-testid="section-certifications">
+    <section id="certification" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/20" data-testid="section-certifications">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center max-w-4xl mx-auto mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4" data-testid="text-certifications-title">
+        <div className="text-center mb-6">
+          <h2 className="text-3xl sm:text-4xl font-light mb-4" data-testid="text-certifications-title">
             Certifications
           </h2>
-          <p className="text-lg text-muted-foreground" data-testid="text-certifications-description">
-            Validate your skillset with Univaciti certification courses. Specializations are in Cloud Engineering, 
-            Cloud Solutions Architecture, Software Engineering, AI Solution Architecture & Engineering and Data Analytics.
+          <p className="text-base text-foreground/70 max-w-4xl mx-auto mb-2" data-testid="text-certifications-description">
+            Validate your skillset with Univaciti certification courses.
+            Specializations are in Cloud Engineering, Cloud Solutions Architecture, Software Engineering, AI Solution Architecture & Engineering and Data Analytics.
           </p>
-          <p className="text-primary font-medium mt-4" data-testid="text-certifications-instruction">
+          <p className="text-primary font-medium" data-testid="text-certifications-instruction">
             Select a specialization to view the details.
           </p>
         </div>
         
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
           {specializations.map((spec, index) => (
-            <Card key={index} className="p-6 hover-elevate transition-all duration-300 cursor-pointer" data-testid={`card-specialization-${index}`}>
-              <div className="w-14 h-14 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                <spec.icon className="h-7 w-7 text-primary" />
-              </div>
-              <h3 className="text-lg font-semibold mb-2" data-testid={`text-specialization-name-${index}`}>{spec.name}</h3>
-              <p className="text-sm text-muted-foreground mb-4" data-testid={`text-specialization-description-${index}`}>{spec.description}</p>
-              <Button variant="outline" size="sm" className="w-full" data-testid={`button-specialization-more-${index}`}>
+            <div 
+              key={index} 
+              className="rounded-2xl p-5 flex flex-col h-full"
+              style={{ backgroundColor: '#3d7a8c' }}
+              data-testid={`card-specialization-${index}`}
+            >
+              <h3 className="text-base font-semibold text-white mb-3 leading-tight" data-testid={`text-specialization-name-${index}`}>
+                {spec.name}
+              </h3>
+              <p className="text-sm text-white/80 mb-4 flex-grow leading-relaxed" data-testid={`text-specialization-description-${index}`}>
+                {spec.description}
+              </p>
+              <Button 
+                variant="outline"
+                className="w-full border-2 border-white/40 text-white bg-transparent"
+                data-testid={`button-specialization-more-${index}`}
+              >
                 More
-                <ChevronRight className="h-4 w-4 ml-1" />
               </Button>
-            </Card>
+            </div>
           ))}
         </div>
       </div>
@@ -321,137 +366,19 @@ function CertificationsSection() {
 }
 
 function RecruitersSection() {
-  const { toast } = useToast();
-  
-  const handleRegister = () => {
-    toast({
-      title: "Coming Soon",
-      description: "Recruiter registration will be available soon.",
-    });
-  };
-  
   return (
-    <section id="recruitment" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30" data-testid="section-recruiters">
+    <section id="recruitment" className="py-24 px-4 sm:px-6 lg:px-8" data-testid="section-recruiters">
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-6" data-testid="text-recruiters-title">
+        <h2 className="text-3xl sm:text-4xl font-light mb-6" data-testid="text-recruiters-title">
           Recruiters
         </h2>
-        <p className="text-lg text-muted-foreground mb-8 max-w-3xl mx-auto" data-testid="text-recruiters-description">
-          Join the growing list of recruiters, have access to the pool of exceptional Univaciti graduates, 
+        <p className="text-lg text-foreground/70 mb-10 leading-relaxed" data-testid="text-recruiters-description">
+          Join the growing list of recruiters, have access to the pool of exceptional Univaciti graduates,
           get alerted by new additions to the pool. Track talents of interest, track skills of interest.
         </p>
-        <Button size="lg" onClick={handleRegister} data-testid="button-recruiter-register">
+        <Button size="lg" className="px-10 py-6 text-lg" data-testid="button-recruiter-register">
           Register
-          <ArrowRight className="h-5 w-5 ml-2" />
         </Button>
-      </div>
-    </section>
-  );
-}
-
-function TESASection() {
-  const menuItems = [
-    "Admission",
-    "Courses",
-    "Labs",
-    "Internship",
-    "Time-Table",
-    "Funding",
-  ];
-  
-  return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8" data-testid="section-tesa">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-1">
-            <Card className="p-6" data-testid="card-tesa-nav">
-              <h3 className="text-2xl font-bold mb-2" data-testid="text-tesa-title">TESA</h3>
-              <p className="text-primary mb-6" data-testid="text-tesa-subtitle">Tech Skills Accelerator</p>
-              <nav className="space-y-2">
-                {menuItems.map((item, index) => (
-                  <Button 
-                    key={index} 
-                    variant="ghost" 
-                    className="w-full justify-start"
-                    data-testid={`button-tesa-nav-${item.toLowerCase().replace('-', '')}`}
-                  >
-                    {item}
-                  </Button>
-                ))}
-              </nav>
-            </Card>
-          </div>
-          
-          <div className="lg:col-span-2">
-            <Card className="p-8" data-testid="card-tesa-content">
-              <h3 className="text-2xl font-bold mb-4" data-testid="text-tesa-content-title">About TESA</h3>
-              <p className="text-muted-foreground mb-6" data-testid="text-tesa-content-description">
-                For beginners who need intensive courses in specialized skills. This is a 12-week intensive programme, 
-                with specializations in Cloud Engineering, Cloud Solutions Architecture, Software Engineering, 
-                AI Solution Architecture & Engineering and Data Analytics.
-              </p>
-              <p className="text-primary font-medium mb-6" data-testid="text-tesa-content-instruction">
-                Select a specialization to view the details.
-              </p>
-              
-              <div className="grid sm:grid-cols-2 gap-4">
-                {["Cloud Engineering", "Software Engineering - Backend", "Data Analytics", "AI & Machine Learning"].map((spec, index) => (
-                  <Card key={index} className="p-4 hover-elevate" data-testid={`card-tesa-spec-${index}`}>
-                    <h4 className="font-semibold mb-2" data-testid={`text-tesa-spec-name-${index}`}>{spec}</h4>
-                    <Button variant="outline" size="sm" data-testid={`button-tesa-spec-more-${index}`}>
-                      More
-                      <ChevronRight className="h-4 w-4 ml-1" />
-                    </Button>
-                  </Card>
-                ))}
-              </div>
-            </Card>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CommunitySection() {
-  return (
-    <section id="community" className="py-20 px-4 sm:px-6 lg:px-8" data-testid="section-community">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4" data-testid="text-community-title">
-            Community
-          </h2>
-          <p className="text-lg text-muted-foreground" data-testid="text-community-description">
-            Join a vibrant community of learners, mentors, and industry professionals. 
-            Connect, collaborate, and grow together.
-          </p>
-        </div>
-        
-        <div className="grid sm:grid-cols-3 gap-6">
-          <Card className="p-6 text-center hover-elevate" data-testid="card-community-connect">
-            <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-              <Users className="h-7 w-7 text-primary" />
-            </div>
-            <h3 className="text-lg font-semibold mb-2">Connect</h3>
-            <p className="text-sm text-muted-foreground">Network with peers and professionals in your field.</p>
-          </Card>
-          
-          <Card className="p-6 text-center hover-elevate" data-testid="card-community-learn">
-            <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-              <BookOpen className="h-7 w-7 text-primary" />
-            </div>
-            <h3 className="text-lg font-semibold mb-2">Learn Together</h3>
-            <p className="text-sm text-muted-foreground">Join study groups and collaborative learning sessions.</p>
-          </Card>
-          
-          <Card className="p-6 text-center hover-elevate" data-testid="card-community-grow">
-            <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-              <Award className="h-7 w-7 text-primary" />
-            </div>
-            <h3 className="text-lg font-semibold mb-2">Grow</h3>
-            <p className="text-sm text-muted-foreground">Access mentorship and career development resources.</p>
-          </Card>
-        </div>
       </div>
     </section>
   );
@@ -466,117 +393,66 @@ function CTASection() {
       return apiRequest("POST", "/api/waitlist", { email });
     },
     onSuccess: () => {
-      toast({
-        title: "You're on the list!",
-        description: "We'll notify you when Univaciti launches.",
-      });
+      toast({ title: "You're on the list!", description: "We'll notify you when Univaciti launches." });
       setEmail("");
     },
     onError: () => {
-      toast({
-        title: "Something went wrong",
-        description: "Please try again later.",
-        variant: "destructive",
-      });
+      toast({ title: "Something went wrong", description: "Please try again later.", variant: "destructive" });
     },
   });
   
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email) {
-      joinWaitlist.mutate(email);
-    }
-  };
-  
   return (
-    <section className="py-24 px-4 sm:px-6 lg:px-8 bg-muted/30" data-testid="section-cta">
+    <section className="py-20 px-4 sm:px-6 lg:px-8" data-testid="section-cta">
       <div className="max-w-4xl mx-auto">
-        <Card className="bg-primary p-8 sm:p-12 text-center overflow-hidden relative" data-testid="card-cta">
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAxOGMtOS45NDEgMC0xOCA4LjA1OS0xOCAxOHM4LjA1OSAxOCAxOCAxOCAxOC04LjA1OSAxOC0xOC04LjA1OS0xOC0xOC0xOHptMCAzMmMtNy43MzIgMC0xNC02LjI2OC0xNC0xNHM2LjI2OC0xNCAxNC0xNCAxNCA2LjI2OCAxNCAxNC02LjI2OCAxNC0xNCAxNHoiIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iLjA1Ii8+PC9nPjwvc3ZnPg==')] opacity-30" />
-          <div className="relative">
-            <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center mx-auto mb-6">
-              <GraduationCap className="h-8 w-8 text-white" />
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4" data-testid="text-cta-title">
-              Ready to transform your learning?
-            </h2>
-            <p className="text-lg text-white/80 max-w-2xl mx-auto mb-8" data-testid="text-cta-description">
-              Join thousands of learners who are already experiencing the future of education. 
-              Get early access and exclusive benefits.
-            </p>
-            <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" data-testid="form-waitlist-cta">
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="flex-1 bg-white/10 border-white/20 text-white placeholder:text-white/60"
-                data-testid="input-email-cta"
-              />
-              <Button 
-                type="submit" 
-                variant="secondary"
-                disabled={joinWaitlist.isPending}
-                data-testid="button-join-waitlist-cta"
-              >
-                {joinWaitlist.isPending ? "Joining..." : "Join Waitlist"}
-                <ArrowRight className="h-4 w-4 ml-2" />
-              </Button>
-            </form>
-          </div>
-        </Card>
+        <div 
+          className="rounded-3xl p-10 sm:p-14 text-center"
+          style={{ backgroundColor: '#3d7a8c' }}
+          data-testid="card-cta"
+        >
+          <GraduationCapIcon className="w-16 h-16 text-white mx-auto mb-6" />
+          <h2 className="text-3xl sm:text-4xl font-light text-white mb-4" data-testid="text-cta-title">
+            Ready to transform your learning?
+          </h2>
+          <p className="text-lg text-white/80 max-w-2xl mx-auto mb-8" data-testid="text-cta-description">
+            Join thousands of learners who are already experiencing the future of education.
+          </p>
+          <form 
+            onSubmit={(e) => { e.preventDefault(); email && joinWaitlist.mutate(email); }} 
+            className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" 
+            data-testid="form-waitlist-cta"
+          >
+            <Input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="flex-1 bg-white/20 border-white/30 text-white placeholder:text-white/60"
+              data-testid="input-email-cta"
+            />
+            <Button type="submit" variant="secondary" disabled={joinWaitlist.isPending} data-testid="button-join-waitlist-cta">
+              {joinWaitlist.isPending ? "Joining..." : "Join Waitlist"}
+            </Button>
+          </form>
+        </div>
       </div>
     </section>
   );
 }
 
 function Footer() {
-  const links = {
-    Product: ["Programmes", "Certification", "Recruitment", "Community"],
-    Company: ["About", "Careers", "Blog", "Press"],
-    Resources: ["Documentation", "Help Center", "Contact"],
-    Legal: ["Privacy", "Terms", "Cookie Policy"],
-  };
-  
   return (
-    <footer className="py-16 px-4 sm:px-6 lg:px-8 border-t border-border" data-testid="footer">
+    <footer className="py-12 px-4 sm:px-6 lg:px-8 border-t border-border/30" data-testid="footer">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 mb-12">
-          <div className="col-span-2 md:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
-              <UnivacitiLogo className="h-10 w-10 flex-shrink-0" testId="img-footer-logo" />
-              <span className="text-xl font-bold" data-testid="text-footer-brand">Univaciti</span>
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-3">
+            <div className="h-10 w-10 rounded-full overflow-hidden">
+              <img src={logoUrl} alt="Univaciti" className="h-full w-full object-cover scale-125" data-testid="img-footer-logo" />
             </div>
-            <p className="text-sm text-muted-foreground mb-4" data-testid="text-footer-tagline">
-              Transform your learning journey with accelerated skills development.
-            </p>
+            <span className="text-xl font-semibold text-primary" data-testid="text-footer-brand">Univaciti.com</span>
           </div>
-          
-          {Object.entries(links).map(([category, items]) => (
-            <div key={category}>
-              <h4 className="font-semibold mb-4" data-testid={`text-footer-category-${category.toLowerCase()}`}>{category}</h4>
-              <ul className="space-y-2">
-                {items.map((item) => (
-                  <li key={item}>
-                    <a href="#" className="text-sm text-muted-foreground transition-colors" data-testid={`link-footer-${item.toLowerCase().replace(/\s+/g, '-')}`}>
-                      {item}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-        
-        <div className="pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground" data-testid="text-footer-copyright">
+          <p className="text-sm text-foreground/60" data-testid="text-footer-copyright">
             2025 Univaciti. All rights reserved.
           </p>
-          <div className="flex items-center gap-4 text-sm text-muted-foreground">
-            <a href="#" className="transition-colors" data-testid="link-footer-privacy-policy">Privacy Policy</a>
-            <a href="#" className="transition-colors" data-testid="link-footer-terms-of-service">Terms of Service</a>
-            <a href="#" className="transition-colors" data-testid="link-footer-cookies">Cookies</a>
-          </div>
         </div>
       </div>
     </footer>
@@ -585,15 +461,13 @@ function Footer() {
 
 export default function Landing() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Navbar />
       <HeroSection />
       <ThreePillarsSection />
       <LearningProgrammeSection />
       <CertificationsSection />
       <RecruitersSection />
-      <CommunitySection />
-      <TESASection />
       <CTASection />
       <Footer />
     </div>
