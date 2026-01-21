@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
-import { SiAmazonwebservices, SiMicrosoftazure, SiGooglecloud, SiHuawei } from "react-icons/si";
+import { SiAmazon, SiGooglecloud, SiHuawei } from "react-icons/si";
 import logoUrl from "@assets/logo_1769031259580.png";
 
-const THEME_PRIMARY = "#0d4f6b";
+const THEME_PRIMARY = "#1E9AD6";
 
 function CloudIcon({ className }: { className?: string }) {
   return (
@@ -108,11 +108,11 @@ export default function CloudEngineeringPage() {
             <h2 className="text-xl font-semibold mb-4">Cloud Platforms Covered</h2>
             <div className="flex flex-wrap gap-4">
               <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-background border border-border">
-                <SiAmazonwebservices className="w-5 h-5 text-[#FF9900]" />
+                <SiAmazon className="w-6 h-6 text-[#FF9900]" />
                 <span className="text-sm font-medium">AWS</span>
               </div>
               <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-background border border-border">
-                <SiMicrosoftazure className="w-5 h-5 text-[#0078D4]" />
+                <span className="w-5 h-5 flex items-center justify-center text-[#0078D4] font-bold text-xs">Az</span>
                 <span className="text-sm font-medium">Microsoft Azure</span>
               </div>
               <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-background border border-border">

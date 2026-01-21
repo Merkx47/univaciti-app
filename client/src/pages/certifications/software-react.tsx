@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
 import logoUrl from "@assets/logo_1769031259580.png";
 
-const THEME_PRIMARY = "#0d4f6b";
+const THEME_PRIMARY = "#1E9AD6";
 
 function ReactLogoIcon({ className }: { className?: string }) {
   return (

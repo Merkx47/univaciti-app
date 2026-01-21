@@ -15,9 +15,9 @@ import {
   ChevronRight,
 } from "lucide-react";
 
-// Univaciti theme colors
-const THEME_PRIMARY = "#0d4f6b";
-const THEME_LIGHT = "#1a6985";
+// Univaciti theme colors - matching logo blue
+const THEME_PRIMARY = "#1E9AD6";
+const THEME_LIGHT = "#3AAFE6";
 
 function ThemeToggle({ testId }: { testId: string }) {
   const { theme, setTheme } = useTheme();
@@ -48,13 +48,19 @@ function RocketIcon({ className }: { className?: string }) {
   );
 }
 
-function AtomIcon({ className }: { className?: string }) {
+// STEM Icon - Microscope/Science
+function StemIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5">
-      <ellipse cx="40" cy="40" rx="28" ry="10"/>
-      <ellipse cx="40" cy="40" rx="28" ry="10" transform="rotate(60 40 40)"/>
-      <ellipse cx="40" cy="40" rx="28" ry="10" transform="rotate(120 40 40)"/>
-      <circle cx="40" cy="40" r="4" fill="currentColor"/>
+    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="40" cy="20" r="10"/>
+      <path d="M40 30V45"/>
+      <path d="M30 45H50"/>
+      <path d="M32 45L28 65"/>
+      <path d="M48 45L52 65"/>
+      <path d="M22 65H58"/>
+      <circle cx="40" cy="20" r="4"/>
+      <path d="M25 18L30 20"/>
+      <path d="M55 18L50 20"/>
     </svg>
   );
 }
@@ -109,14 +115,17 @@ function ChartIcon({ className }: { className?: string }) {
   );
 }
 
-// Java Coffee Cup Icon
+// Official Java Logo - Blue cup with red steam
 function JavaIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20 30H52V60C52 66 46 70 36 70C26 70 20 66 20 60V30Z"/>
-      <path d="M52 38H58C62 38 65 42 65 46C65 50 62 54 58 54H52"/>
-      <path d="M26 18C26 18 28 22 32 22C36 22 36 18 36 18"/>
-      <path d="M38 12C38 12 40 18 44 18C48 18 48 12 48 12"/>
+    <svg viewBox="0 0 80 80" className={className}>
+      <path d="M28 8C28 8 32 16 38 16C44 16 44 8 44 8" stroke="#E32934" strokeWidth="3" fill="none" strokeLinecap="round"/>
+      <path d="M38 10C38 10 42 18 48 18C54 18 54 10 54 10" stroke="#E32934" strokeWidth="3" fill="none" strokeLinecap="round"/>
+      <path d="M18 26C18 26 22 32 40 32C58 32 62 26 62 26" stroke="currentColor" strokeWidth="3" fill="none"/>
+      <path d="M16 34C16 34 22 42 40 42C58 42 64 34 64 34" stroke="currentColor" strokeWidth="3" fill="none"/>
+      <path d="M18 42C18 42 24 52 40 52C56 52 62 42 62 42" stroke="currentColor" strokeWidth="3" fill="none"/>
+      <path d="M22 52C22 52 28 60 40 60C52 60 58 52 58 52" stroke="currentColor" strokeWidth="3" fill="none"/>
+      <path d="M26 60C26 60 32 68 40 68C48 68 54 60 54 60" stroke="currentColor" strokeWidth="3" fill="none"/>
     </svg>
   );
 }
@@ -142,17 +151,15 @@ function ReactLogoIcon({ className }: { className?: string }) {
   );
 }
 
-// Blueprint/Diagram Icon for Solutions Architecture
-function BlueprintIcon({ className }: { className?: string }) {
+// Solutions Architecture Icon - Layers/Stack
+function ArchitectureIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="10" y="10" width="60" height="60" rx="4"/>
-      <circle cx="25" cy="25" r="6"/>
-      <circle cx="55" cy="25" r="6"/>
-      <circle cx="40" cy="55" r="6"/>
-      <path d="M31 25H49"/>
-      <path d="M25 31V40L40 49"/>
-      <path d="M55 31V40L40 49"/>
+      <path d="M40 10L65 22L40 34L15 22L40 10Z"/>
+      <path d="M15 32L40 44L65 32"/>
+      <path d="M15 42L40 54L65 42"/>
+      <path d="M15 52L40 64L65 52"/>
+      <circle cx="40" cy="22" r="4" fill="currentColor"/>
     </svg>
   );
 }
@@ -227,11 +234,11 @@ function Navbar() {
           </Link>
           
           <div className="hidden lg:flex items-center gap-8">
-            <a href="#programmes" className="text-sm text-foreground/80 font-medium hover:text-foreground transition-colors" data-testid="link-programmes">Programmes</a>
-            <a href="#certification" className="text-sm text-foreground/80 font-medium hover:text-foreground transition-colors" data-testid="link-certification">Certification</a>
-            <a href="#recruitment" className="text-sm text-foreground/80 font-medium hover:text-foreground transition-colors" data-testid="link-recruitment">Recruitment</a>
-            <a href="#certify" className="text-sm text-foreground/80 font-medium hover:text-foreground transition-colors" data-testid="link-certify">Certify</a>
-            <a href="#community" className="text-sm text-foreground/80 font-medium hover:text-foreground transition-colors" data-testid="link-community">Community</a>
+            <Link href="/programmes/tesa" className="text-sm text-foreground/80 font-medium hover:text-foreground transition-colors" data-testid="link-programmes">Programmes</Link>
+            <Link href="/certifications/cloud-engineering" className="text-sm text-foreground/80 font-medium hover:text-foreground transition-colors" data-testid="link-certification">Certification</Link>
+            <Link href="/recruitment" className="text-sm text-foreground/80 font-medium hover:text-foreground transition-colors" data-testid="link-recruitment">Recruitment</Link>
+            <Link href="/certify" className="text-sm text-foreground/80 font-medium hover:text-foreground transition-colors" data-testid="link-certify">Certify</Link>
+            <Link href="/community" className="text-sm text-foreground/80 font-medium hover:text-foreground transition-colors" data-testid="link-community">Community</Link>
           </div>
           
           <div className="hidden lg:flex items-center gap-3">
@@ -252,11 +259,11 @@ function Navbar() {
       {isOpen && (
         <div className="lg:hidden bg-background border-t border-border/30" data-testid="mobile-menu">
           <div className="px-4 py-4 space-y-2">
-            <a href="#programmes" className="block py-2 text-sm text-foreground/80 font-medium" data-testid="link-programmes-mobile">Programmes</a>
-            <a href="#certification" className="block py-2 text-sm text-foreground/80 font-medium" data-testid="link-certification-mobile">Certification</a>
-            <a href="#recruitment" className="block py-2 text-sm text-foreground/80 font-medium" data-testid="link-recruitment-mobile">Recruitment</a>
-            <a href="#certify" className="block py-2 text-sm text-foreground/80 font-medium" data-testid="link-certify-mobile">Certify</a>
-            <a href="#community" className="block py-2 text-sm text-foreground/80 font-medium" data-testid="link-community-mobile">Community</a>
+            <Link href="/programmes/tesa" className="block py-2 text-sm text-foreground/80 font-medium" data-testid="link-programmes-mobile">Programmes</Link>
+            <Link href="/certifications/cloud-engineering" className="block py-2 text-sm text-foreground/80 font-medium" data-testid="link-certification-mobile">Certification</Link>
+            <Link href="/recruitment" className="block py-2 text-sm text-foreground/80 font-medium" data-testid="link-recruitment-mobile">Recruitment</Link>
+            <Link href="/certify" className="block py-2 text-sm text-foreground/80 font-medium" data-testid="link-certify-mobile">Certify</Link>
+            <Link href="/community" className="block py-2 text-sm text-foreground/80 font-medium" data-testid="link-community-mobile">Community</Link>
             <div className="pt-3 flex gap-2">
               <Button variant="outline" size="sm" className="flex-1" data-testid="button-register-mobile">Register</Button>
               <Button size="sm" className="flex-1" data-testid="button-sign-in-mobile">Sign in</Button>
@@ -347,7 +354,7 @@ function LearningProgrammeSection() {
     { 
       id: "stem",
       name: "STEM", 
-      icon: AtomIcon, 
+      icon: StemIcon, 
       description: "Science, Tech, Engineering and Maths courses for young people.",
       link: "/programmes/stem"
     },
@@ -413,7 +420,7 @@ function CertificationsSection() {
     { id: "software-java", name: "Software Eng. - Java", icon: JavaIcon, description: "Master Java for enterprise software development." },
     { id: "quality-assurance", name: "Quality Assurance", icon: QAIcon, description: "Ensure software quality through testing practices." },
     { id: "software-react", name: "Software Eng. - React", icon: ReactLogoIcon, description: "Build modern web applications with React." },
-    { id: "solutions-architecture", name: "Solutions Architecture", icon: BlueprintIcon, description: "Design scalable, resilient cloud solutions." },
+    { id: "solutions-architecture", name: "Solutions Architecture", icon: ArchitectureIcon, description: "Design scalable, resilient cloud solutions." },
     { id: "ai-ml", name: "AI & Machine Learning", icon: RobotIcon, description: "Apply AI and ML to solve real problems." },
   ];
   
@@ -494,94 +501,17 @@ function CertifySection() {
   );
 }
 
-function PepsiLogo({ className }: { className?: string }) {
+function RecruiterLogo({ name, color, bgColor }: { name: string; color: string; bgColor?: string }) {
   return (
-    <svg viewBox="0 0 100 100" className={className}>
-      <circle cx="50" cy="50" r="45" fill="#004B93"/>
-      <path d="M5 50 Q50 30 95 50" fill="#E32934"/>
-      <path d="M5 50 Q50 70 95 50" fill="#004B93"/>
-      <circle cx="50" cy="50" r="45" fill="none" stroke="#E32934" strokeWidth="3"/>
-    </svg>
-  );
-}
-
-function UnionBankLogo({ className }: { className?: string }) {
-  return (
-    <div className={className + " flex items-center gap-1"}>
-      <svg viewBox="0 0 40 40" className="w-8 h-8">
-        <path d="M20 5L8 35H14L20 20L26 35H32L20 5Z" fill="#0066B3"/>
-        <path d="M12 28L20 12L28 28" fill="none" stroke="#0066B3" strokeWidth="2"/>
-      </svg>
-      <span className="text-[#0066B3] font-medium text-sm">union<span className="font-bold">bank</span></span>
-    </div>
-  );
-}
-
-function StanbicLogo({ className }: { className?: string }) {
-  return (
-    <div className={className + " flex items-center"}>
-      <div className="w-10 h-10 bg-[#0033A0] rounded flex items-center justify-center">
-        <svg viewBox="0 0 30 30" className="w-6 h-6">
-          <path d="M15 5C10 5 8 10 8 15C8 20 12 25 15 25C18 25 22 20 22 15C22 10 20 5 15 5Z" fill="none" stroke="white" strokeWidth="2"/>
-          <path d="M10 15H20" stroke="white" strokeWidth="2"/>
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function PolarisLogo({ className }: { className?: string }) {
-  return (
-    <div className={className + " flex items-center gap-1"}>
-      <div className="w-10 h-10 bg-gradient-to-br from-[#6B2D8B] to-[#9B4BC0] rounded-full flex items-center justify-center">
-        <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="#FFD700" strokeWidth="2">
-          <path d="M13 3L4 14H12L11 21L20 10H12L13 3Z"/>
-        </svg>
-      </div>
-      <div className="flex flex-col">
-        <span className="text-[#6B2D8B] font-bold text-xs leading-none">POLARIS</span>
-        <span className="text-[#6B2D8B] text-[10px] leading-none">BANK</span>
-      </div>
-    </div>
-  );
-}
-
-function CitiLogo({ className }: { className?: string }) {
-  return (
-    <div className={className}>
-      <span className="text-[#003B70] font-light text-2xl tracking-tight">citi</span>
-    </div>
-  );
-}
-
-function FirstBankLogo({ className }: { className?: string }) {
-  return (
-    <div className={className + " flex items-center gap-1"}>
-      <div className="w-10 h-10 bg-[#002D62] rounded-full flex items-center justify-center overflow-hidden">
-        <svg viewBox="0 0 40 40" className="w-8 h-8">
-          <circle cx="20" cy="20" r="18" fill="#002D62"/>
-          <path d="M12 28L20 12L28 28H12Z" fill="#FDB913" stroke="#FDB913" strokeWidth="1"/>
-        </svg>
-      </div>
-      <div className="flex flex-col">
-        <span className="text-[#002D62] font-bold text-xs leading-none">First<span className="text-[#FDB913]">Bank</span></span>
-        <span className="text-[#002D62] text-[8px] leading-none">Since 1894</span>
-      </div>
-    </div>
-  );
-}
-
-function AdinoLogo({ className }: { className?: string }) {
-  return (
-    <div className={className + " flex items-center gap-1"}>
-      <svg viewBox="0 0 30 30" className="w-6 h-6">
-        <circle cx="15" cy="15" r="12" fill="none" stroke="#B8860B" strokeWidth="1"/>
-        <path d="M15 5L15 25M5 15L25 15M8 8L22 22M22 8L8 22" stroke="#B8860B" strokeWidth="0.5"/>
-      </svg>
-      <div className="flex flex-col">
-        <span className="text-foreground/80 font-light text-sm">adino</span>
-        <span className="text-foreground/60 text-[8px] leading-none">CAPITAL LIMITED</span>
-      </div>
+    <div 
+      className="px-3 py-2 rounded-lg font-semibold text-sm"
+      style={{ 
+        color: bgColor ? '#ffffff' : color, 
+        backgroundColor: bgColor || 'transparent', 
+        border: bgColor ? 'none' : `1px solid ${color}` 
+      }}
+    >
+      {name}
     </div>
   );
 }
@@ -601,14 +531,14 @@ function RecruitersSection() {
           Register
         </Button>
         
-        <div className="flex flex-wrap items-center justify-center gap-8 mt-8" data-testid="recruiter-logos">
-          <PepsiLogo className="w-12 h-12" />
-          <UnionBankLogo className="" />
-          <StanbicLogo className="" />
-          <PolarisLogo className="" />
-          <CitiLogo className="" />
-          <FirstBankLogo className="" />
-          <AdinoLogo className="" />
+        <div className="flex flex-wrap items-center justify-center gap-6 mt-8" data-testid="recruiter-logos">
+          <RecruiterLogo name="Pepsi" color="#004B93" />
+          <RecruiterLogo name="Union Bank" color="#0066B3" />
+          <RecruiterLogo name="Stanbic" color="#0033A0" bgColor="#0033A0" />
+          <RecruiterLogo name="Polaris Bank" color="#6B2D8B" />
+          <RecruiterLogo name="Citi" color="#003B70" />
+          <RecruiterLogo name="FirstBank" color="#002D62" bgColor="#002D62" />
+          <RecruiterLogo name="Adino Capital" color="#B8860B" />
         </div>
       </div>
     </section>

@@ -41,10 +41,16 @@ The frontend follows a component-based architecture with:
 - `/certifications/ai-ml` - AI & Machine Learning certification
 
 ### Design System
-- Primary teal card color: `#1a6985`
-- Lighter teal for buttons: `#2a8aa8`
-- Logo: `attached_assets/logo_1769031259580.png` (transparent PNG)
-- Custom SVG icons for programmes (beaver, atom, building) and certifications (cloud, chart, code, checkmark, react, layers, brain)
+- Primary blue color (matching logo): `#1E9AD6`
+- Lighter blue for buttons: `#3AAFE6`
+- Logo: `attached_assets/logo_1769031259580.png` (transparent PNG, bright blue)
+- Uses react-icons/si for brand icons (cloud platforms, companies)
+- Custom SVG icons for programmes and certifications where brand icons unavailable
+
+### Additional Routes
+- `/recruitment` - Recruiter registration page
+- `/certify` - Certification exam information
+- `/community` - Community and alumni network
 
 Path aliases are configured:
 - `@/*` → `./client/src/*`

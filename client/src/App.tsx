@@ -21,6 +21,11 @@ import SoftwareReactPage from "@/pages/certifications/software-react";
 import SolutionsArchitecturePage from "@/pages/certifications/solutions-architecture";
 import AiMlPage from "@/pages/certifications/ai-ml";
 
+// Other pages
+import RecruitmentPage from "@/pages/recruitment";
+import CertifyPage from "@/pages/certify";
+import CommunityPage from "@/pages/community";
+
 function Router() {
   return (
     <Switch>
@@ -39,6 +44,11 @@ function Router() {
       <Route path="/certifications/software-react" component={SoftwareReactPage}/>
       <Route path="/certifications/solutions-architecture" component={SolutionsArchitecturePage}/>
       <Route path="/certifications/ai-ml" component={AiMlPage}/>
+      
+      {/* Other routes */}
+      <Route path="/recruitment" component={RecruitmentPage}/>
+      <Route path="/certify" component={CertifyPage}/>
+      <Route path="/community" component={CommunityPage}/>
       
       <Route component={NotFound} />
     </Switch>

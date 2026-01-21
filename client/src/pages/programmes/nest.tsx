@@ -1,141 +1,211 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
-import { ArrowLeft } from "lucide-react";
+import { Link, useLocation } from "wouter";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import logoUrl from "@assets/logo_1769031259580.png";
 
-const THEME_PRIMARY = "#0d4f6b";
+const THEME_PRIMARY = "#1E9AD6";
 
-function BuildingIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="18" y="25" width="44" height="45" rx="2"/>
-      <rect x="28" y="12" width="24" height="13"/>
-      <rect x="25" y="32" width="6" height="6"/>
-      <rect x="37" y="32" width="6" height="6"/>
-      <rect x="49" y="32" width="6" height="6"/>
-      <rect x="25" y="44" width="6" height="6"/>
-      <rect x="37" y="44" width="6" height="6"/>
-      <rect x="49" y="44" width="6" height="6"/>
-      <rect x="35" y="56" width="10" height="14"/>
-    </svg>
-  );
-}
-
-const features = [
-  { title: "Tailored Curriculum", description: "Customized learning paths based on your organization's specific needs." },
-  { title: "Flexible Schedule", description: "Training that works around your employees' work schedules." },
-  { title: "Rapid Skill Acquisition", description: "Focused, intensive training for quick results." },
-  { title: "Corporate Discounts", description: "Special pricing for organizations training multiple employees." },
-  { title: "Progress Tracking", description: "Monitor employee learning progress with detailed reports." },
-  { title: "Certification", description: "Industry-recognized certifications upon completion." },
+const programmes = [
+  { id: "tesa", name: "TESA" },
+  { id: "stem", name: "STEM" },
+  { id: "nest", name: "NEST" },
 ];
 
-const skills = [
+const specializations = [
   "Cloud Engineering",
-  "Data Analytics", 
+  "Data Analytics",
   "Software Engineering - Java",
   "Quality Assurance",
   "Software Engineering - React",
   "Solutions Architecture",
-  "Artificial Intelligence & ML",
+  "AI & Machine Learning",
 ];
 
+const tabs = [
+  { id: "home", label: "Home" },
+  { id: "courses", label: "Courses" },
+  { id: "structure", label: "Structure" },
+  { id: "timetable", label: "Time-Table" },
+  { id: "internship", label: "Internship" },
+  { id: "fees", label: "Fees" },
+  { id: "funding", label: "Funding" },
+];
+
+const tabContent: Record<string, { title: string; content: string }> = {
+  home: {
+    title: "Home",
+    content: "Welcome to NEST - Corporate Tech Skills Programme. Tailored for organizations seeking rapid but flexible curriculum for employees in key tech skills. NEST provides customized training solutions that fit your organization's specific technology needs and business objectives."
+  },
+  courses: {
+    title: "Courses",
+    content: "NEST offers all 7 specializations tailored for corporate training: Cloud Engineering, Data Analytics, Software Engineering (Java & React), Quality Assurance, Solutions Architecture, and AI & Machine Learning. Courses can be customized based on your organization's specific requirements."
+  },
+  structure: {
+    title: "Structure",
+    content: "The NEST programme offers flexible structure options:\n\n• Full-time Intensive: 4-8 weeks\n• Part-time: 12-16 weeks (evenings/weekends)\n• Modular: Pick specific modules as needed\n• On-site or Remote delivery options\n\nCustom schedules available for corporate groups."
+  },
+  timetable: {
+    title: "Time-Table",
+    content: "NEST Corporate Schedule Options:\n\n• Standard: Monday-Friday 9:00 AM - 5:00 PM\n• Evening: Monday-Thursday 6:00 PM - 9:00 PM\n• Weekend Intensive: Saturday-Sunday 9:00 AM - 4:00 PM\n\nSchedules can be customized based on organizational needs."
+  },
+  internship: {
+    title: "Internship",
+    content: "NEST participants apply their learning directly within their organizations. We provide project mentorship and support to ensure skills are immediately applied to real business challenges. Optional cross-company collaboration projects available."
+  },
+  fees: {
+    title: "Fees",
+    content: "Corporate Pricing:\n\n• Individual Employee: $1,500/person\n• Team (5-10): $1,200/person\n• Department (11-25): $1,000/person\n• Enterprise (26+): Custom pricing\n\nIncludes all materials, certification, and ongoing support."
+  },
+  funding: {
+    title: "Funding",
+    content: "Corporate Funding Options:\n\n• Annual training contracts with volume discounts\n• Quarterly billing options\n• Skills development grant assistance\n• Government training subsidy consultation\n• ROI tracking and reporting included\n\nContact us for custom enterprise agreements."
+  },
+};
+
 export default function NestPage() {
+  const [, setLocation] = useLocation();
+  const [selectedProgramme, setSelectedProgramme] = useState("nest");
+  const [selectedSpecialization, setSelectedSpecialization] = useState(specializations[0]);
+  const [activeTab, setActiveTab] = useState("home");
+  const [showMoreTabs, setShowMoreTabs] = useState(false);
+  const [programmeDropdownOpen, setProgrammeDropdownOpen] = useState(false);
+  const [specDropdownOpen, setSpecDropdownOpen] = useState(false);
+
+  const handleProgrammeChange = (programmeId: string) => {
+    setSelectedProgramme(programmeId);
+    setProgrammeDropdownOpen(false);
+    if (programmeId !== "nest") {
+      setLocation(`/programmes/${programmeId}`);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border/30">
+      <nav className="bg-background border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link href="/" className="flex items-center gap-2">
               <img src={logoUrl} alt="Univaciti" className="h-9 w-9" />
-              <span className="text-lg font-bold text-foreground">Univaciti</span>
+              <span className="text-lg font-bold" style={{ color: THEME_PRIMARY }}>Univaciti</span>
             </Link>
-            <Link href="/">
-              <Button variant="ghost" size="sm">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back
+            <div className="flex items-center gap-3">
+              <Button style={{ backgroundColor: THEME_PRIMARY }} size="sm" data-testid="button-register">
+                Register
               </Button>
-            </Link>
+              <Button style={{ backgroundColor: THEME_PRIMARY }} size="sm" data-testid="button-sign-in">
+                Sign in
+              </Button>
+            </div>
           </div>
         </div>
       </nav>
 
-      <main className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto">
-          <div 
-            className="rounded-xl p-8 sm:p-12 mb-12 border border-white/20"
-            style={{ backgroundColor: THEME_PRIMARY }}
-            data-testid="card-nest-hero"
-          >
-            <div className="flex flex-col sm:flex-row items-center gap-6 mb-8">
-              <BuildingIcon className="w-24 h-24 text-white" />
-              <div className="text-center sm:text-left">
-                <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2" data-testid="text-nest-title">NEST</h1>
-                <p className="text-xl text-white/90">Corporate Tech Skills Programme</p>
-              </div>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h1 className="text-2xl font-light mb-6" style={{ color: THEME_PRIMARY }} data-testid="text-page-title">
+          Learning Programme
+        </h1>
+
+        <div className="space-y-3 mb-6">
+          <div className="flex items-center border border-border rounded-md overflow-hidden">
+            <div className="w-48 px-4 py-3 bg-muted/30 text-sm font-medium border-r border-border">
+              Select programme:
             </div>
-            <p className="text-white/85 text-lg leading-relaxed mb-6" data-testid="text-nest-description">
-              Tailored for rapid but flexible curriculum for employees in key tech skills.
-              NEST provides organizations with customized training solutions that fit their 
-              specific technology needs and business objectives.
-            </p>
-            <div className="grid sm:grid-cols-2 gap-4 text-white/90">
-              <div>
-                <h3 className="font-semibold mb-2">Format</h3>
-                <p className="text-sm">Flexible, tailored to your schedule</p>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-2">Delivery</h3>
-                <p className="text-sm">Online, on-site, or hybrid options</p>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-2">Duration</h3>
-                <p className="text-sm">Customizable based on requirements</p>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-2">Support</h3>
-                <p className="text-sm">Dedicated account management</p>
-              </div>
+            <div className="flex-1 relative">
+              <button
+                className="w-full px-4 py-3 text-left flex items-center justify-between text-sm"
+                onClick={() => setProgrammeDropdownOpen(!programmeDropdownOpen)}
+                data-testid="dropdown-programme"
+              >
+                <span className="tracking-widest font-medium">
+                  {programmes.find(p => p.id === selectedProgramme)?.name.split('').join(' ')}
+                </span>
+                <ChevronDown className="w-4 h-4" style={{ color: THEME_PRIMARY }} />
+              </button>
+              {programmeDropdownOpen && (
+                <div className="absolute top-full left-0 right-0 bg-background border border-border rounded-md shadow-lg z-10">
+                  {programmes.map((prog) => (
+                    <button
+                      key={prog.id}
+                      className="w-full px-4 py-2 text-left text-sm hover:bg-muted/50"
+                      onClick={() => handleProgrammeChange(prog.id)}
+                    >
+                      {prog.name}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 mb-12">
-            <div>
-              <h2 className="text-2xl font-semibold mb-6">Why Choose NEST?</h2>
-              <div className="space-y-4">
-                {features.map((feature, index) => (
-                  <div 
-                    key={index}
-                    className="rounded-lg p-4 border border-border bg-card"
-                    data-testid={`card-nest-feature-${index}`}
-                  >
-                    <h3 className="font-semibold text-foreground mb-1">{feature.title}</h3>
-                    <p className="text-sm text-foreground/70">{feature.description}</p>
-                  </div>
-                ))}
-              </div>
+          <div className="flex items-center border border-border rounded-md overflow-hidden">
+            <div className="w-48 px-4 py-3 bg-muted/30 text-sm font-medium border-r border-border">
+              Specialization:
             </div>
+            <div className="flex-1 relative">
+              <button
+                className="w-full px-4 py-3 text-left flex items-center justify-between text-sm"
+                onClick={() => setSpecDropdownOpen(!specDropdownOpen)}
+                data-testid="dropdown-specialization"
+              >
+                <span>{selectedSpecialization}</span>
+                <ChevronDown className="w-4 h-4" style={{ color: THEME_PRIMARY }} />
+              </button>
+              {specDropdownOpen && (
+                <div className="absolute top-full left-0 right-0 bg-background border border-border rounded-md shadow-lg z-10">
+                  {specializations.map((spec) => (
+                    <button
+                      key={spec}
+                      className="w-full px-4 py-2 text-left text-sm hover:bg-muted/50"
+                      onClick={() => { setSelectedSpecialization(spec); setSpecDropdownOpen(false); }}
+                    >
+                      {spec}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
 
-            <div>
-              <h2 className="text-2xl font-semibold mb-6">Available Skills Training</h2>
-              <div className="space-y-3">
-                {skills.map((skill, index) => (
-                  <div 
-                    key={index}
-                    className="rounded-lg p-4 bg-muted/30 border border-border flex items-center"
-                    data-testid={`card-nest-skill-${index}`}
-                  >
-                    <div className="w-2 h-2 rounded-full mr-3" style={{ backgroundColor: THEME_PRIMARY }}></div>
-                    <span className="font-medium">{skill}</span>
-                  </div>
-                ))}
-              </div>
+        <div className="flex gap-0 border border-border rounded-lg overflow-hidden min-h-[400px]">
+          <div className="w-48 border-r border-border bg-background flex flex-col">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                className={`px-4 py-3 text-left text-sm font-medium border-l-4 transition-colors ${
+                  activeTab === tab.id
+                    ? "border-l-[#1E9AD6] bg-[#1E9AD6] text-white"
+                    : "border-l-transparent hover:bg-muted/50"
+                }`}
+                onClick={() => setActiveTab(tab.id)}
+                data-testid={`tab-${tab.id}`}
+              >
+                {tab.label}
+              </button>
+            ))}
+            
+            <div className="mt-auto p-3">
+              <button
+                className="flex items-center gap-2 text-sm text-foreground/70 hover:text-foreground"
+                onClick={() => setShowMoreTabs(!showMoreTabs)}
+                data-testid="button-see-more"
+              >
+                {showMoreTabs ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                See more
+              </button>
             </div>
           </div>
 
-          <div className="mt-12 text-center">
-            <h3 className="text-xl font-semibold mb-4">Upskill your workforce today</h3>
-            <Button size="lg" data-testid="button-nest-contact">Contact Us</Button>
+          <div className="flex-1 p-6 bg-muted/10">
+            <div className="border border-border rounded-lg bg-background p-6 min-h-[350px]">
+              <h2 className="text-lg font-medium mb-4" data-testid="text-tab-title">
+                {tabContent[activeTab]?.title}
+              </h2>
+              <p className="text-sm text-foreground/80 whitespace-pre-line leading-relaxed" data-testid="text-tab-content">
+                {tabContent[activeTab]?.content}
+              </p>
+            </div>
           </div>
         </div>
       </main>

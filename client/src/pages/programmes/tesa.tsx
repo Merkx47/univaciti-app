@@ -1,108 +1,211 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
-import { ArrowLeft } from "lucide-react";
+import { Link, useLocation } from "wouter";
+import { ChevronDown, ChevronUp } from "lucide-react";
 import logoUrl from "@assets/logo_1769031259580.png";
 
-const THEME_PRIMARY = "#0d4f6b";
+const THEME_PRIMARY = "#1E9AD6";
 
-function RocketIcon({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M40 12C40 12 55 20 55 40C55 55 40 68 40 68C40 68 25 55 25 40C25 20 40 12 40 12Z"/>
-      <circle cx="40" cy="38" r="6"/>
-      <path d="M25 45L15 55L25 52"/>
-      <path d="M55 45L65 55L55 52"/>
-      <path d="M35 68L40 75L45 68"/>
-    </svg>
-  );
-}
-
-const specializations = [
-  { name: "Cloud Engineering", description: "Design, deploy, and manage scalable cloud infrastructure." },
-  { name: "Solution Architecture", description: "Design scalable, resilient, and cost-effective cloud solutions." },
-  { name: "Data Analysis & Analytics", description: "Collect, analyze, and visualize data-driven insights." },
-  { name: "Software Engineering - Java", description: "Master Java for enterprise software development." },
-  { name: "Software Engineering - React", description: "Build modern web applications with React." },
-  { name: "Artificial Intelligence & ML", description: "Apply AI and ML to solve real problems." },
-  { name: "Quality Assurance", description: "Ensure software quality through testing practices." },
+const programmes = [
+  { id: "tesa", name: "TESA" },
+  { id: "stem", name: "STEM" },
+  { id: "nest", name: "NEST" },
 ];
 
+const specializations = [
+  "Cloud Engineering",
+  "Data Analytics",
+  "Software Engineering - Java",
+  "Quality Assurance",
+  "Software Engineering - React",
+  "Solutions Architecture",
+  "AI & Machine Learning",
+];
+
+const tabs = [
+  { id: "home", label: "Home" },
+  { id: "courses", label: "Courses" },
+  { id: "structure", label: "Structure" },
+  { id: "timetable", label: "Time-Table" },
+  { id: "internship", label: "Internship" },
+  { id: "fees", label: "Fees" },
+  { id: "funding", label: "Funding" },
+];
+
+const tabContent: Record<string, { title: string; content: string }> = {
+  home: {
+    title: "Home",
+    content: "Welcome to TESA - Tech Skills Accelerator Programme. An intensive 8-week specialization course designed to transform passionate learners into world-class professionals. TESA closes the tech talent gap by providing hands-on, industry-focused training that prepares you for real-world challenges."
+  },
+  courses: {
+    title: "Courses",
+    content: "TESA offers comprehensive courses across 7 specializations: Cloud Engineering, Data Analytics, Software Engineering (Java & React), Quality Assurance, Solutions Architecture, and AI & Machine Learning. Each course is designed with industry input to ensure relevance and practical applicability."
+  },
+  structure: {
+    title: "Structure",
+    content: "The TESA programme follows a structured 8-week intensive format:\n\n• Week 1-2: Foundation & Core Concepts\n• Week 3-4: Intermediate Skills & Projects\n• Week 5-6: Advanced Topics & Team Projects\n• Week 7-8: Capstone Project & Certification Prep\n\nDaily Schedule: 8 hours/day, Monday to Saturday"
+  },
+  timetable: {
+    title: "Time-Table",
+    content: "TESA Cohort Schedule:\n\n• January Cohort: Jan 15 - Mar 10\n• March Cohort: Mar 15 - May 10\n• July Cohort: Jul 15 - Sep 10\n• September Cohort: Sep 15 - Nov 10\n\nDaily Hours: 9:00 AM - 5:00 PM (with 1-hour lunch break)"
+  },
+  internship: {
+    title: "Internship",
+    content: "Upon successful completion of the TESA programme, graduates are connected with partner companies for internship opportunities. Our industry partnerships ensure that TESA graduates gain real-world experience and have a near 100% employment rate within 3 months of graduation."
+  },
+  fees: {
+    title: "Fees",
+    content: "Programme Fee: $2,000\n\nThis includes:\n• Full access to all course materials\n• Hands-on projects and labs\n• Certification exam fees\n• Career placement support\n• Alumni network access"
+  },
+  funding: {
+    title: "Funding",
+    content: "Scholarship Opportunities:\n\n• 70% scholarship available for qualifying candidates\n• Payment plans available (3-month installments)\n• Corporate sponsorship programmes\n• Early bird discount (10% off for early registration)\n\nEffective cost with scholarship: $600"
+  },
+};
+
 export default function TesaPage() {
+  const [, setLocation] = useLocation();
+  const [selectedProgramme, setSelectedProgramme] = useState("tesa");
+  const [selectedSpecialization, setSelectedSpecialization] = useState(specializations[0]);
+  const [activeTab, setActiveTab] = useState("home");
+  const [showMoreTabs, setShowMoreTabs] = useState(false);
+  const [programmeDropdownOpen, setProgrammeDropdownOpen] = useState(false);
+  const [specDropdownOpen, setSpecDropdownOpen] = useState(false);
+
+  const handleProgrammeChange = (programmeId: string) => {
+    setSelectedProgramme(programmeId);
+    setProgrammeDropdownOpen(false);
+    if (programmeId !== "tesa") {
+      setLocation(`/programmes/${programmeId}`);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border/30">
+      <nav className="bg-background border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link href="/" className="flex items-center gap-2">
               <img src={logoUrl} alt="Univaciti" className="h-9 w-9" />
-              <span className="text-lg font-bold text-foreground">Univaciti</span>
+              <span className="text-lg font-bold" style={{ color: THEME_PRIMARY }}>Univaciti</span>
             </Link>
-            <Link href="/">
-              <Button variant="ghost" size="sm">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back
+            <div className="flex items-center gap-3">
+              <Button style={{ backgroundColor: THEME_PRIMARY }} size="sm" data-testid="button-register">
+                Register
               </Button>
-            </Link>
+              <Button style={{ backgroundColor: THEME_PRIMARY }} size="sm" data-testid="button-sign-in">
+                Sign in
+              </Button>
+            </div>
           </div>
         </div>
       </nav>
 
-      <main className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto">
-          <div 
-            className="rounded-xl p-8 sm:p-12 mb-12 border border-white/20"
-            style={{ backgroundColor: THEME_PRIMARY }}
-            data-testid="card-tesa-hero"
-          >
-            <div className="flex flex-col sm:flex-row items-center gap-6 mb-8">
-              <RocketIcon className="w-24 h-24 text-white" />
-              <div className="text-center sm:text-left">
-                <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2" data-testid="text-tesa-title">TESA</h1>
-                <p className="text-xl text-white/90">Tech Skills Accelerator Programme</p>
-              </div>
-            </div>
-            <p className="text-white/85 text-lg leading-relaxed mb-6" data-testid="text-tesa-description">
-              8-week intensive specialization courses, curated for top quality intakes. 
-              TESA closes the tech talent gap by transforming passionate top 1% learners 
-              into world-class professionals who create real solutions for real problems.
-            </p>
-            <div className="grid sm:grid-cols-2 gap-4 text-white/90">
-              <div>
-                <h3 className="font-semibold mb-2">Duration</h3>
-                <p className="text-sm">8 Weeks, Full-time (8 hours/day, Mon-Sat)</p>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-2">Fee</h3>
-                <p className="text-sm">$2,000 (With 70% scholarship available)</p>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-2">Cohorts</h3>
-                <p className="text-sm">January, March, July, September</p>
-              </div>
-              <div>
-                <h3 className="font-semibold mb-2">Employment Rate</h3>
-                <p className="text-sm">Near 100% within 3 months</p>
-              </div>
-            </div>
-          </div>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <h1 className="text-2xl font-light mb-6" style={{ color: THEME_PRIMARY }} data-testid="text-page-title">
+          Learning Programme
+        </h1>
 
-          <h2 className="text-2xl font-semibold mb-6 text-center">Specializations</h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {specializations.map((spec, index) => (
-              <div 
-                key={index}
-                className="rounded-lg p-5 border border-border bg-card hover-elevate cursor-pointer"
-                data-testid={`card-tesa-spec-${index}`}
+        <div className="space-y-3 mb-6">
+          <div className="flex items-center border border-border rounded-md overflow-hidden">
+            <div className="w-48 px-4 py-3 bg-muted/30 text-sm font-medium border-r border-border">
+              Select programme:
+            </div>
+            <div className="flex-1 relative">
+              <button
+                className="w-full px-4 py-3 text-left flex items-center justify-between text-sm"
+                onClick={() => setProgrammeDropdownOpen(!programmeDropdownOpen)}
+                data-testid="dropdown-programme"
               >
-                <h3 className="font-semibold text-foreground mb-2">{spec.name}</h3>
-                <p className="text-sm text-foreground/70">{spec.description}</p>
-              </div>
-            ))}
+                <span className="tracking-widest font-medium">
+                  {programmes.find(p => p.id === selectedProgramme)?.name.split('').join(' ')}
+                </span>
+                <ChevronDown className="w-4 h-4" style={{ color: THEME_PRIMARY }} />
+              </button>
+              {programmeDropdownOpen && (
+                <div className="absolute top-full left-0 right-0 bg-background border border-border rounded-md shadow-lg z-10">
+                  {programmes.map((prog) => (
+                    <button
+                      key={prog.id}
+                      className="w-full px-4 py-2 text-left text-sm hover:bg-muted/50"
+                      onClick={() => handleProgrammeChange(prog.id)}
+                    >
+                      {prog.name}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
 
-          <div className="mt-12 text-center">
-            <h3 className="text-xl font-semibold mb-4">Ready to accelerate your tech career?</h3>
-            <Button size="lg" data-testid="button-tesa-apply">Apply Now</Button>
+          <div className="flex items-center border border-border rounded-md overflow-hidden">
+            <div className="w-48 px-4 py-3 bg-muted/30 text-sm font-medium border-r border-border">
+              Specialization:
+            </div>
+            <div className="flex-1 relative">
+              <button
+                className="w-full px-4 py-3 text-left flex items-center justify-between text-sm"
+                onClick={() => setSpecDropdownOpen(!specDropdownOpen)}
+                data-testid="dropdown-specialization"
+              >
+                <span>{selectedSpecialization}</span>
+                <ChevronDown className="w-4 h-4" style={{ color: THEME_PRIMARY }} />
+              </button>
+              {specDropdownOpen && (
+                <div className="absolute top-full left-0 right-0 bg-background border border-border rounded-md shadow-lg z-10">
+                  {specializations.map((spec) => (
+                    <button
+                      key={spec}
+                      className="w-full px-4 py-2 text-left text-sm hover:bg-muted/50"
+                      onClick={() => { setSelectedSpecialization(spec); setSpecDropdownOpen(false); }}
+                    >
+                      {spec}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="flex gap-0 border border-border rounded-lg overflow-hidden min-h-[400px]">
+          <div className="w-48 border-r border-border bg-background flex flex-col">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                className={`px-4 py-3 text-left text-sm font-medium border-l-4 transition-colors ${
+                  activeTab === tab.id
+                    ? "border-l-[#1E9AD6] bg-[#1E9AD6] text-white"
+                    : "border-l-transparent hover:bg-muted/50"
+                }`}
+                onClick={() => setActiveTab(tab.id)}
+                data-testid={`tab-${tab.id}`}
+              >
+                {tab.label}
+              </button>
+            ))}
+            
+            <div className="mt-auto p-3">
+              <button
+                className="flex items-center gap-2 text-sm text-foreground/70 hover:text-foreground"
+                onClick={() => setShowMoreTabs(!showMoreTabs)}
+                data-testid="button-see-more"
+              >
+                {showMoreTabs ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                See more
+              </button>
+            </div>
+          </div>
+
+          <div className="flex-1 p-6 bg-muted/10">
+            <div className="border border-border rounded-lg bg-background p-6 min-h-[350px]">
+              <h2 className="text-lg font-medium mb-4" data-testid="text-tab-title">
+                {tabContent[activeTab]?.title}
+              </h2>
+              <p className="text-sm text-foreground/80 whitespace-pre-line leading-relaxed" data-testid="text-tab-content">
+                {tabContent[activeTab]?.content}
+              </p>
+            </div>
           </div>
         </div>
       </main>
