@@ -406,13 +406,13 @@ function LearningProgrammeSection() {
 
 function CertificationsSection() {
   const specializations = [
-    { id: "cloud-engineering", name: "Cloud Engineering", icon: CloudIcon, description: "Design, deploy, and manage scalable cloud infrastructure." },
-    { id: "data-analytics", name: "Data Analytics", icon: ChartIcon, description: "Collect, analyze, and visualize data-driven insights." },
-    { id: "software-java", name: "Software Eng. - Java", icon: JavaIcon, description: "Master Java for enterprise software development." },
-    { id: "quality-assurance", name: "Quality Assurance", icon: QAIcon, description: "Ensure software quality through testing practices." },
-    { id: "software-react", name: "Software Eng. - React", icon: ReactLogoIcon, description: "Build modern web applications with React." },
-    { id: "solutions-architecture", name: "Solutions Architecture", icon: ArchitectureIcon, description: "Design scalable, resilient cloud solutions." },
-    { id: "ai-ml", name: "AI & Machine Learning", icon: RobotIcon, description: "Apply AI and ML to solve real problems." },
+    { id: "cloud-engineering", name: "Cloud Engineering & Architecture", icon: CloudIcon, description: "Choose from the key Hyperscalers and achieve advanced skills in designing, deploying, and managing scalable cloud infrastructure across AWS, Azure, and GCP." },
+    { id: "data-analytics", name: "Data Analytics", icon: ChartIcon, description: "Master the art of collecting, analyzing, and visualizing data to drive business decisions. Learn SQL, Python, and modern BI tools for actionable insights." },
+    { id: "software-java", name: "Software Eng. - Java", icon: JavaIcon, description: "Build enterprise-grade applications with Java. Cover Spring Boot, microservices, APIs, and industry best practices for scalable backend systems." },
+    { id: "quality-assurance", name: "Quality Assurance", icon: QAIcon, description: "Ensure software excellence through comprehensive testing strategies. Learn manual and automated testing, CI/CD integration, and quality metrics." },
+    { id: "software-react", name: "Software Eng. - React", icon: ReactLogoIcon, description: "Create modern, responsive web applications with React. Master components, state management, hooks, and deployment to production environments." },
+    { id: "solutions-architecture", name: "Solutions Architecture", icon: ArchitectureIcon, description: "Design scalable, resilient, and cost-effective cloud solutions. Learn architectural patterns, security best practices, and system design principles." },
+    { id: "ai-ml", name: "AI & Machine Learning", icon: RobotIcon, description: "Apply artificial intelligence and machine learning to solve real-world problems. Cover neural networks, NLP, computer vision, and model deployment." },
   ];
   
   return (
