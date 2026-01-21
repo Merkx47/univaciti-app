@@ -494,10 +494,102 @@ function CertifySection() {
   );
 }
 
+function PepsiLogo({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 100 100" className={className}>
+      <circle cx="50" cy="50" r="45" fill="#004B93"/>
+      <path d="M5 50 Q50 30 95 50" fill="#E32934"/>
+      <path d="M5 50 Q50 70 95 50" fill="#004B93"/>
+      <circle cx="50" cy="50" r="45" fill="none" stroke="#E32934" strokeWidth="3"/>
+    </svg>
+  );
+}
+
+function UnionBankLogo({ className }: { className?: string }) {
+  return (
+    <div className={className + " flex items-center gap-1"}>
+      <svg viewBox="0 0 40 40" className="w-8 h-8">
+        <path d="M20 5L8 35H14L20 20L26 35H32L20 5Z" fill="#0066B3"/>
+        <path d="M12 28L20 12L28 28" fill="none" stroke="#0066B3" strokeWidth="2"/>
+      </svg>
+      <span className="text-[#0066B3] font-medium text-sm">union<span className="font-bold">bank</span></span>
+    </div>
+  );
+}
+
+function StanbicLogo({ className }: { className?: string }) {
+  return (
+    <div className={className + " flex items-center"}>
+      <div className="w-10 h-10 bg-[#0033A0] rounded flex items-center justify-center">
+        <svg viewBox="0 0 30 30" className="w-6 h-6">
+          <path d="M15 5C10 5 8 10 8 15C8 20 12 25 15 25C18 25 22 20 22 15C22 10 20 5 15 5Z" fill="none" stroke="white" strokeWidth="2"/>
+          <path d="M10 15H20" stroke="white" strokeWidth="2"/>
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function PolarisLogo({ className }: { className?: string }) {
+  return (
+    <div className={className + " flex items-center gap-1"}>
+      <div className="w-10 h-10 bg-gradient-to-br from-[#6B2D8B] to-[#9B4BC0] rounded-full flex items-center justify-center">
+        <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="#FFD700" strokeWidth="2">
+          <path d="M13 3L4 14H12L11 21L20 10H12L13 3Z"/>
+        </svg>
+      </div>
+      <div className="flex flex-col">
+        <span className="text-[#6B2D8B] font-bold text-xs leading-none">POLARIS</span>
+        <span className="text-[#6B2D8B] text-[10px] leading-none">BANK</span>
+      </div>
+    </div>
+  );
+}
+
+function CitiLogo({ className }: { className?: string }) {
+  return (
+    <div className={className}>
+      <span className="text-[#003B70] font-light text-2xl tracking-tight">citi</span>
+    </div>
+  );
+}
+
+function FirstBankLogo({ className }: { className?: string }) {
+  return (
+    <div className={className + " flex items-center gap-1"}>
+      <div className="w-10 h-10 bg-[#002D62] rounded-full flex items-center justify-center overflow-hidden">
+        <svg viewBox="0 0 40 40" className="w-8 h-8">
+          <circle cx="20" cy="20" r="18" fill="#002D62"/>
+          <path d="M12 28L20 12L28 28H12Z" fill="#FDB913" stroke="#FDB913" strokeWidth="1"/>
+        </svg>
+      </div>
+      <div className="flex flex-col">
+        <span className="text-[#002D62] font-bold text-xs leading-none">First<span className="text-[#FDB913]">Bank</span></span>
+        <span className="text-[#002D62] text-[8px] leading-none">Since 1894</span>
+      </div>
+    </div>
+  );
+}
+
+function AdinoLogo({ className }: { className?: string }) {
+  return (
+    <div className={className + " flex items-center gap-1"}>
+      <svg viewBox="0 0 30 30" className="w-6 h-6">
+        <circle cx="15" cy="15" r="12" fill="none" stroke="#B8860B" strokeWidth="1"/>
+        <path d="M15 5L15 25M5 15L25 15M8 8L22 22M22 8L8 22" stroke="#B8860B" strokeWidth="0.5"/>
+      </svg>
+      <div className="flex flex-col">
+        <span className="text-foreground/80 font-light text-sm">adino</span>
+        <span className="text-foreground/60 text-[8px] leading-none">CAPITAL LIMITED</span>
+      </div>
+    </div>
+  );
+}
+
 function RecruitersSection() {
   return (
-    <section id="recruitment" className="py-16 px-4 sm:px-6 lg:px-8" data-testid="section-recruiters">
-      <div className="max-w-3xl mx-auto text-center">
+    <section id="recruitment" className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/20" data-testid="section-recruiters">
+      <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-2xl sm:text-3xl font-light mb-4" data-testid="text-recruiters-title">
           Recruiters
         </h2>
@@ -505,9 +597,19 @@ function RecruitersSection() {
           Join the growing list of recruiters, have access to the pool of exceptional Univaciti graduates,
           get alerted by new additions to the pool. Track talents of interest, track skills of interest.
         </p>
-        <Button size="lg" data-testid="button-recruiter-register">
+        <Button size="lg" className="mb-10" data-testid="button-recruiter-register">
           Register
         </Button>
+        
+        <div className="flex flex-wrap items-center justify-center gap-8 mt-8" data-testid="recruiter-logos">
+          <PepsiLogo className="w-12 h-12" />
+          <UnionBankLogo className="" />
+          <StanbicLogo className="" />
+          <PolarisLogo className="" />
+          <CitiLogo className="" />
+          <FirstBankLogo className="" />
+          <AdinoLogo className="" />
+        </div>
       </div>
     </section>
   );
