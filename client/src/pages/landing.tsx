@@ -13,6 +13,7 @@ import citiLogo from "@assets/image_1769037532565.png";
 import stanbicLogo from "@assets/image_1769037712758.png";
 import polarisLogo from "@assets/image_1769037805080.png";
 import firstBankLogo from "@assets/image_1769037850316.png";
+import azureLogo from "@assets/image_1769038035704.png";
 import {
   Menu,
   X,
@@ -504,10 +505,10 @@ function CertifySection() {
   );
 }
 
-function RecruiterLogoImg({ src, alt, darkBg }: { src: string; alt: string; darkBg?: boolean }) {
+function RecruiterLogoImg({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className={`h-16 px-4 flex items-center justify-center rounded-lg ${darkBg ? 'bg-slate-800' : 'bg-white'}`}>
-      <img src={src} alt={alt} className="h-10 w-auto object-contain" />
+    <div className="h-20 px-6 flex items-center justify-center rounded-lg bg-white">
+      <img src={src} alt={alt} className="h-14 w-auto object-contain" />
     </div>
   );
 }
@@ -532,7 +533,7 @@ function RecruitersSection() {
         <div className="flex flex-wrap items-center justify-center gap-4 mt-8" data-testid="recruiter-logos">
           <RecruiterLogoImg src={pepsiLogo} alt="Pepsi" />
           <RecruiterLogoImg src={unionBankLogo} alt="Union Bank" />
-          <RecruiterLogoImg src={stanbicLogo} alt="Stanbic IBTC" darkBg />
+          <RecruiterLogoImg src={stanbicLogo} alt="Stanbic IBTC" />
           <RecruiterLogoImg src={polarisLogo} alt="Polaris Bank" />
           <RecruiterLogoImg src={citiLogo} alt="Citi" />
           <RecruiterLogoImg src={firstBankLogo} alt="FirstBank" />
@@ -546,9 +547,7 @@ function RecruitersSection() {
               <span className="text-xs text-foreground/70">AWS</span>
             </div>
             <div className="flex flex-col items-center gap-2">
-              <svg className="w-14 h-14" viewBox="0 0 64 64" fill="#3B82F6">
-                <path d="M52 28c0-1.1-.03-2.18-.1-3.26A16 16 0 0 0 22.18 20 12 12 0 0 0 8 32a12 12 0 0 0 12 12h30a10 10 0 0 0 2-19.8V28z"/>
-              </svg>
+              <img src={azureLogo} alt="Azure" className="w-14 h-14 object-contain" />
               <span className="text-xs text-foreground/70">Azure</span>
             </div>
             <div className="flex flex-col items-center gap-2">
