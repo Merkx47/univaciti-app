@@ -1,20 +1,22 @@
-import { type User, type InsertUser } from "@shared/schema";
+import { type User, type InsertUser, type WaitlistEntry, type InsertWaitlistEntry } from "@shared/schema";
 import { randomUUID } from "crypto";
-
-// modify the interface with any CRUD methods
-// you might need
 
 export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
+  addToWaitlist(entry: InsertWaitlistEntry): Promise<WaitlistEntry>;
+  getWaitlistByEmail(email: string): Promise<WaitlistEntry | undefined>;
+  getAllWaitlist(): Promise<WaitlistEntry[]>;
 }
 
 export class MemStorage implements IStorage {
   private users: Map<string, User>;
+  private waitlist: Map<string, WaitlistEntry>;
 
   constructor() {
     this.users = new Map();
+    this.waitlist = new Map();
   }
 
   async getUser(id: string): Promise<User | undefined> {
@@ -32,6 +34,27 @@ export class MemStorage implements IStorage {
     const user: User = { ...insertUser, id };
     this.users.set(id, user);
     return user;
+  }
+
+  async addToWaitlist(entry: InsertWaitlistEntry): Promise<WaitlistEntry> {
+    const id = randomUUID();
+    const waitlistEntry: WaitlistEntry = {
+      id,
+      email: entry.email,
+      createdAt: new Date(),
+    };
+    this.waitlist.set(id, waitlistEntry);
+    return waitlistEntry;
+  }
+
+  async getWaitlistByEmail(email: string): Promise<WaitlistEntry | undefined> {
+    return Array.from(this.waitlist.values()).find(
+      (entry) => entry.email === email,
+    );
+  }
+
+  async getAllWaitlist(): Promise<WaitlistEntry[]> {
+    return Array.from(this.waitlist.values());
   }
 }
 
