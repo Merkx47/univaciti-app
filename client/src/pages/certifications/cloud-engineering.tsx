@@ -3,13 +3,13 @@ import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
 import logoUrl from "@assets/logo_1769031259580.png";
 
-const CARD_COLOR = "#1a6985";
+const THEME_PRIMARY = "#0d4f6b";
 
 function CloudIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20 50C12 50 8 44 8 38C8 32 12 26 20 26C20 18 28 12 38 12C48 12 56 18 58 26C66 26 72 32 72 40C72 48 66 54 58 54H20"/>
-      <path d="M30 42L38 50L50 38"/>
+      <path d="M22 52C14 52 10 45 10 38C10 31 15 25 22 25C23 16 32 10 42 10C52 10 60 17 62 26C69 27 74 33 74 41C74 49 68 55 60 55H22"/>
+      <path d="M32 40L40 48L52 36"/>
     </svg>
   );
 }
@@ -56,8 +56,8 @@ export default function CloudEngineeringPage() {
       <main className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <div 
-            className="rounded-3xl p-8 sm:p-12 mb-12"
-            style={{ backgroundColor: CARD_COLOR }}
+            className="rounded-xl p-8 sm:p-12 mb-12 border border-white/20"
+            style={{ backgroundColor: THEME_PRIMARY }}
           >
             <div className="flex flex-col sm:flex-row items-center gap-6 mb-8">
               <CloudIcon className="w-20 h-20 text-white" />
@@ -81,7 +81,7 @@ export default function CloudEngineeringPage() {
                 {modules.map((module, index) => (
                   <div 
                     key={index}
-                    className="rounded-lg p-3 bg-muted/30 flex items-center justify-between"
+                    className="rounded-lg p-3 bg-muted/30 border border-border flex items-center justify-between"
                   >
                     <span className="font-medium text-sm">{module.name}</span>
                     <span className="text-xs text-foreground/60">{module.hours}</span>
@@ -95,7 +95,7 @@ export default function CloudEngineeringPage() {
               <div className="space-y-3">
                 {skills.map((skill, index) => (
                   <div key={index} className="text-sm text-foreground/80 leading-relaxed">
-                    <span className="inline-block w-2 h-2 rounded-full mr-2" style={{ backgroundColor: CARD_COLOR }}></span>
+                    <span className="inline-block w-2 h-2 rounded-full mr-2" style={{ backgroundColor: THEME_PRIMARY }}></span>
                     {skill}
                   </div>
                 ))}
@@ -103,7 +103,7 @@ export default function CloudEngineeringPage() {
             </div>
           </div>
 
-          <div className="rounded-xl p-6 bg-muted/30 mb-8">
+          <div className="rounded-lg p-6 bg-muted/30 border border-border mb-8">
             <h2 className="text-xl font-semibold mb-4">Cloud Platforms Covered</h2>
             <div className="flex flex-wrap gap-3">
               {["Amazon Web Services (AWS)", "Microsoft Azure", "Huawei Cloud", "Google Cloud Platform"].map((platform) => (

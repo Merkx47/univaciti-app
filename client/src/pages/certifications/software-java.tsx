@@ -3,19 +3,15 @@ import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
 import logoUrl from "@assets/logo_1769031259580.png";
 
-const CARD_COLOR = "#1a6985";
+const THEME_PRIMARY = "#0d4f6b";
 
 function JavaIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M28 15C28 15 35 20 45 20C55 20 55 12 55 12"/>
-      <path d="M25 25C25 25 35 32 50 32C60 32 60 22 60 22"/>
-      <path d="M20 40C20 40 25 50 40 50C55 50 60 42 60 42"/>
-      <path d="M30 55C30 55 35 62 45 62C55 62 55 55 55 55"/>
-      <path d="M25 68C25 68 32 72 40 72C48 72 55 68 55 68"/>
-      <rect x="32" y="35" width="16" height="20" rx="2"/>
-      <path d="M36 40V50"/>
-      <path d="M44 40V50"/>
+    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20 30H52V60C52 66 46 70 36 70C26 70 20 66 20 60V30Z"/>
+      <path d="M52 38H58C62 38 65 42 65 46C65 50 62 54 58 54H52"/>
+      <path d="M26 18C26 18 28 22 32 22C36 22 36 18 36 18"/>
+      <path d="M38 12C38 12 40 18 44 18C48 18 48 12 48 12"/>
     </svg>
   );
 }
@@ -63,8 +59,8 @@ export default function SoftwareJavaPage() {
       <main className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <div 
-            className="rounded-3xl p-8 sm:p-12 mb-12"
-            style={{ backgroundColor: CARD_COLOR }}
+            className="rounded-xl p-8 sm:p-12 mb-12 border border-white/20"
+            style={{ backgroundColor: THEME_PRIMARY }}
           >
             <div className="flex flex-col sm:flex-row items-center gap-6 mb-8">
               <JavaIcon className="w-20 h-20 text-white" />
@@ -88,7 +84,7 @@ export default function SoftwareJavaPage() {
                 {modules.map((module, index) => (
                   <div 
                     key={index}
-                    className="rounded-lg p-3 bg-muted/30 flex items-center justify-between"
+                    className="rounded-lg p-3 bg-muted/30 border border-border flex items-center justify-between"
                   >
                     <span className="font-medium text-sm">{module.name}</span>
                     <span className="text-xs text-foreground/60">{module.hours}</span>
@@ -102,7 +98,7 @@ export default function SoftwareJavaPage() {
               <div className="space-y-3">
                 {skills.map((skill, index) => (
                   <div key={index} className="text-sm text-foreground/80 leading-relaxed">
-                    <span className="inline-block w-2 h-2 rounded-full mr-2" style={{ backgroundColor: CARD_COLOR }}></span>
+                    <span className="inline-block w-2 h-2 rounded-full mr-2" style={{ backgroundColor: THEME_PRIMARY }}></span>
                     {skill}
                   </div>
                 ))}
@@ -110,7 +106,7 @@ export default function SoftwareJavaPage() {
             </div>
           </div>
 
-          <div className="rounded-xl p-6 bg-muted/30 mb-8">
+          <div className="rounded-lg p-6 bg-muted/30 border border-border mb-8">
             <h2 className="text-xl font-semibold mb-4">Technologies Covered</h2>
             <div className="flex flex-wrap gap-3">
               {["Java 17+", "Spring Boot", "Spring MVC", "JPA/Hibernate", "MySQL", "PostgreSQL", "Maven", "JUnit"].map((tech) => (

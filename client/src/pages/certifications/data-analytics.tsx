@@ -3,17 +3,17 @@ import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
 import logoUrl from "@assets/logo_1769031259580.png";
 
-const CARD_COLOR = "#1a6985";
+const THEME_PRIMARY = "#0d4f6b";
 
 function ChartIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="10" y="55" width="12" height="15"/>
-      <rect x="26" y="40" width="12" height="30"/>
-      <rect x="42" y="25" width="12" height="45"/>
-      <rect x="58" y="15" width="12" height="55"/>
-      <path d="M10 20L30 35L50 22L70 10"/>
-      <circle cx="70" cy="10" r="3" fill="currentColor"/>
+      <rect x="12" y="52" width="10" height="16"/>
+      <rect x="27" y="38" width="10" height="30"/>
+      <rect x="42" y="24" width="10" height="44"/>
+      <rect x="57" y="12" width="10" height="56"/>
+      <path d="M12 22L27 34L47 20L67 8"/>
+      <circle cx="67" cy="8" r="3" fill="currentColor"/>
     </svg>
   );
 }
@@ -61,8 +61,8 @@ export default function DataAnalyticsPage() {
       <main className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <div 
-            className="rounded-3xl p-8 sm:p-12 mb-12"
-            style={{ backgroundColor: CARD_COLOR }}
+            className="rounded-xl p-8 sm:p-12 mb-12 border border-white/20"
+            style={{ backgroundColor: THEME_PRIMARY }}
           >
             <div className="flex flex-col sm:flex-row items-center gap-6 mb-8">
               <ChartIcon className="w-20 h-20 text-white" />
@@ -86,7 +86,7 @@ export default function DataAnalyticsPage() {
                 {modules.map((module, index) => (
                   <div 
                     key={index}
-                    className="rounded-lg p-3 bg-muted/30 flex items-center justify-between"
+                    className="rounded-lg p-3 bg-muted/30 border border-border flex items-center justify-between"
                   >
                     <span className="font-medium text-sm">{module.name}</span>
                     <span className="text-xs text-foreground/60">{module.hours}</span>
@@ -100,7 +100,7 @@ export default function DataAnalyticsPage() {
               <div className="space-y-3">
                 {skills.map((skill, index) => (
                   <div key={index} className="text-sm text-foreground/80 leading-relaxed">
-                    <span className="inline-block w-2 h-2 rounded-full mr-2" style={{ backgroundColor: CARD_COLOR }}></span>
+                    <span className="inline-block w-2 h-2 rounded-full mr-2" style={{ backgroundColor: THEME_PRIMARY }}></span>
                     {skill}
                   </div>
                 ))}
@@ -108,7 +108,7 @@ export default function DataAnalyticsPage() {
             </div>
           </div>
 
-          <div className="rounded-xl p-6 bg-muted/30 mb-8">
+          <div className="rounded-lg p-6 bg-muted/30 border border-border mb-8">
             <h2 className="text-xl font-semibold mb-4">Tools & Platforms Covered</h2>
             <div className="flex flex-wrap gap-3">
               {["Excel", "SQL", "Python", "Pandas", "NumPy", "Tableau", "Power BI"].map((tool) => (

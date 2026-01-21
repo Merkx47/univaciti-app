@@ -3,19 +3,16 @@ import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
 import logoUrl from "@assets/logo_1769031259580.png";
 
-const CARD_COLOR = "#1a6985";
+const THEME_PRIMARY = "#0d4f6b";
 
-function BeaverIcon({ className }: { className?: string }) {
+function RocketIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20 55C20 55 15 50 15 40C15 30 25 25 35 25C40 25 45 20 50 20C60 20 65 30 65 40C65 50 60 55 55 55"/>
-      <path d="M35 25C35 25 30 20 25 22C20 24 18 30 20 35"/>
-      <path d="M55 55L60 65C60 65 55 70 45 70C35 70 30 65 30 65L35 55"/>
-      <ellipse cx="40" cy="45" rx="15" ry="12"/>
-      <circle cx="32" cy="38" r="2" fill="currentColor"/>
-      <circle cx="48" cy="38" r="2" fill="currentColor"/>
-      <ellipse cx="40" cy="48" rx="4" ry="3" fill="currentColor"/>
-      <path d="M36 52L38 56M44 52L42 56"/>
+    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M40 12C40 12 55 20 55 40C55 55 40 68 40 68C40 68 25 55 25 40C25 20 40 12 40 12Z"/>
+      <circle cx="40" cy="38" r="6"/>
+      <path d="M25 45L15 55L25 52"/>
+      <path d="M55 45L65 55L55 52"/>
+      <path d="M35 68L40 75L45 68"/>
     </svg>
   );
 }
@@ -53,12 +50,12 @@ export default function TesaPage() {
       <main className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <div 
-            className="rounded-3xl p-8 sm:p-12 mb-12"
-            style={{ backgroundColor: CARD_COLOR }}
+            className="rounded-xl p-8 sm:p-12 mb-12 border border-white/20"
+            style={{ backgroundColor: THEME_PRIMARY }}
             data-testid="card-tesa-hero"
           >
             <div className="flex flex-col sm:flex-row items-center gap-6 mb-8">
-              <BeaverIcon className="w-24 h-24 text-white" />
+              <RocketIcon className="w-24 h-24 text-white" />
               <div className="text-center sm:text-left">
                 <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2" data-testid="text-tesa-title">TESA</h1>
                 <p className="text-xl text-white/90">Tech Skills Accelerator Programme</p>
@@ -94,7 +91,7 @@ export default function TesaPage() {
             {specializations.map((spec, index) => (
               <div 
                 key={index}
-                className="rounded-xl p-5 border border-border/50 hover-elevate cursor-pointer"
+                className="rounded-lg p-5 border border-border bg-card hover-elevate cursor-pointer"
                 data-testid={`card-tesa-spec-${index}`}
               >
                 <h3 className="font-semibold text-foreground mb-2">{spec.name}</h3>

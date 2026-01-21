@@ -3,15 +3,15 @@ import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
 import logoUrl from "@assets/logo_1769031259580.png";
 
-const CARD_COLOR = "#1a6985";
+const THEME_PRIMARY = "#0d4f6b";
 
 function AtomIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2">
-      <ellipse cx="40" cy="40" rx="30" ry="12" transform="rotate(0 40 40)"/>
-      <ellipse cx="40" cy="40" rx="30" ry="12" transform="rotate(60 40 40)"/>
-      <ellipse cx="40" cy="40" rx="30" ry="12" transform="rotate(120 40 40)"/>
-      <circle cx="40" cy="40" r="5" fill="currentColor"/>
+    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5">
+      <ellipse cx="40" cy="40" rx="28" ry="10"/>
+      <ellipse cx="40" cy="40" rx="28" ry="10" transform="rotate(60 40 40)"/>
+      <ellipse cx="40" cy="40" rx="28" ry="10" transform="rotate(120 40 40)"/>
+      <circle cx="40" cy="40" r="4" fill="currentColor"/>
     </svg>
   );
 }
@@ -49,8 +49,8 @@ export default function StemPage() {
       <main className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <div 
-            className="rounded-3xl p-8 sm:p-12 mb-12"
-            style={{ backgroundColor: CARD_COLOR }}
+            className="rounded-xl p-8 sm:p-12 mb-12 border border-white/20"
+            style={{ backgroundColor: THEME_PRIMARY }}
             data-testid="card-stem-hero"
           >
             <div className="flex flex-col sm:flex-row items-center gap-6 mb-8">
@@ -90,7 +90,7 @@ export default function StemPage() {
             {courses.map((course, index) => (
               <div 
                 key={index}
-                className="rounded-xl p-5 border border-border/50 hover-elevate cursor-pointer"
+                className="rounded-lg p-5 border border-border bg-card hover-elevate cursor-pointer"
                 data-testid={`card-stem-course-${index}`}
               >
                 <h3 className="font-semibold text-foreground mb-2">{course.name}</h3>

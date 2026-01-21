@@ -12,11 +12,12 @@ import {
   X,
   Sun,
   Moon,
+  ChevronRight,
 } from "lucide-react";
 
-// Card background color from the design
-const CARD_COLOR = "#1a6985";
-const CARD_COLOR_LIGHT = "#2a8aa8";
+// Univaciti theme colors
+const THEME_PRIMARY = "#0d4f6b";
+const THEME_LIGHT = "#1a6985";
 
 function ThemeToggle({ testId }: { testId: string }) {
   const { theme, setTheme } = useTheme();
@@ -34,56 +35,53 @@ function ThemeToggle({ testId }: { testId: string }) {
   );
 }
 
-// Programme Icons
-function BeaverIcon({ className }: { className?: string }) {
+// Programme Icons - Improved TESA icon (Rocket/Accelerator)
+function RocketIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20 55C20 55 15 50 15 40C15 30 25 25 35 25C40 25 45 20 50 20C60 20 65 30 65 40C65 50 60 55 55 55"/>
-      <path d="M35 25C35 25 30 20 25 22C20 24 18 30 20 35"/>
-      <path d="M55 55L60 65C60 65 55 70 45 70C35 70 30 65 30 65L35 55"/>
-      <ellipse cx="40" cy="45" rx="15" ry="12"/>
-      <circle cx="32" cy="38" r="2" fill="currentColor"/>
-      <circle cx="48" cy="38" r="2" fill="currentColor"/>
-      <ellipse cx="40" cy="48" rx="4" ry="3" fill="currentColor"/>
-      <path d="M36 52L38 56M44 52L42 56"/>
+    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M40 12C40 12 55 20 55 40C55 55 40 68 40 68C40 68 25 55 25 40C25 20 40 12 40 12Z"/>
+      <circle cx="40" cy="38" r="6"/>
+      <path d="M25 45L15 55L25 52"/>
+      <path d="M55 45L65 55L55 52"/>
+      <path d="M35 68L40 75L45 68"/>
     </svg>
   );
 }
 
 function AtomIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2">
-      <ellipse cx="40" cy="40" rx="30" ry="12" transform="rotate(0 40 40)"/>
-      <ellipse cx="40" cy="40" rx="30" ry="12" transform="rotate(60 40 40)"/>
-      <ellipse cx="40" cy="40" rx="30" ry="12" transform="rotate(120 40 40)"/>
-      <circle cx="40" cy="40" r="5" fill="currentColor"/>
+    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5">
+      <ellipse cx="40" cy="40" rx="28" ry="10"/>
+      <ellipse cx="40" cy="40" rx="28" ry="10" transform="rotate(60 40 40)"/>
+      <ellipse cx="40" cy="40" rx="28" ry="10" transform="rotate(120 40 40)"/>
+      <circle cx="40" cy="40" r="4" fill="currentColor"/>
     </svg>
   );
 }
 
 function BuildingIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="15" y="25" width="50" height="45" rx="2"/>
-      <rect x="25" y="10" width="30" height="15"/>
-      <rect x="22" y="32" width="8" height="8"/>
-      <rect x="36" y="32" width="8" height="8"/>
-      <rect x="50" y="32" width="8" height="8"/>
-      <rect x="22" y="46" width="8" height="8"/>
-      <rect x="36" y="46" width="8" height="8"/>
-      <rect x="50" y="46" width="8" height="8"/>
-      <rect x="34" y="58" width="12" height="12"/>
+    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="18" y="25" width="44" height="45" rx="2"/>
+      <rect x="28" y="12" width="24" height="13"/>
+      <rect x="25" y="32" width="6" height="6"/>
+      <rect x="37" y="32" width="6" height="6"/>
+      <rect x="49" y="32" width="6" height="6"/>
+      <rect x="25" y="44" width="6" height="6"/>
+      <rect x="37" y="44" width="6" height="6"/>
+      <rect x="49" y="44" width="6" height="6"/>
+      <rect x="35" y="56" width="10" height="14"/>
     </svg>
   );
 }
 
 function CertifyIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="12" y="15" width="56" height="40" rx="3"/>
-      <circle cx="40" cy="35" r="10"/>
-      <path d="M36 35L39 38L45 32"/>
-      <path d="M32 55L28 70L40 64L52 70L48 55"/>
+    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="14" y="16" width="52" height="36" rx="3"/>
+      <circle cx="40" cy="34" r="9"/>
+      <path d="M36 34L39 37L45 31"/>
+      <path d="M33 52L30 68L40 62L50 68L47 52"/>
     </svg>
   );
 }
@@ -92,8 +90,8 @@ function CertifyIcon({ className }: { className?: string }) {
 function CloudIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20 50C12 50 8 44 8 38C8 32 12 26 20 26C20 18 28 12 38 12C48 12 56 18 58 26C66 26 72 32 72 40C72 48 66 54 58 54H20"/>
-      <path d="M30 42L38 50L50 38"/>
+      <path d="M22 52C14 52 10 45 10 38C10 31 15 25 22 25C23 16 32 10 42 10C52 10 60 17 62 26C69 27 74 33 74 41C74 49 68 55 60 55H22"/>
+      <path d="M32 40L40 48L52 36"/>
     </svg>
   );
 }
@@ -101,27 +99,24 @@ function CloudIcon({ className }: { className?: string }) {
 function ChartIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="10" y="55" width="12" height="15"/>
-      <rect x="26" y="40" width="12" height="30"/>
-      <rect x="42" y="25" width="12" height="45"/>
-      <rect x="58" y="15" width="12" height="55"/>
-      <path d="M10 20L30 35L50 22L70 10"/>
-      <circle cx="70" cy="10" r="3" fill="currentColor"/>
+      <rect x="12" y="52" width="10" height="16"/>
+      <rect x="27" y="38" width="10" height="30"/>
+      <rect x="42" y="24" width="10" height="44"/>
+      <rect x="57" y="12" width="10" height="56"/>
+      <path d="M12 22L27 34L47 20L67 8"/>
+      <circle cx="67" cy="8" r="3" fill="currentColor"/>
     </svg>
   );
 }
 
+// Java Coffee Cup Icon
 function JavaIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M28 15C28 15 35 20 45 20C55 20 55 12 55 12"/>
-      <path d="M25 25C25 25 35 32 50 32C60 32 60 22 60 22"/>
-      <path d="M20 40C20 40 25 50 40 50C55 50 60 42 60 42"/>
-      <path d="M30 55C30 55 35 62 45 62C55 62 55 55 55 55"/>
-      <path d="M25 68C25 68 32 72 40 72C48 72 55 68 55 68"/>
-      <rect x="32" y="35" width="16" height="20" rx="2"/>
-      <path d="M36 40V50"/>
-      <path d="M44 40V50"/>
+    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20 30H52V60C52 66 46 70 36 70C26 70 20 66 20 60V30Z"/>
+      <path d="M52 38H58C62 38 65 42 65 46C65 50 62 54 58 54H52"/>
+      <path d="M26 18C26 18 28 22 32 22C36 22 36 18 36 18"/>
+      <path d="M38 12C38 12 40 18 44 18C48 18 48 12 48 12"/>
     </svg>
   );
 }
@@ -129,62 +124,60 @@ function JavaIcon({ className }: { className?: string }) {
 function QAIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="12" y="12" width="56" height="56" rx="4"/>
-      <path d="M25 40L35 50L55 30"/>
-      <circle cx="40" cy="40" r="20"/>
+      <circle cx="40" cy="40" r="24"/>
+      <path d="M28 40L36 48L52 32"/>
     </svg>
   );
 }
 
-function ReactIcon({ className }: { className?: string }) {
+// Official React Logo Style
+function ReactLogoIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-      <ellipse cx="40" cy="40" rx="28" ry="11"/>
-      <ellipse cx="40" cy="40" rx="28" ry="11" transform="rotate(60 40 40)"/>
-      <ellipse cx="40" cy="40" rx="28" ry="11" transform="rotate(120 40 40)"/>
-      <circle cx="40" cy="40" r="4" fill="currentColor"/>
+    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2">
+      <ellipse cx="40" cy="40" rx="26" ry="10"/>
+      <ellipse cx="40" cy="40" rx="26" ry="10" transform="rotate(60 40 40)"/>
+      <ellipse cx="40" cy="40" rx="26" ry="10" transform="rotate(-60 40 40)"/>
+      <circle cx="40" cy="40" r="5" fill="currentColor"/>
     </svg>
   );
 }
 
-function ArchitectureIcon({ className }: { className?: string }) {
+// Blueprint/Diagram Icon for Solutions Architecture
+function BlueprintIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="10" y="55" width="20" height="15" rx="2"/>
-      <rect x="50" y="55" width="20" height="15" rx="2"/>
-      <rect x="30" y="10" width="20" height="15" rx="2"/>
-      <rect x="10" y="32" width="20" height="12" rx="2"/>
-      <rect x="50" y="32" width="20" height="12" rx="2"/>
-      <path d="M40 25V32"/>
-      <path d="M20 44V55"/>
-      <path d="M60 44V55"/>
-      <path d="M20 38H30"/>
-      <path d="M50 38H60"/>
+    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="10" y="10" width="60" height="60" rx="4"/>
+      <circle cx="25" cy="25" r="6"/>
+      <circle cx="55" cy="25" r="6"/>
+      <circle cx="40" cy="55" r="6"/>
+      <path d="M31 25H49"/>
+      <path d="M25 31V40L40 49"/>
+      <path d="M55 31V40L40 49"/>
     </svg>
   );
 }
 
-function AIIcon({ className }: { className?: string }) {
+// Robot Icon for AI/ML
+function RobotIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="40" cy="40" r="25"/>
-      <circle cx="40" cy="40" r="8"/>
-      <path d="M40 15V25"/>
-      <path d="M40 55V65"/>
-      <path d="M15 40H25"/>
-      <path d="M55 40H65"/>
-      <path d="M22 22L29 29"/>
-      <path d="M51 51L58 58"/>
-      <path d="M58 22L51 29"/>
-      <path d="M29 51L22 58"/>
-      <circle cx="40" cy="40" r="3" fill="currentColor"/>
+    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="18" y="28" width="44" height="36" rx="4"/>
+      <rect x="24" y="36" width="10" height="8" rx="2"/>
+      <rect x="46" y="36" width="10" height="8" rx="2"/>
+      <path d="M32 54H48"/>
+      <path d="M40 12V28"/>
+      <circle cx="40" cy="12" r="4"/>
+      <path d="M12 42H18"/>
+      <path d="M62 42H68"/>
+      <path d="M28 64V70"/>
+      <path d="M52 64V70"/>
     </svg>
   );
 }
 
 function GraduationCapIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 64 64" className={className} fill="none" stroke="currentColor" strokeWidth="2">
+    <svg viewBox="0 0 64 64" className={className} fill="none" stroke="currentColor" strokeWidth="2.5">
       <path d="M32 8L4 24L32 40L60 24L32 8Z" strokeLinejoin="round"/>
       <path d="M16 32V48C16 48 24 56 32 56C40 56 48 48 48 48V32" strokeLinejoin="round"/>
       <path d="M32 40V56"/>
@@ -294,7 +287,7 @@ function HeroSection() {
           
           <div className="flex justify-center lg:justify-end">
             <div 
-              className="w-64 h-64 lg:w-80 lg:h-80 rounded-3xl flex flex-col items-center justify-center"
+              className="w-64 h-64 lg:w-80 lg:h-80 rounded-3xl flex flex-col items-center justify-center border border-border/30"
               style={{ 
                 background: 'linear-gradient(135deg, rgba(230,240,250,0.9) 0%, rgba(200,220,240,0.7) 100%)',
                 boxShadow: '0 8px 32px rgba(0,0,0,0.08)'
@@ -325,7 +318,7 @@ function ThreePillarsSection() {
           {pillars.map((pillar, index) => (
             <div key={index} className="text-center" data-testid={`card-pillar-${index}`}>
               <div 
-                className="w-24 h-24 rounded-2xl mx-auto mb-4 flex items-center justify-center"
+                className="w-24 h-24 rounded-2xl mx-auto mb-4 flex items-center justify-center border border-border/30"
                 style={{ 
                   background: 'linear-gradient(135deg, rgba(230,240,250,0.9) 0%, rgba(210,225,245,0.7) 100%)'
                 }}
@@ -347,7 +340,7 @@ function LearningProgrammeSection() {
     { 
       id: "tesa",
       name: "TESA", 
-      icon: BeaverIcon, 
+      icon: RocketIcon, 
       description: "Tech Skills Accelerator Programme. Intensive 8-week tech skills accelerator.",
       link: "/programmes/tesa"
     },
@@ -383,26 +376,27 @@ function LearningProgrammeSection() {
           {programmes.map((programme, index) => (
             <Link key={index} href={programme.link}>
               <div 
-                className="rounded-2xl p-5 flex flex-col h-full cursor-pointer transition-transform hover:scale-[1.02]"
-                style={{ backgroundColor: CARD_COLOR }}
+                className="rounded-xl p-5 flex flex-col h-full cursor-pointer transition-transform hover:scale-[1.02] border border-white/20"
+                style={{ backgroundColor: THEME_PRIMARY }}
                 data-testid={`card-programme-${programme.id}`}
               >
                 <div className="flex items-start justify-between mb-3">
                   <h3 className="text-base font-semibold text-white tracking-wider" data-testid={`text-programme-name-${index}`}>
                     {programme.name}
                   </h3>
-                  <programme.icon className="w-14 h-14 text-white/90 flex-shrink-0 -mt-1 -mr-1" />
+                  <programme.icon className="w-12 h-12 text-white/90 flex-shrink-0" />
                 </div>
-                <p className="text-xs text-white/80 mb-5 flex-grow leading-relaxed" data-testid={`text-programme-description-${index}`}>
+                <p className="text-xs text-white/80 mb-4 flex-grow leading-relaxed" data-testid={`text-programme-description-${index}`}>
                   {programme.description}
                 </p>
-                <button 
-                  className="w-full py-2 rounded-full border-2 border-dashed border-white/50 text-white text-sm font-medium"
-                  style={{ backgroundColor: CARD_COLOR_LIGHT }}
+                <div 
+                  className="flex items-center justify-center gap-1 py-1.5 px-3 rounded-full text-white text-xs font-medium border border-white/40"
+                  style={{ backgroundColor: THEME_LIGHT }}
                   data-testid={`button-programme-more-${index}`}
                 >
-                  More
-                </button>
+                  <span>More</span>
+                  <ChevronRight className="w-3 h-3" />
+                </div>
               </div>
             </Link>
           ))}
@@ -418,9 +412,9 @@ function CertificationsSection() {
     { id: "data-analytics", name: "Data Analytics", icon: ChartIcon, description: "Collect, analyze, and visualize data-driven insights." },
     { id: "software-java", name: "Software Eng. - Java", icon: JavaIcon, description: "Master Java for enterprise software development." },
     { id: "quality-assurance", name: "Quality Assurance", icon: QAIcon, description: "Ensure software quality through testing practices." },
-    { id: "software-react", name: "Software Eng. - React", icon: ReactIcon, description: "Build modern web applications with React." },
-    { id: "solutions-architecture", name: "Solutions Architecture", icon: ArchitectureIcon, description: "Design scalable, resilient cloud solutions." },
-    { id: "ai-ml", name: "AI & Machine Learning", icon: AIIcon, description: "Apply AI and ML to solve real problems." },
+    { id: "software-react", name: "Software Eng. - React", icon: ReactLogoIcon, description: "Build modern web applications with React." },
+    { id: "solutions-architecture", name: "Solutions Architecture", icon: BlueprintIcon, description: "Design scalable, resilient cloud solutions." },
+    { id: "ai-ml", name: "AI & Machine Learning", icon: RobotIcon, description: "Apply AI and ML to solve real problems." },
   ];
   
   return (
@@ -442,26 +436,27 @@ function CertificationsSection() {
           {specializations.map((spec, index) => (
             <Link key={index} href={`/certifications/${spec.id}`}>
               <div 
-                className="rounded-xl p-4 flex flex-col h-full cursor-pointer transition-transform hover:scale-[1.02]"
-                style={{ backgroundColor: CARD_COLOR }}
+                className="rounded-lg p-4 flex flex-col h-full cursor-pointer transition-transform hover:scale-[1.02] border border-white/20"
+                style={{ backgroundColor: THEME_PRIMARY }}
                 data-testid={`card-specialization-${spec.id}`}
               >
                 <div className="flex items-start justify-between mb-2">
                   <h3 className="text-sm font-semibold text-white leading-tight flex-1 pr-2" data-testid={`text-specialization-name-${index}`}>
                     {spec.name}
                   </h3>
-                  <spec.icon className="w-10 h-10 text-white/90 flex-shrink-0" />
+                  <spec.icon className="w-9 h-9 text-white/90 flex-shrink-0" />
                 </div>
                 <p className="text-xs text-white/75 mb-3 flex-grow leading-relaxed" data-testid={`text-specialization-description-${index}`}>
                   {spec.description}
                 </p>
-                <button 
-                  className="w-full py-1.5 rounded-full border-2 border-dashed border-white/50 text-white text-xs font-medium"
-                  style={{ backgroundColor: CARD_COLOR_LIGHT }}
+                <div 
+                  className="flex items-center justify-center gap-1 py-1 px-2 rounded-full text-white text-xs font-medium border border-white/40"
+                  style={{ backgroundColor: THEME_LIGHT }}
                   data-testid={`button-specialization-more-${index}`}
                 >
-                  More
-                </button>
+                  <span>More</span>
+                  <ChevronRight className="w-3 h-3" />
+                </div>
               </div>
             </Link>
           ))}
@@ -476,14 +471,14 @@ function CertifySection() {
     <section id="certify" className="py-12 px-4 sm:px-6 lg:px-8" data-testid="section-certify">
       <div className="max-w-4xl mx-auto">
         <div 
-          className="rounded-2xl p-8 flex flex-col sm:flex-row items-center gap-6"
-          style={{ backgroundColor: CARD_COLOR }}
+          className="rounded-xl p-8 flex flex-col sm:flex-row items-center gap-6 border border-white/20"
+          style={{ backgroundColor: THEME_PRIMARY }}
           data-testid="card-certify"
         >
           <CertifyIcon className="w-20 h-20 text-white flex-shrink-0" />
           <div className="text-center sm:text-left flex-1">
             <h2 className="text-2xl font-semibold text-white mb-2" data-testid="text-certify-title">
-              CERTIFY®
+              CERTIFY
             </h2>
             <p className="text-sm text-white/80 mb-4" data-testid="text-certify-description">
               Univaciti certification exams in key tech skills, for skills validation. 
@@ -539,8 +534,8 @@ function CTASection() {
     <section id="community" className="py-12 px-4 sm:px-6 lg:px-8" data-testid="section-cta">
       <div className="max-w-3xl mx-auto">
         <div 
-          className="rounded-2xl p-8 text-center"
-          style={{ backgroundColor: CARD_COLOR }}
+          className="rounded-xl p-8 text-center border border-white/20"
+          style={{ backgroundColor: THEME_PRIMARY }}
           data-testid="card-cta"
         >
           <GraduationCapIcon className="w-14 h-14 text-white mx-auto mb-4" />

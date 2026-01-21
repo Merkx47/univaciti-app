@@ -3,20 +3,20 @@ import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
 import logoUrl from "@assets/logo_1769031259580.png";
 
-const CARD_COLOR = "#1a6985";
+const THEME_PRIMARY = "#0d4f6b";
 
 function BuildingIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="15" y="25" width="50" height="45" rx="2"/>
-      <rect x="25" y="10" width="30" height="15"/>
-      <rect x="22" y="32" width="8" height="8"/>
-      <rect x="36" y="32" width="8" height="8"/>
-      <rect x="50" y="32" width="8" height="8"/>
-      <rect x="22" y="46" width="8" height="8"/>
-      <rect x="36" y="46" width="8" height="8"/>
-      <rect x="50" y="46" width="8" height="8"/>
-      <rect x="34" y="58" width="12" height="12"/>
+    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="18" y="25" width="44" height="45" rx="2"/>
+      <rect x="28" y="12" width="24" height="13"/>
+      <rect x="25" y="32" width="6" height="6"/>
+      <rect x="37" y="32" width="6" height="6"/>
+      <rect x="49" y="32" width="6" height="6"/>
+      <rect x="25" y="44" width="6" height="6"/>
+      <rect x="37" y="44" width="6" height="6"/>
+      <rect x="49" y="44" width="6" height="6"/>
+      <rect x="35" y="56" width="10" height="14"/>
     </svg>
   );
 }
@@ -63,8 +63,8 @@ export default function NestPage() {
       <main className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <div 
-            className="rounded-3xl p-8 sm:p-12 mb-12"
-            style={{ backgroundColor: CARD_COLOR }}
+            className="rounded-xl p-8 sm:p-12 mb-12 border border-white/20"
+            style={{ backgroundColor: THEME_PRIMARY }}
             data-testid="card-nest-hero"
           >
             <div className="flex flex-col sm:flex-row items-center gap-6 mb-8">
@@ -106,7 +106,7 @@ export default function NestPage() {
                 {features.map((feature, index) => (
                   <div 
                     key={index}
-                    className="rounded-xl p-4 border border-border/50"
+                    className="rounded-lg p-4 border border-border bg-card"
                     data-testid={`card-nest-feature-${index}`}
                   >
                     <h3 className="font-semibold text-foreground mb-1">{feature.title}</h3>
@@ -122,10 +122,10 @@ export default function NestPage() {
                 {skills.map((skill, index) => (
                   <div 
                     key={index}
-                    className="rounded-lg p-4 bg-muted/30 flex items-center"
+                    className="rounded-lg p-4 bg-muted/30 border border-border flex items-center"
                     data-testid={`card-nest-skill-${index}`}
                   >
-                    <div className="w-2 h-2 rounded-full mr-3" style={{ backgroundColor: CARD_COLOR }}></div>
+                    <div className="w-2 h-2 rounded-full mr-3" style={{ backgroundColor: THEME_PRIMARY }}></div>
                     <span className="font-medium">{skill}</span>
                   </div>
                 ))}

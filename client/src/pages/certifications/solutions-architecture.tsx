@@ -3,21 +3,18 @@ import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
 import logoUrl from "@assets/logo_1769031259580.png";
 
-const CARD_COLOR = "#1a6985";
+const THEME_PRIMARY = "#0d4f6b";
 
-function ArchitectureIcon({ className }: { className?: string }) {
+function BlueprintIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="10" y="55" width="20" height="15" rx="2"/>
-      <rect x="50" y="55" width="20" height="15" rx="2"/>
-      <rect x="30" y="10" width="20" height="15" rx="2"/>
-      <rect x="10" y="32" width="20" height="12" rx="2"/>
-      <rect x="50" y="32" width="20" height="12" rx="2"/>
-      <path d="M40 25V32"/>
-      <path d="M20 44V55"/>
-      <path d="M60 44V55"/>
-      <path d="M20 38H30"/>
-      <path d="M50 38H60"/>
+    <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <rect x="10" y="10" width="60" height="60" rx="4"/>
+      <circle cx="25" cy="25" r="6"/>
+      <circle cx="55" cy="25" r="6"/>
+      <circle cx="40" cy="55" r="6"/>
+      <path d="M31 25H49"/>
+      <path d="M25 31V40L40 49"/>
+      <path d="M55 31V40L40 49"/>
     </svg>
   );
 }
@@ -65,11 +62,11 @@ export default function SolutionsArchitecturePage() {
       <main className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <div 
-            className="rounded-3xl p-8 sm:p-12 mb-12"
-            style={{ backgroundColor: CARD_COLOR }}
+            className="rounded-xl p-8 sm:p-12 mb-12 border border-white/20"
+            style={{ backgroundColor: THEME_PRIMARY }}
           >
             <div className="flex flex-col sm:flex-row items-center gap-6 mb-8">
-              <ArchitectureIcon className="w-20 h-20 text-white" />
+              <BlueprintIcon className="w-20 h-20 text-white" />
               <div className="text-center sm:text-left">
                 <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">Solutions Architecture</h1>
                 <p className="text-lg text-white/90">System Design Specialization</p>
@@ -89,7 +86,7 @@ export default function SolutionsArchitecturePage() {
                 {modules.map((module, index) => (
                   <div 
                     key={index}
-                    className="rounded-lg p-3 bg-muted/30 flex items-center justify-between"
+                    className="rounded-lg p-3 bg-muted/30 border border-border flex items-center justify-between"
                   >
                     <span className="font-medium text-sm">{module.name}</span>
                     <span className="text-xs text-foreground/60">{module.hours}</span>
@@ -103,7 +100,7 @@ export default function SolutionsArchitecturePage() {
               <div className="space-y-3">
                 {skills.map((skill, index) => (
                   <div key={index} className="text-sm text-foreground/80 leading-relaxed">
-                    <span className="inline-block w-2 h-2 rounded-full mr-2" style={{ backgroundColor: CARD_COLOR }}></span>
+                    <span className="inline-block w-2 h-2 rounded-full mr-2" style={{ backgroundColor: THEME_PRIMARY }}></span>
                     {skill}
                   </div>
                 ))}
@@ -111,7 +108,7 @@ export default function SolutionsArchitecturePage() {
             </div>
           </div>
 
-          <div className="rounded-xl p-6 bg-muted/30 mb-8">
+          <div className="rounded-lg p-6 bg-muted/30 border border-border mb-8">
             <h2 className="text-xl font-semibold mb-4">Topics Covered</h2>
             <div className="flex flex-wrap gap-3">
               {["Microservices", "Event-Driven", "Serverless", "Containers", "Load Balancing", "Caching", "CDN", "Database Design"].map((topic) => (

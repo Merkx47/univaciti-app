@@ -3,14 +3,13 @@ import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
 import logoUrl from "@assets/logo_1769031259580.png";
 
-const CARD_COLOR = "#1a6985";
+const THEME_PRIMARY = "#0d4f6b";
 
 function QAIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 80 80" className={className} fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="12" y="12" width="56" height="56" rx="4"/>
-      <path d="M25 40L35 50L55 30"/>
-      <circle cx="40" cy="40" r="20"/>
+      <circle cx="40" cy="40" r="24"/>
+      <path d="M28 40L36 48L52 32"/>
     </svg>
   );
 }
@@ -58,8 +57,8 @@ export default function QualityAssurancePage() {
       <main className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
           <div 
-            className="rounded-3xl p-8 sm:p-12 mb-12"
-            style={{ backgroundColor: CARD_COLOR }}
+            className="rounded-xl p-8 sm:p-12 mb-12 border border-white/20"
+            style={{ backgroundColor: THEME_PRIMARY }}
           >
             <div className="flex flex-col sm:flex-row items-center gap-6 mb-8">
               <QAIcon className="w-20 h-20 text-white" />
@@ -82,7 +81,7 @@ export default function QualityAssurancePage() {
                 {modules.map((module, index) => (
                   <div 
                     key={index}
-                    className="rounded-lg p-3 bg-muted/30 flex items-center justify-between"
+                    className="rounded-lg p-3 bg-muted/30 border border-border flex items-center justify-between"
                   >
                     <span className="font-medium text-sm">{module.name}</span>
                     <span className="text-xs text-foreground/60">{module.hours}</span>
@@ -96,7 +95,7 @@ export default function QualityAssurancePage() {
               <div className="space-y-3">
                 {skills.map((skill, index) => (
                   <div key={index} className="text-sm text-foreground/80 leading-relaxed">
-                    <span className="inline-block w-2 h-2 rounded-full mr-2" style={{ backgroundColor: CARD_COLOR }}></span>
+                    <span className="inline-block w-2 h-2 rounded-full mr-2" style={{ backgroundColor: THEME_PRIMARY }}></span>
                     {skill}
                   </div>
                 ))}
@@ -104,7 +103,7 @@ export default function QualityAssurancePage() {
             </div>
           </div>
 
-          <div className="rounded-xl p-6 bg-muted/30 mb-8">
+          <div className="rounded-lg p-6 bg-muted/30 border border-border mb-8">
             <h2 className="text-xl font-semibold mb-4">Tools Covered</h2>
             <div className="flex flex-wrap gap-3">
               {["Selenium", "Cypress", "Postman", "JMeter", "TestNG", "Cucumber", "Jenkins", "JIRA"].map((tool) => (
