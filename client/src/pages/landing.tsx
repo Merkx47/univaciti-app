@@ -334,7 +334,7 @@ function ThreePillarsSection() {
           {pillars.map((pillar, index) => (
             <div key={index} className="text-center" data-testid={`card-pillar-${index}`}>
               <div 
-                className="w-24 h-24 rounded-2xl mx-auto mb-4 flex items-center justify-center border border-border/30 bg-muted/50 dark:bg-muted/30"
+                className="w-24 h-24 rounded-2xl mx-auto mb-4 flex items-center justify-center bg-white dark:bg-slate-800 shadow-lg border border-gray-100 dark:border-slate-700"
               >
                 <span style={{ color: THEME_PRIMARY }}>
                   <pillar.icon className="w-12 h-12" />
