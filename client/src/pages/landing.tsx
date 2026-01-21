@@ -7,12 +7,12 @@ import { apiRequest } from "@/lib/queryClient";
 import { useTheme } from "@/components/theme-provider";
 import { Link } from "wouter";
 import logoUrl from "@assets/logo_1769031259580.png";
-import pepsiLogo from "@assets/stock_images/pepsi_logo_corporate_6c3ede8b.jpg";
-import unionBankLogo from "@assets/stock_images/union_bank_nigeria_l_b60b232a.jpg";
-import stanbicLogo from "@assets/stock_images/stanbic_ibtc_bank_lo_bc5408f7.jpg";
-import polarisLogo from "@assets/stock_images/polaris_bank_nigeria_4309137e.jpg";
-import citiLogo from "@assets/stock_images/citibank_logo_corpor_d8eb114d.jpg";
-import firstBankLogo from "@assets/stock_images/firstbank_nigeria_lo_8ea1dda7.jpg";
+import pepsiLogo from "@assets/image_1769036912372.png";
+import unionBankLogo from "@assets/image_1769037382283.png";
+import citiLogo from "@assets/image_1769037532565.png";
+import stanbicLogo from "@assets/image_1769037712758.png";
+import polarisLogo from "@assets/image_1769037805080.png";
+import firstBankLogo from "@assets/image_1769037850316.png";
 import {
   Menu,
   X,
@@ -504,10 +504,10 @@ function CertifySection() {
   );
 }
 
-function RecruiterLogoImg({ src, alt }: { src: string; alt: string }) {
+function RecruiterLogoImg({ src, alt, darkBg }: { src: string; alt: string; darkBg?: boolean }) {
   return (
-    <div className="h-12 px-4 flex items-center justify-center bg-white dark:bg-white rounded-lg">
-      <img src={src} alt={alt} className="h-8 w-auto object-contain" />
+    <div className={`h-16 px-4 flex items-center justify-center rounded-lg ${darkBg ? 'bg-slate-800' : 'bg-white'}`}>
+      <img src={src} alt={alt} className="h-10 w-auto object-contain" />
     </div>
   );
 }
@@ -532,7 +532,7 @@ function RecruitersSection() {
         <div className="flex flex-wrap items-center justify-center gap-4 mt-8" data-testid="recruiter-logos">
           <RecruiterLogoImg src={pepsiLogo} alt="Pepsi" />
           <RecruiterLogoImg src={unionBankLogo} alt="Union Bank" />
-          <RecruiterLogoImg src={stanbicLogo} alt="Stanbic IBTC" />
+          <RecruiterLogoImg src={stanbicLogo} alt="Stanbic IBTC" darkBg />
           <RecruiterLogoImg src={polarisLogo} alt="Polaris Bank" />
           <RecruiterLogoImg src={citiLogo} alt="Citi" />
           <RecruiterLogoImg src={firstBankLogo} alt="FirstBank" />
