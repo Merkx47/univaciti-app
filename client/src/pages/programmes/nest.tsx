@@ -107,27 +107,35 @@ export default function NestPage() {
         </h1>
 
         <div className="space-y-3 mb-6">
-          <div className="flex items-center border border-border rounded-md overflow-hidden">
-            <div className="w-48 px-4 py-3 bg-muted/30 text-sm font-medium border-r border-border">
+          <div className="flex items-center border-2 border-gray-300 dark:border-gray-600 rounded-md overflow-hidden">
+            <div className="w-48 px-4 py-3 bg-muted/50 text-sm font-medium border-r-2 border-gray-300 dark:border-gray-600">
               Select programme:
             </div>
             <div className="flex-1 relative">
               <button
-                className="w-full px-4 py-3 text-left flex items-center justify-between text-sm"
-                onClick={() => setProgrammeDropdownOpen(!programmeDropdownOpen)}
+                type="button"
+                className="w-full px-4 py-3 text-left flex items-center justify-between text-sm bg-background hover:bg-muted/30 cursor-pointer"
+                onClick={() => { setProgrammeDropdownOpen(!programmeDropdownOpen); setSpecDropdownOpen(false); }}
                 data-testid="dropdown-programme"
               >
                 <span className="tracking-widest font-medium">
                   {programmes.find(p => p.id === selectedProgramme)?.name.split('').join(' ')}
                 </span>
-                <ChevronDown className="w-4 h-4" style={{ color: THEME_PRIMARY }} />
+                {programmeDropdownOpen ? (
+                  <ChevronUp className="w-4 h-4" style={{ color: THEME_PRIMARY }} />
+                ) : (
+                  <ChevronDown className="w-4 h-4" style={{ color: THEME_PRIMARY }} />
+                )}
               </button>
               {programmeDropdownOpen && (
-                <div className="absolute top-full left-0 right-0 bg-background border border-border rounded-md shadow-lg z-10">
+                <div className="absolute top-full left-0 right-0 bg-background border-2 border-gray-300 dark:border-gray-600 rounded-md shadow-lg z-50 mt-1">
                   {programmes.map((prog) => (
                     <button
+                      type="button"
                       key={prog.id}
-                      className="w-full px-4 py-2 text-left text-sm hover:bg-muted/50"
+                      className={`w-full px-4 py-2 text-left text-sm hover:bg-muted/50 border-b border-gray-200 dark:border-gray-700 last:border-b-0 ${
+                        selectedProgramme === prog.id ? 'bg-muted/50 font-medium' : ''
+                      }`}
                       onClick={() => handleProgrammeChange(prog.id)}
                     >
                       {prog.name}
@@ -138,25 +146,33 @@ export default function NestPage() {
             </div>
           </div>
 
-          <div className="flex items-center border border-border rounded-md overflow-hidden">
-            <div className="w-48 px-4 py-3 bg-muted/30 text-sm font-medium border-r border-border">
+          <div className="flex items-center border-2 border-gray-300 dark:border-gray-600 rounded-md overflow-hidden">
+            <div className="w-48 px-4 py-3 bg-muted/50 text-sm font-medium border-r-2 border-gray-300 dark:border-gray-600">
               Specialization:
             </div>
             <div className="flex-1 relative">
               <button
-                className="w-full px-4 py-3 text-left flex items-center justify-between text-sm"
-                onClick={() => setSpecDropdownOpen(!specDropdownOpen)}
+                type="button"
+                className="w-full px-4 py-3 text-left flex items-center justify-between text-sm bg-background hover:bg-muted/30 cursor-pointer"
+                onClick={() => { setSpecDropdownOpen(!specDropdownOpen); setProgrammeDropdownOpen(false); }}
                 data-testid="dropdown-specialization"
               >
                 <span>{selectedSpecialization}</span>
-                <ChevronDown className="w-4 h-4" style={{ color: THEME_PRIMARY }} />
+                {specDropdownOpen ? (
+                  <ChevronUp className="w-4 h-4" style={{ color: THEME_PRIMARY }} />
+                ) : (
+                  <ChevronDown className="w-4 h-4" style={{ color: THEME_PRIMARY }} />
+                )}
               </button>
               {specDropdownOpen && (
-                <div className="absolute top-full left-0 right-0 bg-background border border-border rounded-md shadow-lg z-10">
+                <div className="absolute top-full left-0 right-0 bg-background border-2 border-gray-300 dark:border-gray-600 rounded-md shadow-lg z-50 mt-1">
                   {specializations.map((spec) => (
                     <button
+                      type="button"
                       key={spec}
-                      className="w-full px-4 py-2 text-left text-sm hover:bg-muted/50"
+                      className={`w-full px-4 py-2 text-left text-sm hover:bg-muted/50 border-b border-gray-200 dark:border-gray-700 last:border-b-0 ${
+                        selectedSpecialization === spec ? 'bg-muted/50 font-medium' : ''
+                      }`}
                       onClick={() => { setSelectedSpecialization(spec); setSpecDropdownOpen(false); }}
                     >
                       {spec}
