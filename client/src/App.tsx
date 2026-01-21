@@ -7,10 +7,39 @@ import { ThemeProvider } from "@/components/theme-provider";
 import NotFound from "@/pages/not-found";
 import Landing from "@/pages/landing";
 
+// Programme pages
+import TesaPage from "@/pages/programmes/tesa";
+import StemPage from "@/pages/programmes/stem";
+import NestPage from "@/pages/programmes/nest";
+
+// Certification pages
+import CloudEngineeringPage from "@/pages/certifications/cloud-engineering";
+import DataAnalyticsPage from "@/pages/certifications/data-analytics";
+import SoftwareJavaPage from "@/pages/certifications/software-java";
+import QualityAssurancePage from "@/pages/certifications/quality-assurance";
+import SoftwareReactPage from "@/pages/certifications/software-react";
+import SolutionsArchitecturePage from "@/pages/certifications/solutions-architecture";
+import AiMlPage from "@/pages/certifications/ai-ml";
+
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Landing}/>
+      
+      {/* Programme routes */}
+      <Route path="/programmes/tesa" component={TesaPage}/>
+      <Route path="/programmes/stem" component={StemPage}/>
+      <Route path="/programmes/nest" component={NestPage}/>
+      
+      {/* Certification routes */}
+      <Route path="/certifications/cloud-engineering" component={CloudEngineeringPage}/>
+      <Route path="/certifications/data-analytics" component={DataAnalyticsPage}/>
+      <Route path="/certifications/software-java" component={SoftwareJavaPage}/>
+      <Route path="/certifications/quality-assurance" component={QualityAssurancePage}/>
+      <Route path="/certifications/software-react" component={SoftwareReactPage}/>
+      <Route path="/certifications/solutions-architecture" component={SolutionsArchitecturePage}/>
+      <Route path="/certifications/ai-ml" component={AiMlPage}/>
+      
       <Route component={NotFound} />
     </Switch>
   );
