@@ -5,13 +5,29 @@ import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useTheme } from "@/components/theme-provider";
-import logoUrl from "@assets/logo_1769023265723.png";
 import {
   Menu,
   X,
   Sun,
   Moon,
 } from "lucide-react";
+
+function UnivacitiLogo({ className, testId }: { className?: string; testId?: string }) {
+  return (
+    <svg 
+      viewBox="0 0 100 100" 
+      className={className}
+      data-testid={testId}
+      aria-label="Univaciti Logo"
+    >
+      <circle cx="50" cy="50" r="50" className="fill-primary" />
+      <path 
+        d="M25 30 L25 60 L35 60 L35 45 L50 60 L65 60 L65 30 L55 30 L55 45 L40 30 Z" 
+        className="fill-primary-foreground"
+      />
+    </svg>
+  );
+}
 
 function ThemeToggle({ testId }: { testId: string }) {
   const { theme, setTheme } = useTheme();
@@ -135,10 +151,8 @@ function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20 gap-4">
           <div className="flex items-center gap-3" data-testid="logo-container">
-            <div className="h-12 w-12 rounded-full overflow-hidden flex-shrink-0">
-              <img src={logoUrl} alt="Univaciti" className="h-full w-full object-cover scale-125" data-testid="img-logo" />
-            </div>
-            <span className="text-2xl font-semibold text-primary" data-testid="text-brand-name">Univaciti.com</span>
+            <UnivacitiLogo className="h-10 w-10 flex-shrink-0" testId="img-logo" />
+            <span className="text-xl font-bold text-foreground" data-testid="text-brand-name">Univaciti</span>
           </div>
           
           <div className="hidden lg:flex items-center gap-10">
@@ -445,10 +459,8 @@ function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-full overflow-hidden">
-              <img src={logoUrl} alt="Univaciti" className="h-full w-full object-cover scale-125" data-testid="img-footer-logo" />
-            </div>
-            <span className="text-xl font-semibold text-primary" data-testid="text-footer-brand">Univaciti.com</span>
+            <UnivacitiLogo className="h-10 w-10 flex-shrink-0" testId="img-footer-logo" />
+            <span className="text-xl font-bold" data-testid="text-footer-brand">Univaciti</span>
           </div>
           <p className="text-sm text-foreground/60" data-testid="text-footer-copyright">
             2025 Univaciti. All rights reserved.
