@@ -505,10 +505,10 @@ function CertifySection() {
   );
 }
 
-function RecruiterLogoImg({ src, alt }: { src: string; alt: string }) {
+function RecruiterLogoImg({ src, alt, large }: { src: string; alt: string; large?: boolean }) {
   return (
-    <div className="h-28 px-8 flex items-center justify-center rounded-lg bg-white">
-      <img src={src} alt={alt} className="h-20 w-auto object-contain" />
+    <div className={`${large ? 'h-36 px-10' : 'h-28 px-8'} flex items-center justify-center rounded-lg bg-white`}>
+      <img src={src} alt={alt} className={`${large ? 'h-28' : 'h-20'} w-auto object-contain`} />
     </div>
   );
 }
@@ -531,9 +531,9 @@ function RecruitersSection() {
         </Link>
         
         <div className="flex flex-wrap items-center justify-center gap-4 mt-8" data-testid="recruiter-logos">
-          <RecruiterLogoImg src={pepsiLogo} alt="Pepsi" />
-          <RecruiterLogoImg src={unionBankLogo} alt="Union Bank" />
-          <RecruiterLogoImg src={stanbicLogo} alt="Stanbic IBTC" />
+          <RecruiterLogoImg src={pepsiLogo} alt="Pepsi" large />
+          <RecruiterLogoImg src={unionBankLogo} alt="Union Bank" large />
+          <RecruiterLogoImg src={stanbicLogo} alt="Stanbic IBTC" large />
           <RecruiterLogoImg src={polarisLogo} alt="Polaris Bank" />
           <RecruiterLogoImg src={citiLogo} alt="Citi" />
           <RecruiterLogoImg src={firstBankLogo} alt="FirstBank" />
