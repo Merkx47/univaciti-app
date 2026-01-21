@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
+import { SiAmazonwebservices, SiMicrosoftazure, SiGooglecloud, SiHuawei } from "react-icons/si";
 import logoUrl from "@assets/logo_1769031259580.png";
 
 const THEME_PRIMARY = "#0d4f6b";
@@ -105,12 +106,23 @@ export default function CloudEngineeringPage() {
 
           <div className="rounded-lg p-6 bg-muted/30 border border-border mb-8">
             <h2 className="text-xl font-semibold mb-4">Cloud Platforms Covered</h2>
-            <div className="flex flex-wrap gap-3">
-              {["Amazon Web Services (AWS)", "Microsoft Azure", "Huawei Cloud", "Google Cloud Platform"].map((platform) => (
-                <span key={platform} className="px-3 py-1 rounded-full text-sm bg-background border border-border">
-                  {platform}
-                </span>
-              ))}
+            <div className="flex flex-wrap gap-4">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-background border border-border">
+                <SiAmazonwebservices className="w-5 h-5 text-[#FF9900]" />
+                <span className="text-sm font-medium">AWS</span>
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-background border border-border">
+                <SiMicrosoftazure className="w-5 h-5 text-[#0078D4]" />
+                <span className="text-sm font-medium">Microsoft Azure</span>
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-background border border-border">
+                <SiGooglecloud className="w-5 h-5 text-[#4285F4]" />
+                <span className="text-sm font-medium">Google Cloud</span>
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-background border border-border">
+                <SiHuawei className="w-5 h-5 text-[#CF0A2C]" />
+                <span className="text-sm font-medium">Huawei Cloud</span>
+              </div>
             </div>
           </div>
 
