@@ -10,7 +10,7 @@ import logoUrl from "@assets/logo_1769031259580.png";
 import pepsiLogo from "@assets/image_1769036912372.png";
 import unionBankLogo from "@assets/image_1769037382283.png";
 import citiLogo from "@assets/image_1769037532565.png";
-import stanbicLogo from "@assets/image_1769037712758.png";
+import stanbicLogo from "@assets/image_1769038375769.png";
 import polarisLogo from "@assets/image_1769037805080.png";
 import firstBankLogo from "@assets/image_1769037850316.png";
 import azureLogo from "@assets/image_1769038035704.png";
@@ -507,8 +507,8 @@ function CertifySection() {
 
 function RecruiterLogoImg({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="h-20 px-6 flex items-center justify-center rounded-lg bg-white">
-      <img src={src} alt={alt} className="h-14 w-auto object-contain" />
+    <div className="h-28 px-8 flex items-center justify-center rounded-lg bg-white">
+      <img src={src} alt={alt} className="h-20 w-auto object-contain" />
     </div>
   );
 }
