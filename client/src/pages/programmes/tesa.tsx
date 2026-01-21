@@ -1,74 +1,32 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "wouter";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, GraduationCap, Users, Briefcase, Award, DollarSign, HandCoins } from "lucide-react";
 import logoUrl from "@assets/logo_1769031259580.png";
+import { 
+  THEME_PRIMARY, 
+  programmes, 
+  specializations, 
+  tabs, 
+  CalendarTimetable, 
+  CoursesContent, 
+  StructureContent,
+  WorldMapBackground,
+  cloudProviders
+} from "@/components/programme-shared";
 
-const THEME_PRIMARY = "#1E9AD6";
-
-const programmes = [
-  { id: "tesa", name: "TESA" },
-  { id: "stem", name: "STEM" },
-  { id: "nest", name: "NEST" },
+const cohorts = [
+  { name: "January Cohort", startDate: "2026-01-15", endDate: "2026-03-10", color: "#1E9AD6" },
+  { name: "March Cohort", startDate: "2026-03-15", endDate: "2026-05-10", color: "#3AAFE6" },
+  { name: "July Cohort", startDate: "2026-07-15", endDate: "2026-09-10", color: "#1E9AD6" },
+  { name: "September Cohort", startDate: "2026-09-15", endDate: "2026-11-10", color: "#3AAFE6" },
 ];
-
-const specializations = [
-  "Cloud Engineering",
-  "Data Analytics",
-  "Software Engineering - Java",
-  "Quality Assurance",
-  "Software Engineering - React",
-  "Solutions Architecture",
-  "AI & Machine Learning",
-];
-
-const tabs = [
-  { id: "home", label: "Home" },
-  { id: "courses", label: "Courses" },
-  { id: "structure", label: "Structure" },
-  { id: "timetable", label: "Time-Table" },
-  { id: "internship", label: "Internship" },
-  { id: "fees", label: "Fees" },
-  { id: "funding", label: "Funding" },
-];
-
-const tabContent: Record<string, { title: string; content: string }> = {
-  home: {
-    title: "Home",
-    content: "Welcome to TESA - Tech Skills Accelerator Programme. An intensive 8-week specialization course designed to transform passionate learners into world-class professionals. TESA closes the tech talent gap by providing hands-on, industry-focused training that prepares you for real-world challenges."
-  },
-  courses: {
-    title: "Courses",
-    content: "TESA offers comprehensive courses across 7 specializations: Cloud Engineering, Data Analytics, Software Engineering (Java & React), Quality Assurance, Solutions Architecture, and AI & Machine Learning. Each course is designed with industry input to ensure relevance and practical applicability."
-  },
-  structure: {
-    title: "Structure",
-    content: "The TESA programme follows a structured 8-week intensive format:\n\n• Week 1-2: Foundation & Core Concepts\n• Week 3-4: Intermediate Skills & Projects\n• Week 5-6: Advanced Topics & Team Projects\n• Week 7-8: Capstone Project & Certification Prep\n\nDaily Schedule: 8 hours/day, Monday to Saturday"
-  },
-  timetable: {
-    title: "Time-Table",
-    content: "TESA Cohort Schedule:\n\n• January Cohort: Jan 15 - Mar 10\n• March Cohort: Mar 15 - May 10\n• July Cohort: Jul 15 - Sep 10\n• September Cohort: Sep 15 - Nov 10\n\nDaily Hours: 9:00 AM - 5:00 PM (with 1-hour lunch break)"
-  },
-  internship: {
-    title: "Internship",
-    content: "Upon successful completion of the TESA programme, graduates are connected with partner companies for internship opportunities. Our industry partnerships ensure that TESA graduates gain real-world experience and have a near 100% employment rate within 3 months of graduation."
-  },
-  fees: {
-    title: "Fees",
-    content: "Programme Fee: $2,000\n\nThis includes:\n• Full access to all course materials\n• Hands-on projects and labs\n• Certification exam fees\n• Career placement support\n• Alumni network access"
-  },
-  funding: {
-    title: "Funding",
-    content: "Scholarship Opportunities:\n\n• 70% scholarship available for qualifying candidates\n• Payment plans available (3-month installments)\n• Corporate sponsorship programmes\n• Early bird discount (10% off for early registration)\n\nEffective cost with scholarship: $600"
-  },
-};
 
 export default function TesaPage() {
   const [, setLocation] = useLocation();
   const [selectedProgramme, setSelectedProgramme] = useState("tesa");
-  const [selectedSpecialization, setSelectedSpecialization] = useState(specializations[0]);
+  const [selectedSpecialization, setSelectedSpecialization] = useState(specializations[0].name);
   const [activeTab, setActiveTab] = useState("home");
-  const [showMoreTabs, setShowMoreTabs] = useState(false);
   const [programmeDropdownOpen, setProgrammeDropdownOpen] = useState(false);
   const [specDropdownOpen, setSpecDropdownOpen] = useState(false);
 
@@ -80,9 +38,188 @@ export default function TesaPage() {
     }
   };
 
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case "home":
+        return (
+          <div className="space-y-6">
+            <div className="flex items-start gap-4">
+              <GraduationCap className="w-12 h-12 flex-shrink-0" style={{ color: THEME_PRIMARY }} />
+              <div>
+                <h2 className="text-xl font-medium mb-2" data-testid="text-tab-title">Welcome to TESA</h2>
+                <p className="text-foreground/80 leading-relaxed">
+                  The <strong>Tech Skills Accelerator (TESA)</strong> is an intensive 8-week specialization programme designed to transform passionate learners into world-class tech professionals. TESA closes the tech talent gap by providing hands-on, industry-focused training that prepares you for real-world challenges.
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="p-4 rounded-lg border border-border bg-muted/20">
+                <h3 className="font-medium mb-2" style={{ color: THEME_PRIMARY }}>What is TESA?</h3>
+                <p className="text-sm text-foreground/70">8-week intensive specialization courses, curated for top quality intakes. Transform from beginner to job-ready professional.</p>
+              </div>
+              <div className="p-4 rounded-lg border border-border bg-muted/20">
+                <h3 className="font-medium mb-2" style={{ color: THEME_PRIMARY }}>Quality Experience</h3>
+                <p className="text-sm text-foreground/70">Top quality internship and practical experience through various mission-critical customer projects.</p>
+              </div>
+              <div className="p-4 rounded-lg border border-border bg-muted/20">
+                <h3 className="font-medium mb-2" style={{ color: THEME_PRIMARY }}>Selection Process</h3>
+                <p className="text-sm text-foreground/70">Two rounds of proctored assessment in Numeracy and basic computing skills, followed by an interview.</p>
+              </div>
+              <div className="p-4 rounded-lg border border-border bg-muted/20">
+                <h3 className="font-medium mb-2" style={{ color: THEME_PRIMARY }}>Job Opportunity</h3>
+                <p className="text-sm text-foreground/70">Near 100% employment within 3 months of course completion. We connect students directly to employers.</p>
+              </div>
+            </div>
+            <div>
+              <h3 className="font-medium mb-3" style={{ color: THEME_PRIMARY }}>Available Specializations</h3>
+              <div className="flex flex-wrap gap-2">
+                {specializations.map((spec, i) => (
+                  <span key={i} className="px-3 py-1.5 rounded-full text-sm text-white" style={{ backgroundColor: THEME_PRIMARY }}>
+                    {spec.name}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+      case "courses":
+        return (
+          <div>
+            <h2 className="text-lg font-medium mb-4" data-testid="text-tab-title">Courses - {selectedSpecialization}</h2>
+            <CoursesContent specialization={selectedSpecialization} />
+          </div>
+        );
+      case "structure":
+        return (
+          <div>
+            <h2 className="text-lg font-medium mb-4" data-testid="text-tab-title">Programme Structure</h2>
+            <StructureContent programme="tesa" />
+          </div>
+        );
+      case "timetable":
+        return <CalendarTimetable cohorts={cohorts} title="TESA 2026 Cohort Schedule" />;
+      case "internship":
+        return (
+          <div className="space-y-6">
+            <div className="flex items-start gap-4">
+              <Briefcase className="w-10 h-10 flex-shrink-0" style={{ color: THEME_PRIMARY }} />
+              <div>
+                <h2 className="text-lg font-medium mb-2" data-testid="text-tab-title">Internship & Practical Experience</h2>
+                <p className="text-foreground/80">Upon successful completion of the TESA programme, graduates are connected with partner companies for internship opportunities.</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="p-4 rounded-lg border border-border">
+                <Users className="w-8 h-8 mb-2" style={{ color: THEME_PRIMARY }} />
+                <h3 className="font-medium mb-1">Industry Partners</h3>
+                <p className="text-sm text-foreground/70">Access to 50+ partner companies across fintech, banking, telecom, and tech sectors.</p>
+              </div>
+              <div className="p-4 rounded-lg border border-border">
+                <Award className="w-8 h-8 mb-2" style={{ color: THEME_PRIMARY }} />
+                <h3 className="font-medium mb-1">100% Placement</h3>
+                <p className="text-sm text-foreground/70">Near 100% employment rate within 3 months of programme completion.</p>
+              </div>
+            </div>
+            <div>
+              <h3 className="font-medium mb-3" style={{ color: THEME_PRIMARY }}>What You'll Experience</h3>
+              <ul className="space-y-2 text-sm text-foreground/80">
+                <li className="flex items-center gap-2"><span className="w-2 h-2 rounded-full" style={{ backgroundColor: THEME_PRIMARY }} />Real-world project experience with actual clients</li>
+                <li className="flex items-center gap-2"><span className="w-2 h-2 rounded-full" style={{ backgroundColor: THEME_PRIMARY }} />Mentorship from senior industry professionals</li>
+                <li className="flex items-center gap-2"><span className="w-2 h-2 rounded-full" style={{ backgroundColor: THEME_PRIMARY }} />Portfolio-building projects for your career</li>
+                <li className="flex items-center gap-2"><span className="w-2 h-2 rounded-full" style={{ backgroundColor: THEME_PRIMARY }} />Networking opportunities with potential employers</li>
+              </ul>
+            </div>
+          </div>
+        );
+      case "fees":
+        return (
+          <div className="space-y-6">
+            <div className="flex items-start gap-4">
+              <DollarSign className="w-10 h-10 flex-shrink-0" style={{ color: THEME_PRIMARY }} />
+              <div>
+                <h2 className="text-lg font-medium mb-2" data-testid="text-tab-title">Programme Fees</h2>
+                <p className="text-foreground/80">Invest in your future with TESA's comprehensive training programme.</p>
+              </div>
+            </div>
+            <div className="p-6 rounded-lg border-2 border-dashed" style={{ borderColor: THEME_PRIMARY }}>
+              <div className="text-center">
+                <span className="text-sm text-foreground/60 line-through">Full Price: $2,000</span>
+                <div className="text-3xl font-bold mt-1" style={{ color: THEME_PRIMARY }}>$600</div>
+                <span className="text-sm text-foreground/70">With 70% Qucoon Scholarship</span>
+              </div>
+            </div>
+            <div>
+              <h3 className="font-medium mb-3" style={{ color: THEME_PRIMARY }}>What's Included</h3>
+              <div className="grid grid-cols-2 gap-2 text-sm">
+                <div className="flex items-center gap-2 p-2 rounded bg-muted/30"><span className="text-green-500">✓</span> Full course materials</div>
+                <div className="flex items-center gap-2 p-2 rounded bg-muted/30"><span className="text-green-500">✓</span> Hands-on projects</div>
+                <div className="flex items-center gap-2 p-2 rounded bg-muted/30"><span className="text-green-500">✓</span> Certification exam fees</div>
+                <div className="flex items-center gap-2 p-2 rounded bg-muted/30"><span className="text-green-500">✓</span> Career placement support</div>
+                <div className="flex items-center gap-2 p-2 rounded bg-muted/30"><span className="text-green-500">✓</span> Alumni network access</div>
+                <div className="flex items-center gap-2 p-2 rounded bg-muted/30"><span className="text-green-500">✓</span> Mentorship programme</div>
+              </div>
+            </div>
+          </div>
+        );
+      case "funding":
+        return (
+          <div className="space-y-6">
+            <div className="flex items-start gap-4">
+              <HandCoins className="w-10 h-10 flex-shrink-0" style={{ color: THEME_PRIMARY }} />
+              <div>
+                <h2 className="text-lg font-medium mb-2" data-testid="text-tab-title">Funding & Scholarships</h2>
+                <p className="text-foreground/80">Multiple funding options available to make TESA accessible for everyone.</p>
+              </div>
+            </div>
+            <div className="grid gap-4">
+              <div className="p-4 rounded-lg border border-border bg-gradient-to-r from-muted/30 to-transparent">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-medium">70% Qucoon Scholarship</h3>
+                    <p className="text-sm text-foreground/70">Available for all qualifying candidates</p>
+                  </div>
+                  <span className="text-xl font-bold" style={{ color: THEME_PRIMARY }}>70% OFF</span>
+                </div>
+              </div>
+              <div className="p-4 rounded-lg border border-border">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-medium">100% Full Scholarship</h3>
+                    <p className="text-sm text-foreground/70">For exceptional candidates demonstrating need and merit</p>
+                  </div>
+                  <span className="text-xl font-bold text-green-500">FREE</span>
+                </div>
+              </div>
+              <div className="p-4 rounded-lg border border-border">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-medium">Payment Plans</h3>
+                    <p className="text-sm text-foreground/70">3-month installment options available</p>
+                  </div>
+                  <span className="text-sm px-3 py-1 rounded-full bg-muted">Flexible</span>
+                </div>
+              </div>
+              <div className="p-4 rounded-lg border border-border">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-medium">Early Bird Discount</h3>
+                    <p className="text-sm text-foreground/70">Register early for additional savings</p>
+                  </div>
+                  <span className="text-lg font-bold" style={{ color: THEME_PRIMARY }}>10% OFF</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-background">
-      <nav className="bg-background border-b border-border">
+    <div className="min-h-screen bg-background relative">
+      <WorldMapBackground />
+      <nav className="bg-background border-b border-border relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link href="/" className="flex items-center gap-2">
@@ -101,7 +238,7 @@ export default function TesaPage() {
         </div>
       </nav>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
         <h1 className="text-2xl font-light mb-6" style={{ color: THEME_PRIMARY }} data-testid="text-page-title">
           Learning Programme
         </h1>
@@ -169,13 +306,13 @@ export default function TesaPage() {
                   {specializations.map((spec) => (
                     <button
                       type="button"
-                      key={spec}
+                      key={spec.id}
                       className={`w-full px-4 py-2 text-left text-sm hover:bg-muted/50 border-b border-gray-200 dark:border-gray-700 last:border-b-0 ${
-                        selectedSpecialization === spec ? 'bg-muted/50 font-medium' : ''
+                        selectedSpecialization === spec.name ? 'bg-muted/50 font-medium' : ''
                       }`}
-                      onClick={() => { setSelectedSpecialization(spec); setSpecDropdownOpen(false); }}
+                      onClick={() => { setSelectedSpecialization(spec.name); setSpecDropdownOpen(false); }}
                     >
-                      {spec}
+                      {spec.name}
                     </button>
                   ))}
                 </div>
@@ -184,7 +321,7 @@ export default function TesaPage() {
           </div>
         </div>
 
-        <div className="flex gap-0 border border-border rounded-lg overflow-hidden min-h-[400px]">
+        <div className="flex gap-0 border border-border rounded-lg overflow-hidden min-h-[500px]">
           <div className="w-48 border-r border-border bg-background flex flex-col">
             {tabs.map((tab) => (
               <button
@@ -200,27 +337,11 @@ export default function TesaPage() {
                 {tab.label}
               </button>
             ))}
-            
-            <div className="mt-auto p-3">
-              <button
-                className="flex items-center gap-2 text-sm text-foreground/70 hover:text-foreground"
-                onClick={() => setShowMoreTabs(!showMoreTabs)}
-                data-testid="button-see-more"
-              >
-                {showMoreTabs ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                See more
-              </button>
-            </div>
           </div>
 
-          <div className="flex-1 p-6 bg-muted/10">
-            <div className="border border-border rounded-lg bg-background p-6 min-h-[350px]">
-              <h2 className="text-lg font-medium mb-4" data-testid="text-tab-title">
-                {tabContent[activeTab]?.title}
-              </h2>
-              <p className="text-sm text-foreground/80 whitespace-pre-line leading-relaxed" data-testid="text-tab-content">
-                {tabContent[activeTab]?.content}
-              </p>
+          <div className="flex-1 p-6 bg-muted/10 overflow-auto">
+            <div className="border border-border rounded-lg bg-background p-6 min-h-[450px]">
+              {renderTabContent()}
             </div>
           </div>
         </div>

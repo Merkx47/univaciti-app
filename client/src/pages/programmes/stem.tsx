@@ -1,74 +1,30 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "wouter";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, GraduationCap, Users, Briefcase, Award, DollarSign, HandCoins, BookOpen, Rocket, Star } from "lucide-react";
 import logoUrl from "@assets/logo_1769031259580.png";
+import { 
+  THEME_PRIMARY, 
+  programmes, 
+  specializations, 
+  tabs, 
+  CalendarTimetable, 
+  CoursesContent, 
+  StructureContent,
+  WorldMapBackground
+} from "@/components/programme-shared";
 
-const THEME_PRIMARY = "#1E9AD6";
-
-const programmes = [
-  { id: "tesa", name: "TESA" },
-  { id: "stem", name: "STEM" },
-  { id: "nest", name: "NEST" },
+const cohorts = [
+  { name: "Spring Term", startDate: "2026-01-10", endDate: "2026-04-05", color: "#1E9AD6" },
+  { name: "Summer Camp", startDate: "2026-06-15", endDate: "2026-08-15", color: "#3AAFE6" },
+  { name: "Fall Term", startDate: "2026-09-05", endDate: "2026-12-15", color: "#1E9AD6" },
 ];
-
-const specializations = [
-  "Cloud Engineering",
-  "Data Analytics",
-  "Software Engineering - Java",
-  "Quality Assurance",
-  "Software Engineering - React",
-  "Solutions Architecture",
-  "AI & Machine Learning",
-];
-
-const tabs = [
-  { id: "home", label: "Home" },
-  { id: "courses", label: "Courses" },
-  { id: "structure", label: "Structure" },
-  { id: "timetable", label: "Time-Table" },
-  { id: "internship", label: "Internship" },
-  { id: "fees", label: "Fees" },
-  { id: "funding", label: "Funding" },
-];
-
-const tabContent: Record<string, { title: string; content: string }> = {
-  home: {
-    title: "Home",
-    content: "Welcome to STEM - Science, Technology, Engineering and Mathematics Programme. Designed specifically for young learners, STEM provides a strong foundation in technology and prepares students for future careers in the digital economy."
-  },
-  courses: {
-    title: "Courses",
-    content: "STEM offers age-appropriate courses across all 7 specializations: Cloud Engineering, Data Analytics, Software Engineering (Java & React), Quality Assurance, Solutions Architecture, and AI & Machine Learning. Each course is designed to be engaging and accessible for young learners."
-  },
-  structure: {
-    title: "Structure",
-    content: "The STEM programme follows a flexible learning structure:\n\n• Foundation Level: Introduction to concepts\n• Intermediate Level: Hands-on projects\n• Advanced Level: Real-world applications\n\nSessions are designed to fit around school schedules with weekend and after-school options."
-  },
-  timetable: {
-    title: "Time-Table",
-    content: "STEM Learning Schedule:\n\n• Weekend Classes: Saturday 10:00 AM - 1:00 PM\n• After-School: Tuesday & Thursday 4:00 PM - 6:00 PM\n• Holiday Intensive: Full-day camps during school breaks\n\nFlexible scheduling to accommodate academic commitments."
-  },
-  internship: {
-    title: "Internship",
-    content: "STEM graduates have opportunities to participate in mentorship programmes with industry professionals. Summer internship placements are available for advanced students, providing early exposure to real-world tech environments."
-  },
-  fees: {
-    title: "Fees",
-    content: "Programme Fee: $500/term\n\nThis includes:\n• All course materials and resources\n• Project kits and supplies\n• Certificate of completion\n• Access to online learning platform\n• Parent progress reports"
-  },
-  funding: {
-    title: "Funding",
-    content: "Scholarship Opportunities:\n\n• Merit-based scholarships available\n• Sibling discounts (15% off for each additional child)\n• Early registration discount (10% off)\n• School partnership programmes\n\nFinancial aid available for qualifying families."
-  },
-};
 
 export default function StemPage() {
   const [, setLocation] = useLocation();
   const [selectedProgramme, setSelectedProgramme] = useState("stem");
-  const [selectedSpecialization, setSelectedSpecialization] = useState(specializations[0]);
+  const [selectedSpecialization, setSelectedSpecialization] = useState(specializations[0].name);
   const [activeTab, setActiveTab] = useState("home");
-  const [showMoreTabs, setShowMoreTabs] = useState(false);
   const [programmeDropdownOpen, setProgrammeDropdownOpen] = useState(false);
   const [specDropdownOpen, setSpecDropdownOpen] = useState(false);
 
@@ -80,9 +36,203 @@ export default function StemPage() {
     }
   };
 
+  const renderTabContent = () => {
+    switch (activeTab) {
+      case "home":
+        return (
+          <div className="space-y-6">
+            <div className="flex items-start gap-4">
+              <BookOpen className="w-12 h-12 flex-shrink-0" style={{ color: THEME_PRIMARY }} />
+              <div>
+                <h2 className="text-xl font-medium mb-2" data-testid="text-tab-title">Welcome to STEM</h2>
+                <p className="text-foreground/80 leading-relaxed">
+                  <strong>Science, Technology, Engineering and Mathematics (STEM)</strong> programme is designed specifically for young learners aged 10-18. We provide a strong foundation in technology through interactive, age-appropriate courses that spark curiosity and prepare students for future careers in the digital economy.
+                </p>
+              </div>
+            </div>
+            <div className="grid grid-cols-3 gap-4">
+              <div className="p-4 rounded-lg border border-border bg-muted/20 text-center">
+                <Rocket className="w-10 h-10 mx-auto mb-2" style={{ color: THEME_PRIMARY }} />
+                <h3 className="font-medium mb-1">Discovery Learning</h3>
+                <p className="text-sm text-foreground/70">Learn through exploration and hands-on experiments</p>
+              </div>
+              <div className="p-4 rounded-lg border border-border bg-muted/20 text-center">
+                <Star className="w-10 h-10 mx-auto mb-2" style={{ color: THEME_PRIMARY }} />
+                <h3 className="font-medium mb-1">Age-Appropriate</h3>
+                <p className="text-sm text-foreground/70">Curriculum designed for young minds</p>
+              </div>
+              <div className="p-4 rounded-lg border border-border bg-muted/20 text-center">
+                <Award className="w-10 h-10 mx-auto mb-2" style={{ color: THEME_PRIMARY }} />
+                <h3 className="font-medium mb-1">Certification</h3>
+                <p className="text-sm text-foreground/70">Earn recognized credentials</p>
+              </div>
+            </div>
+            <div>
+              <h3 className="font-medium mb-3" style={{ color: THEME_PRIMARY }}>Age Groups</h3>
+              <div className="flex gap-4">
+                <div className="flex-1 p-3 rounded-lg bg-muted/30 text-center">
+                  <span className="text-2xl font-bold" style={{ color: THEME_PRIMARY }}>10-13</span>
+                  <p className="text-sm text-foreground/70">Junior Explorers</p>
+                </div>
+                <div className="flex-1 p-3 rounded-lg bg-muted/30 text-center">
+                  <span className="text-2xl font-bold" style={{ color: THEME_PRIMARY }}>14-16</span>
+                  <p className="text-sm text-foreground/70">Teen Innovators</p>
+                </div>
+                <div className="flex-1 p-3 rounded-lg bg-muted/30 text-center">
+                  <span className="text-2xl font-bold" style={{ color: THEME_PRIMARY }}>17-18</span>
+                  <p className="text-sm text-foreground/70">Future Professionals</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      case "courses":
+        return (
+          <div>
+            <h2 className="text-lg font-medium mb-4" data-testid="text-tab-title">Courses - {selectedSpecialization}</h2>
+            <CoursesContent specialization={selectedSpecialization} />
+          </div>
+        );
+      case "structure":
+        return (
+          <div>
+            <h2 className="text-lg font-medium mb-4" data-testid="text-tab-title">Programme Structure</h2>
+            <StructureContent programme="stem" />
+          </div>
+        );
+      case "timetable":
+        return <CalendarTimetable cohorts={cohorts} title="STEM 2026 Term Schedule" />;
+      case "internship":
+        return (
+          <div className="space-y-6">
+            <div className="flex items-start gap-4">
+              <Briefcase className="w-10 h-10 flex-shrink-0" style={{ color: THEME_PRIMARY }} />
+              <div>
+                <h2 className="text-lg font-medium mb-2" data-testid="text-tab-title">Mentorship & Experience</h2>
+                <p className="text-foreground/80">STEM students have opportunities to learn from industry professionals through our mentorship programme and summer internships.</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="p-4 rounded-lg border border-border">
+                <Users className="w-8 h-8 mb-2" style={{ color: THEME_PRIMARY }} />
+                <h3 className="font-medium mb-1">Industry Mentors</h3>
+                <p className="text-sm text-foreground/70">Connect with professionals who guide your learning journey.</p>
+              </div>
+              <div className="p-4 rounded-lg border border-border">
+                <Rocket className="w-8 h-8 mb-2" style={{ color: THEME_PRIMARY }} />
+                <h3 className="font-medium mb-1">Summer Internships</h3>
+                <p className="text-sm text-foreground/70">For advanced students (16+), explore real tech environments.</p>
+              </div>
+            </div>
+            <div>
+              <h3 className="font-medium mb-3" style={{ color: THEME_PRIMARY }}>Learning Experiences</h3>
+              <ul className="space-y-2 text-sm text-foreground/80">
+                <li className="flex items-center gap-2"><span className="w-2 h-2 rounded-full" style={{ backgroundColor: THEME_PRIMARY }} />Tech company visits and tours</li>
+                <li className="flex items-center gap-2"><span className="w-2 h-2 rounded-full" style={{ backgroundColor: THEME_PRIMARY }} />Guest lectures from industry experts</li>
+                <li className="flex items-center gap-2"><span className="w-2 h-2 rounded-full" style={{ backgroundColor: THEME_PRIMARY }} />Hackathons and coding competitions</li>
+                <li className="flex items-center gap-2"><span className="w-2 h-2 rounded-full" style={{ backgroundColor: THEME_PRIMARY }} />Project showcases and exhibitions</li>
+              </ul>
+            </div>
+          </div>
+        );
+      case "fees":
+        return (
+          <div className="space-y-6">
+            <div className="flex items-start gap-4">
+              <DollarSign className="w-10 h-10 flex-shrink-0" style={{ color: THEME_PRIMARY }} />
+              <div>
+                <h2 className="text-lg font-medium mb-2" data-testid="text-tab-title">Programme Fees</h2>
+                <p className="text-foreground/80">Affordable term-based pricing for quality STEM education.</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="p-6 rounded-lg border-2" style={{ borderColor: THEME_PRIMARY }}>
+                <div className="text-center">
+                  <h3 className="font-medium mb-2">Per Term</h3>
+                  <div className="text-3xl font-bold" style={{ color: THEME_PRIMARY }}>$500</div>
+                  <span className="text-sm text-foreground/70">12 weeks of learning</span>
+                </div>
+              </div>
+              <div className="p-6 rounded-lg border-2 border-green-500">
+                <div className="text-center">
+                  <h3 className="font-medium mb-2">Summer Camp</h3>
+                  <div className="text-3xl font-bold text-green-500">$800</div>
+                  <span className="text-sm text-foreground/70">8 weeks intensive</span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <h3 className="font-medium mb-3" style={{ color: THEME_PRIMARY }}>What's Included</h3>
+              <div className="grid grid-cols-2 gap-2 text-sm">
+                <div className="flex items-center gap-2 p-2 rounded bg-muted/30"><span className="text-green-500">✓</span> All course materials</div>
+                <div className="flex items-center gap-2 p-2 rounded bg-muted/30"><span className="text-green-500">✓</span> Project kits & supplies</div>
+                <div className="flex items-center gap-2 p-2 rounded bg-muted/30"><span className="text-green-500">✓</span> Certificate of completion</div>
+                <div className="flex items-center gap-2 p-2 rounded bg-muted/30"><span className="text-green-500">✓</span> Online learning platform</div>
+                <div className="flex items-center gap-2 p-2 rounded bg-muted/30"><span className="text-green-500">✓</span> Parent progress reports</div>
+                <div className="flex items-center gap-2 p-2 rounded bg-muted/30"><span className="text-green-500">✓</span> Student support</div>
+              </div>
+            </div>
+          </div>
+        );
+      case "funding":
+        return (
+          <div className="space-y-6">
+            <div className="flex items-start gap-4">
+              <HandCoins className="w-10 h-10 flex-shrink-0" style={{ color: THEME_PRIMARY }} />
+              <div>
+                <h2 className="text-lg font-medium mb-2" data-testid="text-tab-title">Funding & Discounts</h2>
+                <p className="text-foreground/80">We believe every child deserves access to quality STEM education.</p>
+              </div>
+            </div>
+            <div className="grid gap-4">
+              <div className="p-4 rounded-lg border border-border">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-medium">Merit Scholarships</h3>
+                    <p className="text-sm text-foreground/70">For outstanding academic performers</p>
+                  </div>
+                  <span className="text-lg font-bold" style={{ color: THEME_PRIMARY }}>Up to 50%</span>
+                </div>
+              </div>
+              <div className="p-4 rounded-lg border border-border">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-medium">Sibling Discount</h3>
+                    <p className="text-sm text-foreground/70">15% off for each additional child</p>
+                  </div>
+                  <span className="text-lg font-bold" style={{ color: THEME_PRIMARY }}>15% OFF</span>
+                </div>
+              </div>
+              <div className="p-4 rounded-lg border border-border">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-medium">Early Registration</h3>
+                    <p className="text-sm text-foreground/70">Register 30 days before term starts</p>
+                  </div>
+                  <span className="text-lg font-bold" style={{ color: THEME_PRIMARY }}>10% OFF</span>
+                </div>
+              </div>
+              <div className="p-4 rounded-lg border border-border">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-medium">Financial Aid</h3>
+                    <p className="text-sm text-foreground/70">Need-based assistance for qualifying families</p>
+                  </div>
+                  <span className="text-sm px-3 py-1 rounded-full bg-muted">Available</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-background">
-      <nav className="bg-background border-b border-border">
+    <div className="min-h-screen bg-background relative">
+      <WorldMapBackground />
+      <nav className="bg-background border-b border-border relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link href="/" className="flex items-center gap-2">
@@ -101,7 +251,7 @@ export default function StemPage() {
         </div>
       </nav>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
         <h1 className="text-2xl font-light mb-6" style={{ color: THEME_PRIMARY }} data-testid="text-page-title">
           Learning Programme
         </h1>
@@ -169,13 +319,13 @@ export default function StemPage() {
                   {specializations.map((spec) => (
                     <button
                       type="button"
-                      key={spec}
+                      key={spec.id}
                       className={`w-full px-4 py-2 text-left text-sm hover:bg-muted/50 border-b border-gray-200 dark:border-gray-700 last:border-b-0 ${
-                        selectedSpecialization === spec ? 'bg-muted/50 font-medium' : ''
+                        selectedSpecialization === spec.name ? 'bg-muted/50 font-medium' : ''
                       }`}
-                      onClick={() => { setSelectedSpecialization(spec); setSpecDropdownOpen(false); }}
+                      onClick={() => { setSelectedSpecialization(spec.name); setSpecDropdownOpen(false); }}
                     >
-                      {spec}
+                      {spec.name}
                     </button>
                   ))}
                 </div>
@@ -184,7 +334,7 @@ export default function StemPage() {
           </div>
         </div>
 
-        <div className="flex gap-0 border border-border rounded-lg overflow-hidden min-h-[400px]">
+        <div className="flex gap-0 border border-border rounded-lg overflow-hidden min-h-[500px]">
           <div className="w-48 border-r border-border bg-background flex flex-col">
             {tabs.map((tab) => (
               <button
@@ -200,27 +350,11 @@ export default function StemPage() {
                 {tab.label}
               </button>
             ))}
-            
-            <div className="mt-auto p-3">
-              <button
-                className="flex items-center gap-2 text-sm text-foreground/70 hover:text-foreground"
-                onClick={() => setShowMoreTabs(!showMoreTabs)}
-                data-testid="button-see-more"
-              >
-                {showMoreTabs ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
-                See more
-              </button>
-            </div>
           </div>
 
-          <div className="flex-1 p-6 bg-muted/10">
-            <div className="border border-border rounded-lg bg-background p-6 min-h-[350px]">
-              <h2 className="text-lg font-medium mb-4" data-testid="text-tab-title">
-                {tabContent[activeTab]?.title}
-              </h2>
-              <p className="text-sm text-foreground/80 whitespace-pre-line leading-relaxed" data-testid="text-tab-content">
-                {tabContent[activeTab]?.content}
-              </p>
+          <div className="flex-1 p-6 bg-muted/10 overflow-auto">
+            <div className="border border-border rounded-lg bg-background p-6 min-h-[450px]">
+              {renderTabContent()}
             </div>
           </div>
         </div>

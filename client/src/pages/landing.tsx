@@ -14,6 +14,7 @@ import {
   Moon,
   ChevronRight,
 } from "lucide-react";
+import { SiAmazon, SiGooglecloud, SiHuawei } from "react-icons/si";
 
 // Univaciti theme colors - matching logo blue
 const THEME_PRIMARY = "#1E9AD6";
@@ -494,11 +495,11 @@ function CertifySection() {
 function RecruiterLogo({ name, color, bgColor }: { name: string; color: string; bgColor?: string }) {
   return (
     <div 
-      className="px-3 py-2 rounded-lg font-semibold text-sm"
+      className="px-4 py-2 rounded-lg font-semibold text-sm"
       style={{ 
         color: bgColor ? '#ffffff' : color, 
         backgroundColor: bgColor || 'transparent', 
-        border: bgColor ? 'none' : `1px solid ${color}` 
+        border: bgColor ? 'none' : `2px solid ${color}` 
       }}
     >
       {name}
@@ -517,18 +518,42 @@ function RecruitersSection() {
           Join the growing list of recruiters, have access to the pool of exceptional Univaciti graduates,
           get alerted by new additions to the pool. Track talents of interest, track skills of interest.
         </p>
-        <Button size="lg" className="mb-10" data-testid="button-recruiter-register">
-          Register
-        </Button>
+        <Link href="/recruitment">
+          <Button size="lg" className="mb-10" style={{ backgroundColor: THEME_PRIMARY }} data-testid="button-recruiter-register">
+            Register as Recruiter
+          </Button>
+        </Link>
         
-        <div className="flex flex-wrap items-center justify-center gap-6 mt-8" data-testid="recruiter-logos">
-          <RecruiterLogo name="Pepsi" color="#004B93" />
-          <RecruiterLogo name="Union Bank" color="#0066B3" />
-          <RecruiterLogo name="Stanbic" color="#0033A0" bgColor="#0033A0" />
-          <RecruiterLogo name="Polaris Bank" color="#6B2D8B" />
-          <RecruiterLogo name="Citi" color="#003B70" />
+        <div className="flex flex-wrap items-center justify-center gap-4 mt-8" data-testid="recruiter-logos">
+          <RecruiterLogo name="Pepsi" color="#004B93" bgColor="#004B93" />
+          <RecruiterLogo name="Union Bank" color="#0066B3" bgColor="#0066B3" />
+          <RecruiterLogo name="Stanbic IBTC" color="#0033A0" bgColor="#0033A0" />
+          <RecruiterLogo name="Polaris Bank" color="#6B2D8B" bgColor="#6B2D8B" />
+          <RecruiterLogo name="Citi" color="#003B70" bgColor="#003B70" />
           <RecruiterLogo name="FirstBank" color="#002D62" bgColor="#002D62" />
-          <RecruiterLogo name="Adino Capital" color="#B8860B" />
+          <RecruiterLogo name="Adino Capital" color="#B8860B" bgColor="#B8860B" />
+        </div>
+        
+        <div className="mt-12">
+          <h3 className="text-lg font-medium mb-6" style={{ color: THEME_PRIMARY }}>Cloud Platform Partners</h3>
+          <div className="flex flex-wrap items-center justify-center gap-10">
+            <div className="flex flex-col items-center gap-2">
+              <SiAmazon className="w-14 h-14" style={{ color: "#FF9900" }} />
+              <span className="text-xs text-foreground/70">AWS</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <div className="w-14 h-14 rounded-lg flex items-center justify-center text-white font-bold text-xl" style={{ backgroundColor: "#0078D4" }}>Az</div>
+              <span className="text-xs text-foreground/70">Microsoft Azure</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <SiGooglecloud className="w-14 h-14" style={{ color: "#4285F4" }} />
+              <span className="text-xs text-foreground/70">Google Cloud</span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <SiHuawei className="w-14 h-14" style={{ color: "#FF0000" }} />
+              <span className="text-xs text-foreground/70">Huawei Cloud</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
