@@ -534,6 +534,8 @@ function HeroSection() {
             alt="Students learning tech skills"
             className="w-full h-full object-cover"
           />
+          {/* Subtle overlay for polish */}
+          <div className="absolute inset-0 bg-background/10" />
 
           {/* Floating Card */}
           <div className="absolute bottom-8 left-8 right-8 p-6 rounded-2xl bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm shadow-2xl">
