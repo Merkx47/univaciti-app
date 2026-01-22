@@ -5,7 +5,8 @@ import { Link } from "wouter";
 import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
-import { ArrowLeft } from "lucide-react";
+import { Home, Sun, Moon, ArrowLeft } from "lucide-react";
+import { useTheme } from "@/components/theme-provider";
 import logoUrl from "@assets/logo_1769031259580.png";
 import worldMapImg from "@assets/world_map.png";
 
@@ -27,6 +28,8 @@ function WorldMapWatermark() {
 export default function CommunityPage() {
   const [email, setEmail] = useState("");
   const { toast } = useToast();
+  const { theme, setTheme } = useTheme();
+  const isDark = theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
 
   const joinWaitlist = useMutation({
     mutationFn: async (email: string) => {
@@ -47,10 +50,16 @@ export default function CommunityPage() {
       <nav className="frosted-nav border-b border-border/30 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-4">
-              <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-back-home">
-                <ArrowLeft className="w-4 h-4" />
-                Back to Home
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => window.history.back()}
+                className="p-2 rounded-lg bg-slate-100 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
+                title="Go back"
+              >
+                <ArrowLeft className="w-5 h-5 text-slate-600 dark:text-slate-300" />
+              </button>
+              <Link href="/" className="p-2 rounded-lg bg-slate-100 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors" data-testid="link-home">
+                <Home className="w-5 h-5 text-slate-600 dark:text-slate-300" />
               </Link>
               <Link href="/" className="flex items-center gap-2">
                 <img src={logoUrl} alt="Univaciti" className="h-9 w-9 rounded-full" />
@@ -58,6 +67,14 @@ export default function CommunityPage() {
               </Link>
             </div>
             <div className="flex items-center gap-3">
+              <Button
+                size="icon"
+                variant="ghost"
+                onClick={() => setTheme(isDark ? "light" : "dark")}
+                className="text-slate-600 dark:text-slate-300"
+              >
+                {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              </Button>
               <Link href="/register">
                 <Button style={{ backgroundColor: THEME_PRIMARY }} size="sm">Register</Button>
               </Link>

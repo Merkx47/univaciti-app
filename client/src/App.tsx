@@ -8,11 +8,13 @@ import NotFound from "@/pages/not-found";
 import Landing from "@/pages/landing";
 
 // Programme pages
+import ProgrammesPage from "@/pages/programmes/index";
 import TesaPage from "@/pages/programmes/tesa";
 import StemPage from "@/pages/programmes/stem";
 import NestPage from "@/pages/programmes/nest";
 
 // Certification pages
+import CertificationsPage from "@/pages/certifications/index";
 import CloudEngineeringPage from "@/pages/certifications/cloud-engineering";
 import DataAnalyticsPage from "@/pages/certifications/data-analytics";
 import SoftwareJavaPage from "@/pages/certifications/software-java";
@@ -36,11 +38,13 @@ function Router() {
       <Route path="/" component={Landing}/>
       
       {/* Programme routes */}
+      <Route path="/programmes" component={ProgrammesPage}/>
       <Route path="/programmes/tesa" component={TesaPage}/>
       <Route path="/programmes/stem" component={StemPage}/>
       <Route path="/programmes/nest" component={NestPage}/>
-      
+
       {/* Certification routes */}
+      <Route path="/certifications" component={CertificationsPage}/>
       <Route path="/certifications/cloud-engineering" component={CloudEngineeringPage}/>
       <Route path="/certifications/data-analytics" component={DataAnalyticsPage}/>
       <Route path="/certifications/software-java" component={SoftwareJavaPage}/>

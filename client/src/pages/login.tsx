@@ -5,7 +5,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Link, useLocation } from "wouter";
 import logoUrl from "@assets/logo_1769031259580.png";
 import worldMapImg from "@assets/world_map.png";
-import { Eye, EyeOff, Mail, Lock, GraduationCap, Users, Globe, Award, ChevronLeft, ChevronRight, ArrowLeft } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, GraduationCap, Users, Globe, Award, ChevronLeft, ChevronRight, Home, Sun, Moon, ArrowLeft } from "lucide-react";
+import { useTheme } from "@/components/theme-provider";
 import { SiApple, SiGoogle, SiFacebook, SiLinkedin } from "react-icons/si";
 
 const THEME_PRIMARY = "#1E9AD6";
@@ -70,6 +71,8 @@ export default function Login() {
   const [rememberMe, setRememberMe] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const { theme, setTheme } = useTheme();
+  const isDark = theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -119,10 +122,28 @@ export default function Login() {
     <div className="min-h-screen flex">
       <div className="flex-1 flex flex-col justify-center px-8 lg:px-16 xl:px-24 bg-background">
         <div className="w-full max-w-md mx-auto">
-          <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors" data-testid="link-back-home">
-            <ArrowLeft className="w-4 h-4" />
-            Back to Home
-          </Link>
+          <div className="flex items-center gap-2 mb-6">
+            <button
+              onClick={() => window.history.back()}
+              className="inline-flex items-center gap-2 p-2 rounded-lg bg-slate-100 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
+              title="Go back"
+            >
+              <ArrowLeft className="w-5 h-5 text-slate-600 dark:text-slate-300" />
+              <span className="text-sm text-slate-600 dark:text-slate-300">Back</span>
+            </button>
+            <Link href="/" className="inline-flex items-center gap-2 p-2 rounded-lg bg-slate-100 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors" data-testid="link-home">
+              <Home className="w-5 h-5 text-slate-600 dark:text-slate-300" />
+              <span className="text-sm text-slate-600 dark:text-slate-300">Home</span>
+            </Link>
+            <Button
+              size="icon"
+              variant="ghost"
+              onClick={() => setTheme(isDark ? "light" : "dark")}
+              className="text-slate-600 dark:text-slate-300"
+            >
+              {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            </Button>
+          </div>
           <Link href="/" className="inline-block mb-8">
             <img src={logoUrl} alt="Univaciti" className="h-12 rounded-full" data-testid="img-logo" />
           </Link>

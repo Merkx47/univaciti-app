@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { ArrowLeft } from "lucide-react";
+import { Home, Sun, Moon, ArrowLeft } from "lucide-react";
+import { useTheme } from "@/components/theme-provider";
 import logoUrl from "@assets/logo_1769031259580.png";
 import worldMapImg from "@assets/world_map.png";
 
@@ -54,20 +55,47 @@ const skills = [
 ];
 
 export default function SolutionsArchitecturePage() {
+  const { theme, setTheme } = useTheme();
+  const isDark = theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+
   return (
     <div className="min-h-screen bg-background relative">
       <WorldMapWatermark />
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center gap-2">
-              <img src={logoUrl} alt="Univaciti" className="h-9 w-9 rounded-full" />
-              <span className="text-lg font-bold text-foreground">Univaciti</span>
-            </Link>
-            <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-back-home">
-              <ArrowLeft className="w-4 h-4" />
-              Back to Home
-            </Link>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => window.history.back()}
+                className="p-2 rounded-lg bg-slate-100 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
+                title="Go back"
+              >
+                <ArrowLeft className="w-5 h-5 text-slate-600 dark:text-slate-300" />
+              </button>
+              <Link href="/" className="p-2 rounded-lg bg-slate-100 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors" data-testid="link-home">
+                <Home className="w-5 h-5 text-slate-600 dark:text-slate-300" />
+              </Link>
+              <Link href="/" className="flex items-center gap-2">
+                <img src={logoUrl} alt="Univaciti" className="h-9 w-9 rounded-full" />
+                <span className="text-lg font-bold" style={{ color: THEME_PRIMARY }}>Univaciti</span>
+              </Link>
+            </div>
+            <div className="flex items-center gap-3">
+              <Button
+                size="icon"
+                variant="ghost"
+                onClick={() => setTheme(isDark ? "light" : "dark")}
+                className="text-slate-600 dark:text-slate-300"
+              >
+                {isDark ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              </Button>
+              <Link href="/register">
+                <Button style={{ backgroundColor: THEME_PRIMARY }} size="sm">Register</Button>
+              </Link>
+              <Link href="/login">
+                <Button style={{ backgroundColor: THEME_PRIMARY }} size="sm">Sign in</Button>
+              </Link>
+            </div>
           </div>
         </div>
       </nav>
@@ -95,14 +123,18 @@ export default function SolutionsArchitecturePage() {
           <div className="grid lg:grid-cols-2 gap-8 mb-12">
             <div>
               <h2 className="text-xl font-semibold mb-4">Course Modules</h2>
-              <div className="space-y-2">
+              <div className="border-2 border-gray-400 dark:border-slate-500 rounded-lg overflow-hidden">
+                <div className="grid grid-cols-[1fr_auto] bg-slate-100 dark:bg-slate-700 border-b-2 border-gray-400 dark:border-slate-500">
+                  <div className="px-4 py-2 font-semibold text-sm border-r border-gray-400 dark:border-slate-500">Module</div>
+                  <div className="px-4 py-2 font-semibold text-sm w-24 text-center">Duration</div>
+                </div>
                 {modules.map((module, index) => (
-                  <div 
+                  <div
                     key={index}
-                    className="rounded-lg p-3 bg-muted/30 border-2 border-gray-400 dark:border-slate-500 flex items-center justify-between"
+                    className={`grid grid-cols-[1fr_auto] ${index !== modules.length - 1 ? 'border-b border-gray-300 dark:border-slate-600' : ''}`}
                   >
-                    <span className="font-medium text-sm">{module.name}</span>
-                    <span className="text-xs text-foreground/60">{module.hours}</span>
+                    <div className="px-4 py-3 text-sm border-r border-gray-300 dark:border-slate-600">{module.name}</div>
+                    <div className="px-4 py-3 text-xs text-foreground/70 w-24 text-center">{module.hours}</div>
                   </div>
                 ))}
               </div>
@@ -110,9 +142,15 @@ export default function SolutionsArchitecturePage() {
 
             <div>
               <h2 className="text-xl font-semibold mb-4">Skills You'll Learn</h2>
-              <div className="space-y-3">
+              <div className="border-2 border-gray-400 dark:border-slate-500 rounded-lg overflow-hidden">
+                <div className="bg-slate-100 dark:bg-slate-700 px-4 py-2 font-semibold text-sm border-b-2 border-gray-400 dark:border-slate-500">
+                  Core Competencies
+                </div>
                 {skills.map((skill, index) => (
-                  <div key={index} className="text-sm text-foreground/80 leading-relaxed">
+                  <div
+                    key={index}
+                    className={`px-4 py-3 text-sm text-foreground/80 leading-relaxed ${index !== skills.length - 1 ? 'border-b border-gray-300 dark:border-slate-600' : ''}`}
+                  >
                     <span className="inline-block w-2 h-2 rounded-full mr-2" style={{ backgroundColor: THEME_PRIMARY }}></span>
                     {skill}
                   </div>
