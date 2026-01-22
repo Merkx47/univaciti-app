@@ -118,7 +118,7 @@ export default function Login() {
   return (
     <div className="min-h-screen flex relative">
       <WorldMapWatermark />
-      <div className="flex-1 flex flex-col justify-center px-8 lg:px-16 xl:px-24 bg-background relative z-10">
+      <div className="flex-1 flex flex-col justify-center px-8 lg:px-16 xl:px-24 bg-background/80 backdrop-blur-sm relative z-10">
         <div className="w-full max-w-md mx-auto">
           <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors" data-testid="link-back-home">
             <ArrowLeft className="w-4 h-4" />

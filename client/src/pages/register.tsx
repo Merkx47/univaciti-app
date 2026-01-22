@@ -10,6 +10,19 @@ import { SiApple, SiGoogle, SiFacebook, SiLinkedin } from "react-icons/si";
 
 const THEME_PRIMARY = "#1E9AD6";
 
+function WorldMapWatermark() {
+  return (
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden flex items-center justify-center">
+      <img
+        src={worldMapImg}
+        alt=""
+        className="w-full h-full object-cover opacity-[0.12] dark:opacity-[0.15] dark:invert"
+        style={{ filter: 'grayscale(100%)' }}
+      />
+    </div>
+  );
+}
+
 function XIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="currentColor">
@@ -106,8 +119,9 @@ export default function Register() {
   const CurrentIcon = slides[currentSlide].icon;
 
   return (
-    <div className="min-h-screen flex">
-      <div className="flex-1 flex flex-col justify-center px-8 lg:px-16 xl:px-24 bg-background">
+    <div className="min-h-screen flex relative">
+      <WorldMapWatermark />
+      <div className="flex-1 flex flex-col justify-center px-8 lg:px-16 xl:px-24 bg-background/80 backdrop-blur-sm relative z-10">
         <div className="w-full max-w-md mx-auto">
           <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors" data-testid="link-back-home">
             <ArrowLeft className="w-4 h-4" />
