@@ -148,7 +148,7 @@ export default function CertifyPage() {
         </div>
 
         <div className="text-center mt-10">
-          <Button size="lg" className="shimmer-button pulse-glow" style={{ backgroundColor: THEME_PRIMARY }}>
+          <Button size="lg" style={{ backgroundColor: THEME_PRIMARY }}>
             Schedule an Exam
           </Button>
         </div>

@@ -694,7 +694,7 @@ function HeroSection() {
                 size="lg"
                 disabled={joinWaitlist.isPending}
                 style={{ backgroundColor: THEME_PRIMARY }}
-                className="h-12 px-8 shimmer-button pulse-glow"
+                className="h-12 px-8"
               >
                 {joinWaitlist.isPending ? "Joining..." : "Join Waitlist"}
               </Button>

@@ -117,7 +117,7 @@ export default function RecruitmentPage() {
               </div>
               <Button
                 type="submit"
-                className="w-full shimmer-button"
+                className="w-full"
                 style={{ backgroundColor: THEME_PRIMARY }}
                 data-testid="button-submit"
               >

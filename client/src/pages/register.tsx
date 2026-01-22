@@ -10,19 +10,6 @@ import { SiApple, SiGoogle, SiFacebook, SiLinkedin } from "react-icons/si";
 
 const THEME_PRIMARY = "#1E9AD6";
 
-function WorldMapWatermark() {
-  return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden flex items-center justify-center">
-      <img
-        src={worldMapImg}
-        alt=""
-        className="w-full h-full object-cover opacity-[0.12] dark:opacity-[0.15] dark:invert"
-        style={{ filter: 'grayscale(100%)' }}
-      />
-    </div>
-  );
-}
-
 function XIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="currentColor">
