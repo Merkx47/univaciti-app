@@ -116,9 +116,8 @@ export default function Login() {
   const CurrentIcon = slides[currentSlide].icon;
 
   return (
-    <div className="min-h-screen flex relative">
-      <WorldMapWatermark />
-      <div className="flex-1 flex flex-col justify-center px-8 lg:px-16 xl:px-24 bg-background/80 backdrop-blur-sm relative z-10">
+    <div className="min-h-screen flex">
+      <div className="flex-1 flex flex-col justify-center px-8 lg:px-16 xl:px-24 bg-background">
         <div className="w-full max-w-md mx-auto">
           <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors" data-testid="link-back-home">
             <ArrowLeft className="w-4 h-4" />
@@ -197,7 +196,7 @@ export default function Login() {
 
             <Button
               type="submit"
-              className="w-full text-white font-semibold shimmer-button pulse-glow"
+              className="w-full text-white font-semibold"
               style={{ backgroundColor: THEME_PRIMARY }}
               data-testid="button-sign-in"
             >
@@ -263,10 +262,12 @@ export default function Login() {
           background: `linear-gradient(135deg, ${THEME_PRIMARY} 0%, #0D4A6F 100%)`
         }}
       >
-        <div className="absolute inset-0 opacity-10">
-          <svg viewBox="0 0 1000 500" className="w-full h-full" preserveAspectRatio="xMidYMid slice">
-            <path fill="white" d="M150,100 Q200,80 250,100 T350,90 T450,100 T550,85 T650,100 T750,90 T850,100 L850,150 Q800,170 750,150 T650,160 T550,145 T450,160 T350,150 T250,165 T150,150 Z M100,200 Q150,180 200,200 T300,190 T400,200 T500,185 T600,200 T700,190 T800,200 T900,190 L900,280 Q850,300 800,280 T700,290 T600,275 T500,290 T400,280 T300,295 T200,280 T100,290 Z M120,320 Q170,300 220,320 T320,310 T420,320 T520,305 T620,320 T720,310 T820,320 L820,380 Q770,400 720,380 T620,390 T520,375 T420,390 T320,380 T220,395 T120,380 Z" />
-          </svg>
+        <div className="absolute inset-0 opacity-20">
+          <img
+            src={worldMapImg}
+            alt=""
+            className="w-full h-full object-cover invert"
+          />
         </div>
 
         <div className="flex flex-col items-center justify-center w-full p-12 relative z-10">
