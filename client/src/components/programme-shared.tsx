@@ -1,5 +1,6 @@
 import { SiAmazon, SiGooglecloud, SiHuawei } from "react-icons/si";
-import { Cloud } from "lucide-react";
+import azureLogo from "@assets/image_1769038035704.png";
+import worldMapImg from "@assets/world_map.png";
 
 export const THEME_PRIMARY = "#1E9AD6";
 export const THEME_LIGHT = "#3AAFE6";
@@ -31,10 +32,10 @@ export const tabs = [
 ];
 
 export const cloudProviders = [
-  { name: "AWS", icon: SiAmazon, color: "#FF9900" },
-  { name: "Azure", icon: Cloud, color: "#0078D4" },
-  { name: "GCP", icon: SiGooglecloud, color: "#4285F4" },
-  { name: "Huawei", icon: SiHuawei, color: "#FF0000" },
+  { name: "AWS", icon: SiAmazon, color: "#FF9900", isImage: false },
+  { name: "Azure", icon: null, color: "#0078D4", isImage: true, imageSrc: azureLogo },
+  { name: "GCP", icon: SiGooglecloud, color: "#4285F4", isImage: false },
+  { name: "Huawei", icon: SiHuawei, color: "#FF0000", isImage: false },
 ];
 
 export function CalendarTimetable({ cohorts, title }: { cohorts: { name: string; startDate: string; endDate: string; color: string }[]; title: string }) {
@@ -54,7 +55,7 @@ export function CalendarTimetable({ cohorts, title }: { cohorts: { name: string;
       <h3 className="text-lg font-medium mb-4" data-testid="text-calendar-title">{title}</h3>
       <div className="grid grid-cols-3 gap-4">
         {months.map((monthName, monthIndex) => (
-          <div key={monthName} className="border border-border rounded-lg p-3 bg-background">
+          <div key={monthName} className="border-2 border-gray-400 dark:border-slate-500 rounded-lg p-3 bg-background">
             <h4 className="text-sm font-medium text-center mb-2" style={{ color: THEME_PRIMARY }}>{monthName} {currentYear}</h4>
             <div className="grid grid-cols-7 gap-0.5 text-xs">
               {["S", "M", "T", "W", "T", "F", "S"].map((d, i) => (
@@ -171,7 +172,11 @@ export function CoursesContent({ specialization }: { specialization: string }) {
           <div className="flex gap-6">
             {cloudProviders.map((provider, i) => (
               <div key={i} className="flex flex-col items-center gap-2">
-                <provider.icon className="w-10 h-10" style={{ color: provider.color }} />
+                {provider.isImage ? (
+                  <img src={provider.imageSrc} alt={provider.name} className="w-10 h-10 object-contain" />
+                ) : (
+                  provider.icon && <provider.icon className="w-10 h-10" style={{ color: provider.color }} />
+                )}
                 <span className="text-xs">{provider.name}</span>
               </div>
             ))}
@@ -221,11 +226,11 @@ export function StructureContent({ programme }: { programme: "tesa" | "stem" | "
   return (
     <div className="space-y-6">
       <div className="flex gap-6">
-        <div className="px-4 py-2 rounded-lg bg-muted/30 border border-border">
+        <div className="px-4 py-2 rounded-lg bg-muted/30 border-2 border-gray-400 dark:border-slate-500">
           <span className="text-xs text-foreground/60">Duration</span>
           <p className="font-medium text-sm">{structure.duration}</p>
         </div>
-        <div className="px-4 py-2 rounded-lg bg-muted/30 border border-border">
+        <div className="px-4 py-2 rounded-lg bg-muted/30 border-2 border-gray-400 dark:border-slate-500">
           <span className="text-xs text-foreground/60">Schedule</span>
           <p className="font-medium text-sm">{structure.schedule}</p>
         </div>
@@ -236,7 +241,7 @@ export function StructureContent({ programme }: { programme: "tesa" | "stem" | "
             <div className="w-20 flex-shrink-0 px-3 py-2 rounded-lg text-center text-white text-sm font-medium" style={{ backgroundColor: THEME_PRIMARY }}>
               {week.week}
             </div>
-            <div className="flex-1 p-4 rounded-lg border border-border bg-muted/10">
+            <div className="flex-1 p-4 rounded-lg border-2 border-gray-400 dark:border-slate-500 bg-muted/10">
               <h4 className="font-medium mb-1">{week.title}</h4>
               <p className="text-sm text-foreground/70">{week.description}</p>
             </div>
@@ -249,10 +254,13 @@ export function StructureContent({ programme }: { programme: "tesa" | "stem" | "
 
 export function WorldMapBackground() {
   return (
-    <div className="fixed inset-0 pointer-events-none opacity-[0.03] dark:opacity-[0.05] z-0">
-      <svg viewBox="0 0 1000 500" className="w-full h-full" preserveAspectRatio="xMidYMid slice">
-        <path fill="currentColor" d="M150,100 Q200,80 250,100 T350,90 T450,100 T550,85 T650,100 T750,90 T850,100 L850,150 Q800,170 750,150 T650,160 T550,145 T450,160 T350,150 T250,165 T150,150 Z M100,200 Q150,180 200,200 T300,190 T400,200 T500,185 T600,200 T700,190 T800,200 T900,190 L900,280 Q850,300 800,280 T700,290 T600,275 T500,290 T400,280 T300,295 T200,280 T100,290 Z M120,320 Q170,300 220,320 T320,310 T420,320 T520,305 T620,320 T720,310 T820,320 L820,380 Q770,400 720,380 T620,390 T520,375 T420,390 T320,380 T220,395 T120,380 Z" />
-      </svg>
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden flex items-center justify-center">
+      <img
+        src={worldMapImg}
+        alt=""
+        className="w-full h-full object-cover opacity-[0.12] dark:opacity-[0.15] dark:invert"
+        style={{ filter: 'grayscale(100%)' }}
+      />
     </div>
   );
 }

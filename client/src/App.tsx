@@ -65,7 +65,7 @@ function Router() {
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="light" storageKey="univaciti-ui-theme">
+    <ThemeProvider defaultTheme="dark" storageKey="univaciti-ui-theme">
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <Toaster />

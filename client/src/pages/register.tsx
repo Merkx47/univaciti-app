@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Link, useLocation } from "wouter";
-import { ThemeToggle } from "@/components/theme-toggle";
 import logoUrl from "@assets/logo_1769031259580.png";
-import { Eye, EyeOff, Mail, Lock, User, GraduationCap, Rocket, Target, Zap, ChevronLeft, ChevronRight } from "lucide-react";
+import worldMapImg from "@assets/world_map.png";
+import { Eye, EyeOff, Mail, Lock, User, GraduationCap, Rocket, Target, Zap, ChevronLeft, ChevronRight, ArrowLeft } from "lucide-react";
 import { SiApple, SiGoogle, SiFacebook, SiLinkedin } from "react-icons/si";
 
 const THEME_PRIMARY = "#1E9AD6";
@@ -107,16 +107,17 @@ export default function Register() {
 
   return (
     <div className="min-h-screen flex">
-      <div className="absolute top-4 right-4 z-50">
-        <ThemeToggle />
-      </div>
       <div className="flex-1 flex flex-col justify-center px-8 lg:px-16 xl:px-24 bg-background">
         <div className="w-full max-w-md mx-auto">
+          <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors" data-testid="link-back-home">
+            <ArrowLeft className="w-4 h-4" />
+            Back to Home
+          </Link>
           <Link href="/" className="inline-block mb-8">
-            <img src={logoUrl} alt="Univaciti" className="h-12" data-testid="img-logo" />
+            <img src={logoUrl} alt="Univaciti" className="h-12 rounded-full" data-testid="img-logo" />
           </Link>
 
-          <h1 className="text-3xl font-bold text-foreground mb-2" data-testid="text-welcome">
+          <h1 className="text-3xl font-bold text-foreground mb-2 gradient-text" data-testid="text-welcome">
             Create your account
           </h1>
           <p className="text-muted-foreground mb-8" data-testid="text-subtitle">
@@ -230,7 +231,7 @@ export default function Register() {
 
             <Button
               type="submit"
-              className="w-full text-white font-semibold"
+              className="w-full text-white font-semibold shimmer-button pulse-glow"
               style={{ backgroundColor: THEME_PRIMARY }}
               data-testid="button-register"
             >
@@ -243,33 +244,33 @@ export default function Register() {
             <p className="text-sm text-muted-foreground mb-4">Or register using</p>
             <div className="flex gap-3">
               <button
-                className="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center hover:opacity-90 transition-opacity"
+                className="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center hover:scale-110 hover:shadow-lg transition-all duration-300"
                 data-testid="button-sso-apple"
               >
                 <SiApple className="w-6 h-6" />
               </button>
               <button
-                className="w-12 h-12 rounded-full border border-border bg-background flex items-center justify-center hover:bg-muted transition-colors"
+                className="w-12 h-12 rounded-full border border-border bg-background flex items-center justify-center hover:scale-110 hover:shadow-lg transition-all duration-300"
                 data-testid="button-sso-google"
               >
                 <SiGoogle className="w-5 h-5" style={{ color: "#4285F4" }} />
               </button>
               <button
-                className="w-12 h-12 rounded-full flex items-center justify-center hover:opacity-90 transition-opacity"
+                className="w-12 h-12 rounded-full flex items-center justify-center hover:scale-110 hover:shadow-lg transition-all duration-300"
                 style={{ backgroundColor: "#1877F2" }}
                 data-testid="button-sso-facebook"
               >
                 <SiFacebook className="w-6 h-6 text-white" />
               </button>
               <button
-                className="w-12 h-12 rounded-full flex items-center justify-center hover:opacity-90 transition-opacity"
+                className="w-12 h-12 rounded-full flex items-center justify-center hover:scale-110 hover:shadow-lg transition-all duration-300"
                 style={{ backgroundColor: "#0A66C2" }}
                 data-testid="button-sso-linkedin"
               >
                 <SiLinkedin className="w-6 h-6 text-white" />
               </button>
               <button
-                className="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center hover:opacity-90 transition-opacity"
+                className="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center hover:scale-110 hover:shadow-lg transition-all duration-300"
                 data-testid="button-sso-x"
               >
                 <XIcon className="w-5 h-5" />
@@ -296,10 +297,12 @@ export default function Register() {
           background: `linear-gradient(135deg, ${THEME_PRIMARY} 0%, #0D4A6F 100%)`
         }}
       >
-        <div className="absolute inset-0 opacity-10">
-          <svg viewBox="0 0 1000 500" className="w-full h-full" preserveAspectRatio="xMidYMid slice">
-            <path fill="white" d="M150,100 Q200,80 250,100 T350,90 T450,100 T550,85 T650,100 T750,90 T850,100 L850,150 Q800,170 750,150 T650,160 T550,145 T450,160 T350,150 T250,165 T150,150 Z M100,200 Q150,180 200,200 T300,190 T400,200 T500,185 T600,200 T700,190 T800,200 T900,190 L900,280 Q850,300 800,280 T700,290 T600,275 T500,290 T400,280 T300,295 T200,280 T100,290 Z M120,320 Q170,300 220,320 T320,310 T420,320 T520,305 T620,320 T720,310 T820,320 L820,380 Q770,400 720,380 T620,390 T520,375 T420,390 T320,380 T220,395 T120,380 Z" />
-          </svg>
+        <div className="absolute inset-0 opacity-20">
+          <img
+            src={worldMapImg}
+            alt=""
+            className="w-full h-full object-cover invert"
+          />
         </div>
 
         <div className="flex flex-col items-center justify-center w-full p-12 relative z-10">
@@ -309,7 +312,7 @@ export default function Register() {
             }`}
           >
             <div className="flex items-center justify-center mb-8">
-              <div className="w-20 h-20 rounded-2xl bg-white/20 flex items-center justify-center">
+              <div className="w-20 h-20 rounded-2xl bg-white/20 flex items-center justify-center glass float">
                 <CurrentIcon className="w-10 h-10 text-white" />
               </div>
             </div>

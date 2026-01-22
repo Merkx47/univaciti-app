@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -14,6 +15,13 @@ import stanbicLogo from "@assets/image_1769038375769.png";
 import polarisLogo from "@assets/image_1769037805080.png";
 import firstBankLogo from "@assets/image_1769037850316.png";
 import azureLogo from "@assets/image_1769038035704.png";
+import worldMapImg from "@assets/world_map.png";
+import javaLogo from "@assets/java_logo.png";
+import reactLogo from "@assets/react_logo.png";
+import awsLogo from "@assets/aws_logo.png";
+import tensorflowLogo from "@assets/ai_ml_logo.png";
+import architectureLogo from "@assets/architecture_logo.png";
+import dataLogo from "@assets/data_analytics_logo.png";
 import {
   Menu,
   X,
@@ -26,6 +34,353 @@ import { SiAmazon, SiGooglecloud, SiHuawei } from "react-icons/si";
 // Univaciti theme colors - matching logo blue
 const THEME_PRIMARY = "#1E9AD6";
 const THEME_LIGHT = "#3AAFE6";
+
+// SVG Wave Dividers for modern section separation
+function WaveDivider({ flip, color = "currentColor", className = "" }: { flip?: boolean; color?: string; className?: string }) {
+  return (
+    <div className={`w-full overflow-hidden leading-none ${flip ? 'rotate-180' : ''} ${className}`}>
+      <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full h-16 md:h-20">
+        <path
+          d="M0 60C240 120 480 0 720 60C960 120 1200 0 1440 60V120H0V60Z"
+          fill={color}
+        />
+      </svg>
+    </div>
+  );
+}
+
+function CurveDivider({ flip, color = "currentColor", className = "" }: { flip?: boolean; color?: string; className?: string }) {
+  return (
+    <div className={`w-full overflow-hidden leading-none ${flip ? 'rotate-180' : ''} ${className}`}>
+      <svg viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full h-12 md:h-16">
+        <path
+          d="M0 100C360 0 1080 0 1440 100V100H0V100Z"
+          fill={color}
+        />
+      </svg>
+    </div>
+  );
+}
+
+function TiltDivider({ flip, color = "currentColor", className = "" }: { flip?: boolean; color?: string; className?: string }) {
+  return (
+    <div className={`w-full overflow-hidden leading-none ${flip ? 'rotate-180' : ''} ${className}`}>
+      <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full h-10 md:h-14">
+        <path
+          d="M0 80L1440 0V80H0Z"
+          fill={color}
+        />
+      </svg>
+    </div>
+  );
+}
+
+function LayeredWaveDivider({ className = "" }: { className?: string }) {
+  return (
+    <div className={`w-full overflow-hidden leading-none ${className}`}>
+      <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full h-20 md:h-28">
+        <path d="M0 60C240 100 480 20 720 60C960 100 1200 20 1440 60V120H0V60Z" fill={THEME_PRIMARY} fillOpacity="0.3" />
+        <path d="M0 80C240 120 480 40 720 80C960 120 1200 40 1440 80V120H0V80Z" fill={THEME_PRIMARY} fillOpacity="0.5" />
+        <path d="M0 100C240 120 480 80 720 100C960 120 1200 80 1440 100V120H0V100Z" fill={THEME_PRIMARY} />
+      </svg>
+    </div>
+  );
+}
+
+// Journey Animation Divider - Shows progression from learner to expert
+function JourneyAnimationDivider({ className = "" }: { className?: string }) {
+  const stages = [
+    { icon: "📚", label: "Learn", color: "#60a5fa" },
+    { icon: "🌱", label: "Grow", color: "#34d399" },
+    { icon: "🎓", label: "Graduate", color: "#a78bfa" },
+    { icon: "⭐", label: "Expert", color: "#fbbf24" },
+  ];
+
+  const [activeStage, setActiveStage] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveStage((prev) => (prev + 1) % stages.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className={`w-full py-8 bg-gradient-to-r from-gray-50 via-white to-gray-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 ${className}`}>
+      <div className="max-w-4xl mx-auto px-4">
+        {/* Journey Path */}
+        <div className="relative flex items-center justify-between">
+          {/* Connecting Line */}
+          <div className="absolute left-0 right-0 top-1/2 h-1 bg-gray-200 dark:bg-slate-700 -translate-y-1/2 z-0" />
+
+          {/* Progress Line */}
+          <motion.div
+            className="absolute left-0 top-1/2 h-1 -translate-y-1/2 z-10"
+            style={{ backgroundColor: THEME_PRIMARY }}
+            initial={{ width: "0%" }}
+            animate={{ width: `${(activeStage / (stages.length - 1)) * 100}%` }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+          />
+
+          {/* Stage Icons */}
+          {stages.map((stage, index) => (
+            <motion.div
+              key={index}
+              className="relative z-20 flex flex-col items-center"
+              animate={{
+                scale: index === activeStage ? 1.2 : 1,
+              }}
+              transition={{ duration: 0.3 }}
+            >
+              <motion.div
+                className={`w-16 h-16 md:w-20 md:h-20 rounded-full flex items-center justify-center text-2xl md:text-3xl border-4 transition-colors duration-300 ${
+                  index <= activeStage
+                    ? "bg-white dark:bg-slate-800 border-current"
+                    : "bg-gray-100 dark:bg-slate-700 border-gray-300 dark:border-slate-600"
+                }`}
+                style={{
+                  borderColor: index <= activeStage ? stage.color : undefined,
+                  boxShadow: index === activeStage ? `0 0 20px ${stage.color}40` : "none"
+                }}
+                animate={{
+                  y: index === activeStage ? -8 : 0,
+                }}
+                transition={{ duration: 0.3 }}
+              >
+                {stage.icon}
+              </motion.div>
+              <motion.span
+                className={`mt-2 text-xs md:text-sm font-medium transition-colors duration-300 ${
+                  index <= activeStage ? "text-foreground" : "text-foreground/40"
+                }`}
+                animate={{
+                  fontWeight: index === activeStage ? 700 : 500,
+                }}
+              >
+                {stage.label}
+              </motion.span>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Animated Person */}
+        <div className="relative h-20 mt-4 overflow-hidden">
+          <motion.div
+            className="absolute bottom-0"
+            animate={{
+              left: `${(activeStage / (stages.length - 1)) * 85 + 5}%`,
+            }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            style={{ transform: "translateX(-50%)" }}
+          >
+            {/* Walking Person SVG */}
+            <motion.svg
+              viewBox="0 0 64 64"
+              className="w-12 h-12 md:w-16 md:h-16"
+              animate={{
+                rotate: [0, -5, 5, -5, 0],
+              }}
+              transition={{
+                duration: 0.5,
+                repeat: Infinity,
+                repeatType: "loop"
+              }}
+            >
+              {/* Head */}
+              <circle cx="32" cy="12" r="8" fill={THEME_PRIMARY} />
+              {/* Body */}
+              <path d="M32 20 L32 40" stroke={THEME_PRIMARY} strokeWidth="4" strokeLinecap="round" />
+              {/* Arms */}
+              <motion.path
+                d="M32 26 L22 36 M32 26 L42 36"
+                stroke={THEME_PRIMARY}
+                strokeWidth="3"
+                strokeLinecap="round"
+                animate={{ d: activeStage === 3 ? "M32 26 L22 16 M32 26 L42 16" : "M32 26 L22 36 M32 26 L42 36" }}
+              />
+              {/* Legs */}
+              <motion.path
+                d="M32 40 L24 56 M32 40 L40 56"
+                stroke={THEME_PRIMARY}
+                strokeWidth="3"
+                strokeLinecap="round"
+              />
+              {/* Graduation Cap (appears at stage 2+) */}
+              {activeStage >= 2 && (
+                <motion.g
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <path d="M18 8 L32 2 L46 8 L32 14 Z" fill="#1e1e1e" />
+                  <rect x="30" y="2" width="4" height="8" fill="#1e1e1e" />
+                  <circle cx="34" cy="2" r="2" fill="#fbbf24" />
+                </motion.g>
+              )}
+              {/* Star (appears at stage 3) */}
+              {activeStage === 3 && (
+                <motion.g
+                  initial={{ opacity: 0, scale: 0 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 360 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <path
+                    d="M50 8 L52 14 L58 14 L53 18 L55 24 L50 20 L45 24 L47 18 L42 14 L48 14 Z"
+                    fill="#fbbf24"
+                  />
+                </motion.g>
+              )}
+            </motion.svg>
+          </motion.div>
+        </div>
+
+        {/* Stage Description */}
+        <motion.p
+          key={activeStage}
+          className="text-center text-sm md:text-base text-foreground/70 mt-4"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.3 }}
+        >
+          {activeStage === 0 && "Begin your journey with structured learning"}
+          {activeStage === 1 && "Develop skills through hands-on practice"}
+          {activeStage === 2 && "Earn your certification and validate expertise"}
+          {activeStage === 3 && "Become an industry-recognized expert"}
+        </motion.p>
+      </div>
+    </div>
+  );
+}
+
+// Floating Tech Icons Hero Component
+function FloatingTechIcons() {
+  const icons = [
+    { Icon: CloudIcon, label: "Cloud", delay: 0, x: 15, y: 10 },
+    { Icon: ChartIcon, label: "Data", delay: 0.5, x: 75, y: 5 },
+    { Icon: ReactLogoIcon, label: "React", delay: 1, x: 85, y: 55 },
+    { Icon: JavaIcon, label: "Java", delay: 1.5, x: 10, y: 70 },
+    { Icon: RobotIcon, label: "AI/ML", delay: 2, x: 70, y: 85 },
+    { Icon: ArchitectureIcon, label: "Architecture", delay: 2.5, x: 20, y: 40 },
+  ];
+
+  return (
+    <div className="relative w-80 h-80 lg:w-[420px] lg:h-[420px]">
+      {/* Central Graduation Cap */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <motion.div
+          className="w-32 h-32 lg:w-40 lg:h-40 rounded-full flex items-center justify-center"
+          style={{
+            background: `linear-gradient(135deg, ${THEME_PRIMARY}20, ${THEME_PRIMARY}40)`,
+            border: `3px solid ${THEME_PRIMARY}`,
+          }}
+          animate={{
+            scale: [1, 1.05, 1],
+            boxShadow: [
+              `0 0 20px ${THEME_PRIMARY}30`,
+              `0 0 40px ${THEME_PRIMARY}50`,
+              `0 0 20px ${THEME_PRIMARY}30`,
+            ],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          <GraduationCapIcon className="w-16 h-16 lg:w-20 lg:h-20" style={{ color: THEME_PRIMARY }} />
+        </motion.div>
+      </div>
+
+      {/* Floating Icons */}
+      {icons.map(({ Icon, label, delay, x, y }, index) => (
+        <motion.div
+          key={index}
+          className="absolute"
+          style={{ left: `${x}%`, top: `${y}%` }}
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{
+            opacity: 1,
+            scale: 1,
+            y: [0, -10, 0],
+          }}
+          transition={{
+            opacity: { delay: delay * 0.3, duration: 0.5 },
+            scale: { delay: delay * 0.3, duration: 0.5 },
+            y: {
+              delay: delay * 0.3,
+              duration: 2 + Math.random(),
+              repeat: Infinity,
+              ease: "easeInOut",
+            },
+          }}
+        >
+          <motion.div
+            className="w-14 h-14 lg:w-16 lg:h-16 rounded-2xl bg-white dark:bg-slate-800 shadow-lg border border-gray-200 dark:border-slate-700 flex items-center justify-center"
+            whileHover={{ scale: 1.1, rotate: 5 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
+            <Icon className="w-7 h-7 lg:w-8 lg:h-8" style={{ color: THEME_PRIMARY }} />
+          </motion.div>
+          <p className="text-xs text-center mt-1 text-foreground/60 font-medium">{label}</p>
+        </motion.div>
+      ))}
+
+      {/* Connecting Lines (subtle) */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: -1 }}>
+        <defs>
+          <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor={THEME_PRIMARY} stopOpacity="0.1" />
+            <stop offset="50%" stopColor={THEME_PRIMARY} stopOpacity="0.3" />
+            <stop offset="100%" stopColor={THEME_PRIMARY} stopOpacity="0.1" />
+          </linearGradient>
+        </defs>
+        {/* Lines from center to icons */}
+        {icons.map((icon, index) => (
+          <motion.line
+            key={index}
+            x1="50%"
+            y1="50%"
+            x2={`${icon.x + 3}%`}
+            y2={`${icon.y + 3}%`}
+            stroke="url(#lineGradient)"
+            strokeWidth="1"
+            strokeDasharray="4 4"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ delay: icon.delay * 0.3 + 0.5, duration: 1 }}
+          />
+        ))}
+      </svg>
+
+      {/* Floating Particles */}
+      {[...Array(8)].map((_, i) => (
+        <motion.div
+          key={`particle-${i}`}
+          className="absolute w-2 h-2 rounded-full"
+          style={{
+            backgroundColor: THEME_PRIMARY,
+            left: `${20 + Math.random() * 60}%`,
+            top: `${20 + Math.random() * 60}%`,
+            opacity: 0.3,
+          }}
+          animate={{
+            y: [0, -20, 0],
+            x: [0, Math.random() * 10 - 5, 0],
+            scale: [1, 1.5, 1],
+            opacity: [0.2, 0.5, 0.2],
+          }}
+          transition={{
+            duration: 3 + Math.random() * 2,
+            repeat: Infinity,
+            delay: i * 0.3,
+            ease: "easeInOut",
+          }}
+        />
+      ))}
+    </div>
+  );
+}
 
 function ThemeToggle({ testId }: { testId: string }) {
   const { theme, setTheme } = useTheme();
@@ -226,13 +581,13 @@ function BriefcaseIcon({ className }: { className?: string }) {
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border/30" data-testid="navbar">
+    <nav className="fixed top-0 left-0 right-0 z-50 frosted-nav border-b border-border/30" data-testid="navbar">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 gap-4">
           <Link href="/" className="flex items-center gap-2" data-testid="logo-container">
-            <img src={logoUrl} alt="Univaciti" className="h-9 w-9 rounded-lg" data-testid="img-logo" />
+            <img src={logoUrl} alt="Univaciti" className="h-9 w-9 rounded-full" data-testid="img-logo" />
             <span className="text-lg font-bold text-foreground" data-testid="text-brand-name">Univaciti</span>
           </Link>
           
@@ -245,7 +600,6 @@ function Navbar() {
           </div>
           
           <div className="hidden lg:flex items-center gap-3">
-            <ThemeToggle testId="button-theme-toggle-desktop" />
             <Link href="/register">
               <Button variant="ghost" size="sm" className="font-medium" data-testid="button-register">Register</Button>
             </Link>
@@ -253,9 +607,8 @@ function Navbar() {
               <Button size="sm" className="font-medium" data-testid="button-sign-in">Sign in</Button>
             </Link>
           </div>
-          
+
           <div className="lg:hidden flex items-center gap-2">
-            <ThemeToggle testId="button-theme-toggle-mobile" />
             <Button size="icon" variant="ghost" onClick={() => setIsOpen(!isOpen)} data-testid="button-mobile-menu">
               {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </Button>
@@ -287,33 +640,79 @@ function Navbar() {
 }
 
 function HeroSection() {
+  const [email, setEmail] = useState("");
+  const { toast } = useToast();
+
+  const joinWaitlist = useMutation({
+    mutationFn: async (email: string) => {
+      return apiRequest("POST", "/api/waitlist", { email });
+    },
+    onSuccess: () => {
+      toast({ title: "You're on the list!", description: "We'll notify you when Univaciti launches." });
+      setEmail("");
+    },
+    onError: () => {
+      toast({ title: "Something went wrong", description: "Please try again later.", variant: "destructive" });
+    },
+  });
+
+  const stats = [
+    { value: "8+", label: "Tech Specializations" },
+    { value: "3", label: "Learning Programmes" },
+    { value: "100%", label: "Industry Focused" },
+  ];
+
   return (
-    <section className="pt-24 pb-12 px-4 sm:px-6 lg:px-8" data-testid="section-hero">
+    <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8" data-testid="section-hero">
       <div className="max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light leading-tight mb-6" data-testid="text-hero-title">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-light leading-tight mb-6 fade-in-up" data-testid="text-hero-title">
               <span className="text-foreground">Get an accelerated skill, from </span>
-              <span className="text-primary font-medium">Novis to Expertise.</span>
+              <span className="gradient-text font-medium">Novis to Expertise.</span>
               <br />
               <span className="text-foreground">Get certified, get validated.</span>
             </h1>
-            <p className="text-base text-foreground/70 mb-6" data-testid="text-hero-subtitle">
+            <p className="text-base text-foreground/70 mb-8" data-testid="text-hero-subtitle">
               Driven by Curiosity & Powered by Passion
             </p>
-          </div>
-          
-          <div className="flex justify-center lg:justify-end">
-            <div 
-              className="w-64 h-64 lg:w-80 lg:h-80 rounded-3xl flex flex-col items-center justify-center border border-border/30 bg-muted/50 dark:bg-muted/30"
-              style={{ boxShadow: '0 8px 32px rgba(0,0,0,0.08)' }}
-              data-testid="card-hero-image"
+
+            {/* Email signup */}
+            <form
+              onSubmit={(e) => { e.preventDefault(); email && joinWaitlist.mutate(email); }}
+              className="flex flex-col sm:flex-row gap-3 mb-10 max-w-md"
             >
-              <span style={{ color: THEME_PRIMARY }}>
-                <GraduationCapIcon className="w-20 h-20 mb-4" />
-              </span>
-              <p className="text-sm text-foreground/60 font-light">Your Journey Starts Here</p>
+              <Input
+                type="email"
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="flex-1 h-12 border-gray-300"
+              />
+              <Button
+                type="submit"
+                size="lg"
+                disabled={joinWaitlist.isPending}
+                style={{ backgroundColor: THEME_PRIMARY }}
+                className="h-12 px-8 shimmer-button pulse-glow"
+              >
+                {joinWaitlist.isPending ? "Joining..." : "Join Waitlist"}
+              </Button>
+            </form>
+
+            {/* Stats */}
+            <div className="flex gap-8 sm:gap-12">
+              {stats.map((stat, index) => (
+                <div key={index} className="text-center sm:text-left">
+                  <div className="text-2xl sm:text-3xl font-bold" style={{ color: THEME_PRIMARY }}>{stat.value}</div>
+                  <div className="text-xs sm:text-sm text-foreground/60">{stat.label}</div>
+                </div>
+              ))}
             </div>
+          </div>
+
+          <div className="flex justify-center lg:justify-end">
+            <FloatingTechIcons />
           </div>
         </div>
       </div>
@@ -329,13 +728,13 @@ function ThreePillarsSection() {
   ];
   
   return (
-    <section className="py-12 px-4 sm:px-6 lg:px-8" data-testid="section-pillars">
+    <section className="py-12 px-4 sm:px-6 lg:px-8 relative" data-testid="section-pillars">
       <div className="max-w-7xl mx-auto">
         <div className="grid sm:grid-cols-3 gap-8">
           {pillars.map((pillar, index) => (
-            <div key={index} className="text-center" data-testid={`card-pillar-${index}`}>
-              <div 
-                className="w-24 h-24 rounded-2xl mx-auto mb-4 flex items-center justify-center bg-white dark:bg-slate-800 shadow-lg border border-gray-100 dark:border-slate-700"
+            <div key={index} className={`text-center fade-in-up stagger-${index + 1}`} data-testid={`card-pillar-${index}`}>
+              <div
+                className="w-24 h-24 rounded-2xl mx-auto mb-4 flex items-center justify-center glass-card hover-lift hover-spin"
               >
                 <span style={{ color: THEME_PRIMARY }}>
                   <pillar.icon className="w-12 h-12" />
@@ -377,10 +776,10 @@ function LearningProgrammeSection() {
   ];
   
   return (
-    <section id="programmes" className="py-12 px-4 sm:px-6 lg:px-8" data-testid="section-programmes">
+    <section id="programmes" className="py-12 px-4 sm:px-6 lg:px-8 relative bg-gray-50 dark:bg-slate-900" data-testid="section-programmes">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8">
-          <h2 className="text-2xl sm:text-3xl font-light mb-3" data-testid="text-programmes-title">
+          <h2 className="text-2xl sm:text-3xl font-light mb-3 gradient-text" data-testid="text-programmes-title">
             Learning Programme
           </h2>
           <p className="text-sm text-foreground/70 max-w-2xl mx-auto" data-testid="text-programmes-description">
@@ -391,8 +790,8 @@ function LearningProgrammeSection() {
         <div className="grid sm:grid-cols-3 gap-3 max-w-4xl mx-auto">
           {programmes.map((programme, index) => (
             <Link key={index} href={programme.link}>
-              <div 
-                className="rounded-2xl p-5 flex flex-col h-52 cursor-pointer transition-transform hover:scale-[1.02] border border-white/20"
+              <div
+                className={`rounded-2xl p-5 flex flex-col h-52 cursor-pointer hover-lift shine-effect border border-white/20 fade-in-up stagger-${index + 1}`}
                 style={{ backgroundColor: THEME_PRIMARY }}
                 data-testid={`card-programme-${programme.id}`}
               >
@@ -430,10 +829,10 @@ function CertificationsSection() {
   ];
   
   return (
-    <section id="certification" className="py-12 px-4 sm:px-6 lg:px-8 bg-muted/20" data-testid="section-certifications">
+    <section id="certification" className="py-12 px-4 sm:px-6 lg:px-8 relative" data-testid="section-certifications">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-6">
-          <h2 className="text-2xl sm:text-3xl font-light mb-3" data-testid="text-certifications-title">
+          <h2 className="text-2xl sm:text-3xl font-light mb-3 gradient-text" data-testid="text-certifications-title">
             Certifications
           </h2>
           <p className="text-sm text-foreground/70 max-w-3xl mx-auto mb-1" data-testid="text-certifications-description">
@@ -447,8 +846,8 @@ function CertificationsSection() {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 max-w-4xl mx-auto">
           {specializations.map((spec, index) => (
             <Link key={index} href={`/certifications/${spec.id}`}>
-              <div 
-                className="rounded-2xl p-4 flex flex-col h-64 cursor-pointer transition-transform hover:scale-[1.02] border border-white/20"
+              <div
+                className={`rounded-2xl p-4 flex flex-col h-64 cursor-pointer glow-card shine-effect border border-white/20 fade-in-up stagger-${(index % 7) + 1}`}
                 style={{ backgroundColor: THEME_PRIMARY }}
                 data-testid={`card-specialization-${spec.id}`}
               >
@@ -479,14 +878,14 @@ function CertificationsSection() {
 
 function CertifySection() {
   return (
-    <section id="certify" className="py-12 px-4 sm:px-6 lg:px-8" data-testid="section-certify">
+    <section id="certify" className="py-12 px-4 sm:px-6 lg:px-8 relative bg-gray-50 dark:bg-slate-900" data-testid="section-certify">
       <div className="max-w-4xl mx-auto">
-        <div 
-          className="rounded-xl p-8 flex flex-col sm:flex-row items-center gap-6 border border-white/20"
+        <div
+          className="rounded-xl p-8 flex flex-col sm:flex-row items-center gap-6 border border-white/20 neon-border hover-lift"
           style={{ backgroundColor: THEME_PRIMARY }}
           data-testid="card-certify"
         >
-          <CertifyIcon className="w-20 h-20 text-white flex-shrink-0" />
+          <CertifyIcon className="w-20 h-20 text-white flex-shrink-0 float" />
           <div className="text-center sm:text-left flex-1">
             <h2 className="text-2xl font-semibold text-white mb-2" data-testid="text-certify-title">
               CERTIFY
@@ -505,21 +904,19 @@ function CertifySection() {
   );
 }
 
-function RecruiterLogoImg({ src, alt, large, xlarge }: { src: string; alt: string; large?: boolean; xlarge?: boolean }) {
-  const sizeClass = xlarge ? 'h-40 px-12' : large ? 'h-36 px-10' : 'h-28 px-8';
-  const imgClass = xlarge ? 'h-32' : large ? 'h-28' : 'h-20';
+function RecruiterLogoImg({ src, alt, large }: { src: string; alt: string; large?: boolean }) {
   return (
-    <div className={`${sizeClass} flex items-center justify-center`}>
-      <img src={src} alt={alt} className={`${imgClass} w-auto object-contain`} />
+    <div className={`flex items-center justify-center flex-shrink-0 ${large ? 'h-36 w-44' : 'h-28 w-32'}`}>
+      <img src={src} alt={alt} className={`max-w-full object-contain ${large ? 'h-32' : 'h-24'}`} />
     </div>
   );
 }
 
 function RecruitersSection() {
   return (
-    <section id="recruitment" className="py-16 px-4 sm:px-6 lg:px-8 bg-muted/20" data-testid="section-recruiters">
-      <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-2xl sm:text-3xl font-light mb-4" data-testid="text-recruiters-title">
+    <section id="recruitment" className="py-16 px-4 sm:px-6 lg:px-8 relative" data-testid="section-recruiters">
+      <div className="max-w-7xl mx-auto text-center">
+        <h2 className="text-2xl sm:text-3xl font-light mb-4 gradient-text" data-testid="text-recruiters-title">
           Recruiters
         </h2>
         <p className="text-sm text-foreground/70 mb-6 leading-relaxed" data-testid="text-recruiters-description">
@@ -532,13 +929,13 @@ function RecruitersSection() {
           </Button>
         </Link>
         
-        <div className="flex flex-wrap items-center justify-center gap-6 mt-8" data-testid="recruiter-logos">
-          <RecruiterLogoImg src={pepsiLogo} alt="Pepsi" large />
-          <RecruiterLogoImg src={unionBankLogo} alt="Union Bank" xlarge />
-          <RecruiterLogoImg src={stanbicLogo} alt="Stanbic IBTC" large />
+        <div className="flex flex-nowrap items-center justify-center gap-2 mt-8 overflow-x-auto" data-testid="recruiter-logos">
+          <RecruiterLogoImg src={pepsiLogo} alt="Pepsi" />
+          <RecruiterLogoImg src={stanbicLogo} alt="Stanbic IBTC" />
           <RecruiterLogoImg src={polarisLogo} alt="Polaris Bank" />
           <RecruiterLogoImg src={citiLogo} alt="Citi" />
           <RecruiterLogoImg src={firstBankLogo} alt="FirstBank" />
+          <RecruiterLogoImg src={unionBankLogo} alt="Union Bank" large />
         </div>
         
         <div className="mt-12">
@@ -585,14 +982,13 @@ function CTASection() {
   });
   
   return (
-    <section id="community" className="py-12 px-4 sm:px-6 lg:px-8" data-testid="section-cta">
+    <section id="community" className="py-12 px-4 sm:px-6 lg:px-8 relative bg-gray-50 dark:bg-slate-900" data-testid="section-cta">
       <div className="max-w-3xl mx-auto">
-        <div 
-          className="rounded-xl p-8 text-center border border-white/20"
-          style={{ backgroundColor: THEME_PRIMARY }}
+        <div
+          className="rounded-xl p-8 text-center border border-white/20 animated-gradient-bg"
           data-testid="card-cta"
         >
-          <GraduationCapIcon className="w-14 h-14 text-white mx-auto mb-4" />
+          <GraduationCapIcon className="w-14 h-14 text-white mx-auto mb-4 float" />
           <h2 className="text-2xl font-light text-white mb-3" data-testid="text-cta-title">
             Ready to transform your learning?
           </h2>
@@ -628,7 +1024,7 @@ function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <img src={logoUrl} alt="Univaciti" className="h-8 w-8 rounded-lg" data-testid="img-footer-logo" />
+            <img src={logoUrl} alt="Univaciti" className="h-8 w-8 rounded-full" data-testid="img-footer-logo" />
             <span className="text-lg font-bold" data-testid="text-footer-brand">Univaciti</span>
           </div>
           <p className="text-xs text-foreground/60" data-testid="text-footer-copyright">
@@ -640,17 +1036,67 @@ function Footer() {
   );
 }
 
+// World Map Watermark SVG
+function WorldMapWatermark() {
+  return (
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden flex items-center justify-center">
+      <img
+        src={worldMapImg}
+        alt=""
+        className="w-full h-full object-cover opacity-[0.12] dark:opacity-[0.15] dark:invert"
+        style={{ filter: 'grayscale(100%)' }}
+      />
+    </div>
+  );
+}
+
 export default function Landing() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-x-hidden relative">
+      {/* World Map Watermark */}
+      <WorldMapWatermark />
       <Navbar />
       <HeroSection />
+
+      {/* Journey Animation: Hero to Pillars */}
+      <JourneyAnimationDivider />
+
       <ThreePillarsSection />
+
+      {/* Wave divider: Pillars to Programmes */}
+      <WaveDivider color="#f9fafb" className="dark:hidden" />
+      <WaveDivider color="#0f172a" className="hidden dark:block" />
+
       <LearningProgrammeSection />
+
+      {/* Curve divider: Programmes to Certifications */}
+      <CurveDivider flip color="#f9fafb" className="dark:hidden bg-gray-50" />
+      <CurveDivider flip color="#0f172a" className="hidden dark:block dark:bg-slate-900" />
+
       <CertificationsSection />
+
+      {/* Tilt divider: Certifications to Certify */}
+      <TiltDivider color="#f9fafb" className="dark:hidden" />
+      <TiltDivider color="#0f172a" className="hidden dark:block" />
+
       <CertifySection />
+
+      {/* Wave divider: Certify to Recruiters */}
+      <WaveDivider flip color="#f9fafb" className="dark:hidden bg-gray-50" />
+      <WaveDivider flip color="#0f172a" className="hidden dark:block dark:bg-slate-900" />
+
       <RecruitersSection />
+
+      {/* Curve divider: Recruiters to CTA */}
+      <CurveDivider color="#f9fafb" className="dark:hidden" />
+      <CurveDivider color="#0f172a" className="hidden dark:block" />
+
       <CTASection />
+
+      {/* Wave divider: CTA to Footer */}
+      <WaveDivider flip color="#f9fafb" className="dark:hidden bg-gray-50" />
+      <WaveDivider flip color="#0f172a" className="hidden dark:block dark:bg-slate-900" />
+
       <Footer />
     </div>
   );

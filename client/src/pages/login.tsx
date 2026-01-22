@@ -3,12 +3,25 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Link, useLocation } from "wouter";
-import { ThemeToggle } from "@/components/theme-toggle";
 import logoUrl from "@assets/logo_1769031259580.png";
-import { Eye, EyeOff, Mail, Lock, GraduationCap, Users, Globe, Award, ChevronLeft, ChevronRight } from "lucide-react";
+import worldMapImg from "@assets/world_map.png";
+import { Eye, EyeOff, Mail, Lock, GraduationCap, Users, Globe, Award, ChevronLeft, ChevronRight, ArrowLeft } from "lucide-react";
 import { SiApple, SiGoogle, SiFacebook, SiLinkedin } from "react-icons/si";
 
 const THEME_PRIMARY = "#1E9AD6";
+
+function WorldMapWatermark() {
+  return (
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden flex items-center justify-center">
+      <img
+        src={worldMapImg}
+        alt=""
+        className="w-full h-full object-cover opacity-[0.12] dark:opacity-[0.15] dark:invert"
+        style={{ filter: 'grayscale(100%)' }}
+      />
+    </div>
+  );
+}
 
 function XIcon({ className }: { className?: string }) {
   return (
@@ -103,17 +116,19 @@ export default function Login() {
   const CurrentIcon = slides[currentSlide].icon;
 
   return (
-    <div className="min-h-screen flex">
-      <div className="absolute top-4 right-4 z-50">
-        <ThemeToggle />
-      </div>
-      <div className="flex-1 flex flex-col justify-center px-8 lg:px-16 xl:px-24 bg-background">
+    <div className="min-h-screen flex relative">
+      <WorldMapWatermark />
+      <div className="flex-1 flex flex-col justify-center px-8 lg:px-16 xl:px-24 bg-background relative z-10">
         <div className="w-full max-w-md mx-auto">
+          <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6 transition-colors" data-testid="link-back-home">
+            <ArrowLeft className="w-4 h-4" />
+            Back to Home
+          </Link>
           <Link href="/" className="inline-block mb-8">
-            <img src={logoUrl} alt="Univaciti" className="h-12" data-testid="img-logo" />
+            <img src={logoUrl} alt="Univaciti" className="h-12 rounded-full" data-testid="img-logo" />
           </Link>
 
-          <h1 className="text-3xl font-bold text-foreground mb-2" data-testid="text-welcome">
+          <h1 className="text-3xl font-bold text-foreground mb-2 gradient-text" data-testid="text-welcome">
             Welcome back
           </h1>
           <p className="text-muted-foreground mb-8" data-testid="text-subtitle">
@@ -182,7 +197,7 @@ export default function Login() {
 
             <Button
               type="submit"
-              className="w-full text-white font-semibold"
+              className="w-full text-white font-semibold shimmer-button pulse-glow"
               style={{ backgroundColor: THEME_PRIMARY }}
               data-testid="button-sign-in"
             >
@@ -195,33 +210,33 @@ export default function Login() {
             <p className="text-sm text-muted-foreground mb-4">Sign in using</p>
             <div className="flex gap-3">
               <button
-                className="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center hover:opacity-90 transition-opacity"
+                className="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center hover:scale-110 hover:shadow-lg transition-all duration-300"
                 data-testid="button-sso-apple"
               >
                 <SiApple className="w-6 h-6" />
               </button>
               <button
-                className="w-12 h-12 rounded-full border border-border bg-background flex items-center justify-center hover:bg-muted transition-colors"
+                className="w-12 h-12 rounded-full border border-border bg-background flex items-center justify-center hover:scale-110 hover:shadow-lg transition-all duration-300"
                 data-testid="button-sso-google"
               >
                 <SiGoogle className="w-5 h-5" style={{ color: "#4285F4" }} />
               </button>
               <button
-                className="w-12 h-12 rounded-full flex items-center justify-center hover:opacity-90 transition-opacity"
+                className="w-12 h-12 rounded-full flex items-center justify-center hover:scale-110 hover:shadow-lg transition-all duration-300"
                 style={{ backgroundColor: "#1877F2" }}
                 data-testid="button-sso-facebook"
               >
                 <SiFacebook className="w-6 h-6 text-white" />
               </button>
               <button
-                className="w-12 h-12 rounded-full flex items-center justify-center hover:opacity-90 transition-opacity"
+                className="w-12 h-12 rounded-full flex items-center justify-center hover:scale-110 hover:shadow-lg transition-all duration-300"
                 style={{ backgroundColor: "#0A66C2" }}
                 data-testid="button-sso-linkedin"
               >
                 <SiLinkedin className="w-6 h-6 text-white" />
               </button>
               <button
-                className="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center hover:opacity-90 transition-opacity"
+                className="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center hover:scale-110 hover:shadow-lg transition-all duration-300"
                 data-testid="button-sso-x"
               >
                 <XIcon className="w-5 h-5" />
@@ -261,7 +276,7 @@ export default function Login() {
             }`}
           >
             <div className="flex items-center justify-center mb-8">
-              <div className="w-20 h-20 rounded-2xl bg-white/20 flex items-center justify-center">
+              <div className="w-20 h-20 rounded-2xl bg-white/20 flex items-center justify-center glass float">
                 <CurrentIcon className="w-10 h-10 text-white" />
               </div>
             </div>

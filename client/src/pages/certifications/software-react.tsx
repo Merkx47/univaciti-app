@@ -2,8 +2,22 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { ArrowLeft } from "lucide-react";
 import logoUrl from "@assets/logo_1769031259580.png";
+import worldMapImg from "@assets/world_map.png";
 
 const THEME_PRIMARY = "#1E9AD6";
+
+function WorldMapWatermark() {
+  return (
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden flex items-center justify-center">
+      <img
+        src={worldMapImg}
+        alt=""
+        className="w-full h-full object-cover opacity-[0.12] dark:opacity-[0.15] dark:invert"
+        style={{ filter: 'grayscale(100%)' }}
+      />
+    </div>
+  );
+}
 
 function ReactLogoIcon({ className }: { className?: string }) {
   return (
@@ -38,19 +52,18 @@ const skills = [
 
 export default function SoftwareReactPage() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
+      <WorldMapWatermark />
       <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link href="/" className="flex items-center gap-2">
-              <img src={logoUrl} alt="Univaciti" className="h-9 w-9" />
+              <img src={logoUrl} alt="Univaciti" className="h-9 w-9 rounded-full" />
               <span className="text-lg font-bold text-foreground">Univaciti</span>
             </Link>
-            <Link href="/">
-              <Button variant="ghost" size="sm">
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                Back
-              </Button>
+            <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-back-home">
+              <ArrowLeft className="w-4 h-4" />
+              Back to Home
             </Link>
           </div>
         </div>
@@ -83,7 +96,7 @@ export default function SoftwareReactPage() {
                 {modules.map((module, index) => (
                   <div 
                     key={index}
-                    className="rounded-lg p-3 bg-muted/30 border border-border flex items-center justify-between"
+                    className="rounded-lg p-3 bg-muted/30 border-2 border-gray-400 dark:border-slate-500 flex items-center justify-between"
                   >
                     <span className="font-medium text-sm">{module.name}</span>
                     <span className="text-xs text-foreground/60">{module.hours}</span>
@@ -105,11 +118,11 @@ export default function SoftwareReactPage() {
             </div>
           </div>
 
-          <div className="rounded-lg p-6 bg-muted/30 border border-border mb-8">
+          <div className="rounded-lg p-6 bg-muted/30 border-2 border-gray-400 dark:border-slate-500 mb-8">
             <h2 className="text-xl font-semibold mb-4">Technologies Covered</h2>
             <div className="flex flex-wrap gap-3">
               {["React 18", "TypeScript", "Redux", "React Query", "React Router", "Jest", "Vite", "Tailwind CSS"].map((tech) => (
-                <span key={tech} className="px-3 py-1 rounded-full text-sm bg-background border border-border">
+                <span key={tech} className="px-3 py-1 rounded-full text-sm bg-background border-2 border-gray-400 dark:border-slate-500">
                   {tech}
                 </span>
               ))}

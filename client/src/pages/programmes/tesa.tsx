@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "wouter";
-import { ChevronDown, ChevronUp, GraduationCap, Users, Briefcase, Award, DollarSign, HandCoins } from "lucide-react";
+import { ChevronDown, ChevronUp, GraduationCap, Users, Briefcase, Award, DollarSign, HandCoins, ArrowLeft } from "lucide-react";
 import logoUrl from "@assets/logo_1769031259580.png";
 import { 
   THEME_PRIMARY, 
@@ -53,19 +53,19 @@ export default function TesaPage() {
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="p-4 rounded-lg border border-border bg-muted/20">
+              <div className="p-4 rounded-lg border-2 border-gray-400 dark:border-slate-500 bg-muted/20">
                 <h3 className="font-medium mb-2" style={{ color: THEME_PRIMARY }}>What is TESA?</h3>
                 <p className="text-sm text-foreground/70">8-week intensive specialization courses, curated for top quality intakes. Transform from beginner to job-ready professional.</p>
               </div>
-              <div className="p-4 rounded-lg border border-border bg-muted/20">
+              <div className="p-4 rounded-lg border-2 border-gray-400 dark:border-slate-500 bg-muted/20">
                 <h3 className="font-medium mb-2" style={{ color: THEME_PRIMARY }}>Quality Experience</h3>
                 <p className="text-sm text-foreground/70">Top quality internship and practical experience through various mission-critical customer projects.</p>
               </div>
-              <div className="p-4 rounded-lg border border-border bg-muted/20">
+              <div className="p-4 rounded-lg border-2 border-gray-400 dark:border-slate-500 bg-muted/20">
                 <h3 className="font-medium mb-2" style={{ color: THEME_PRIMARY }}>Selection Process</h3>
                 <p className="text-sm text-foreground/70">Two rounds of proctored assessment in Numeracy and basic computing skills, followed by an interview.</p>
               </div>
-              <div className="p-4 rounded-lg border border-border bg-muted/20">
+              <div className="p-4 rounded-lg border-2 border-gray-400 dark:border-slate-500 bg-muted/20">
                 <h3 className="font-medium mb-2" style={{ color: THEME_PRIMARY }}>Job Opportunity</h3>
                 <p className="text-sm text-foreground/70">Near 100% employment within 3 months of course completion. We connect students directly to employers.</p>
               </div>
@@ -109,12 +109,12 @@ export default function TesaPage() {
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="p-4 rounded-lg border border-border">
+              <div className="p-4 rounded-lg border-2 border-gray-400 dark:border-slate-500">
                 <Users className="w-8 h-8 mb-2" style={{ color: THEME_PRIMARY }} />
                 <h3 className="font-medium mb-1">Industry Partners</h3>
                 <p className="text-sm text-foreground/70">Access to 50+ partner companies across fintech, banking, telecom, and tech sectors.</p>
               </div>
-              <div className="p-4 rounded-lg border border-border">
+              <div className="p-4 rounded-lg border-2 border-gray-400 dark:border-slate-500">
                 <Award className="w-8 h-8 mb-2" style={{ color: THEME_PRIMARY }} />
                 <h3 className="font-medium mb-1">100% Placement</h3>
                 <p className="text-sm text-foreground/70">Near 100% employment rate within 3 months of programme completion.</p>
@@ -172,7 +172,7 @@ export default function TesaPage() {
               </div>
             </div>
             <div className="grid gap-4">
-              <div className="p-4 rounded-lg border border-border bg-gradient-to-r from-muted/30 to-transparent">
+              <div className="p-4 rounded-lg border-2 border-gray-400 dark:border-slate-500 bg-gradient-to-r from-muted/30 to-transparent">
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="font-medium">70% Qucoon Scholarship</h3>
@@ -181,7 +181,7 @@ export default function TesaPage() {
                   <span className="text-xl font-bold" style={{ color: THEME_PRIMARY }}>70% OFF</span>
                 </div>
               </div>
-              <div className="p-4 rounded-lg border border-border">
+              <div className="p-4 rounded-lg border-2 border-gray-400 dark:border-slate-500">
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="font-medium">100% Full Scholarship</h3>
@@ -190,7 +190,7 @@ export default function TesaPage() {
                   <span className="text-xl font-bold text-green-500">FREE</span>
                 </div>
               </div>
-              <div className="p-4 rounded-lg border border-border">
+              <div className="p-4 rounded-lg border-2 border-gray-400 dark:border-slate-500">
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="font-medium">Payment Plans</h3>
@@ -199,7 +199,7 @@ export default function TesaPage() {
                   <span className="text-sm px-3 py-1 rounded-full bg-muted">Flexible</span>
                 </div>
               </div>
-              <div className="p-4 rounded-lg border border-border">
+              <div className="p-4 rounded-lg border-2 border-gray-400 dark:border-slate-500">
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="font-medium">Early Bird Discount</h3>
@@ -219,39 +219,49 @@ export default function TesaPage() {
   return (
     <div className="min-h-screen bg-background relative">
       <WorldMapBackground />
-      <nav className="bg-background border-b border-border relative z-10">
+      <nav className="frosted-nav border-b border-border relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <Link href="/" className="flex items-center gap-2">
-              <img src={logoUrl} alt="Univaciti" className="h-9 w-9" />
-              <span className="text-lg font-bold" style={{ color: THEME_PRIMARY }}>Univaciti</span>
-            </Link>
+            <div className="flex items-center gap-4">
+              <Link href="/" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors" data-testid="link-back-home">
+                <ArrowLeft className="w-4 h-4" />
+                Back to Home
+              </Link>
+              <Link href="/" className="flex items-center gap-2">
+                <img src={logoUrl} alt="Univaciti" className="h-9 w-9 rounded-full" />
+                <span className="text-lg font-bold" style={{ color: THEME_PRIMARY }}>Univaciti</span>
+              </Link>
+            </div>
             <div className="flex items-center gap-3">
-              <Button style={{ backgroundColor: THEME_PRIMARY }} size="sm" data-testid="button-register">
-                Register
-              </Button>
-              <Button style={{ backgroundColor: THEME_PRIMARY }} size="sm" data-testid="button-sign-in">
-                Sign in
-              </Button>
+              <Link href="/register">
+                <Button style={{ backgroundColor: THEME_PRIMARY }} size="sm" data-testid="button-register">
+                  Register
+                </Button>
+              </Link>
+              <Link href="/login">
+                <Button style={{ backgroundColor: THEME_PRIMARY }} size="sm" data-testid="button-sign-in">
+                  Sign in
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
       </nav>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
-        <h1 className="text-2xl font-light mb-6" style={{ color: THEME_PRIMARY }} data-testid="text-page-title">
+        <h1 className="text-2xl font-light mb-6 gradient-text text-glow" data-testid="text-page-title">
           Learning Programme
         </h1>
 
         <div className="space-y-3 mb-6">
-          <div className="flex items-center border-2 border-gray-300 dark:border-gray-600 rounded-md overflow-hidden">
-            <div className="w-48 px-4 py-3 bg-muted/50 text-sm font-medium border-r-2 border-gray-300 dark:border-gray-600">
+          <div className="flex items-center border-2 border-gray-400 dark:border-slate-500 rounded-md">
+            <div className="w-48 px-4 py-3 bg-muted/50 text-sm font-medium border-r-2 border-gray-400 dark:border-slate-500 rounded-l-md">
               Select programme:
             </div>
             <div className="flex-1 relative">
               <button
                 type="button"
-                className="w-full px-4 py-3 text-left flex items-center justify-between text-sm bg-background hover:bg-muted/30 cursor-pointer"
+                className="w-full px-4 py-3 text-left flex items-center justify-between text-sm bg-background hover:bg-muted/30 cursor-pointer rounded-r-md"
                 onClick={() => { setProgrammeDropdownOpen(!programmeDropdownOpen); setSpecDropdownOpen(false); }}
                 data-testid="dropdown-programme"
               >
@@ -265,12 +275,12 @@ export default function TesaPage() {
                 )}
               </button>
               {programmeDropdownOpen && (
-                <div className="absolute top-full left-0 right-0 bg-background border-2 border-gray-300 dark:border-gray-600 rounded-md shadow-lg z-50 mt-1">
+                <div className="absolute top-full left-0 right-0 bg-background border-2 border-gray-400 dark:border-slate-500 rounded-md shadow-lg z-50 mt-1">
                   {programmes.map((prog) => (
                     <button
                       type="button"
                       key={prog.id}
-                      className={`w-full px-4 py-2 text-left text-sm hover:bg-muted/50 border-b border-gray-200 dark:border-gray-700 last:border-b-0 ${
+                      className={`w-full px-4 py-2 text-left text-sm hover:bg-muted/50 border-b border-gray-400 dark:border-slate-600 last:border-b-0 ${
                         selectedProgramme === prog.id ? 'bg-muted/50 font-medium' : ''
                       }`}
                       onClick={() => handleProgrammeChange(prog.id)}
@@ -283,14 +293,14 @@ export default function TesaPage() {
             </div>
           </div>
 
-          <div className="flex items-center border-2 border-gray-300 dark:border-gray-600 rounded-md overflow-hidden">
-            <div className="w-48 px-4 py-3 bg-muted/50 text-sm font-medium border-r-2 border-gray-300 dark:border-gray-600">
+          <div className="flex items-center border-2 border-gray-400 dark:border-slate-500 rounded-md">
+            <div className="w-48 px-4 py-3 bg-muted/50 text-sm font-medium border-r-2 border-gray-400 dark:border-slate-500 rounded-l-md">
               Specialization:
             </div>
             <div className="flex-1 relative">
               <button
                 type="button"
-                className="w-full px-4 py-3 text-left flex items-center justify-between text-sm bg-background hover:bg-muted/30 cursor-pointer"
+                className="w-full px-4 py-3 text-left flex items-center justify-between text-sm bg-background hover:bg-muted/30 cursor-pointer rounded-r-md"
                 onClick={() => { setSpecDropdownOpen(!specDropdownOpen); setProgrammeDropdownOpen(false); }}
                 data-testid="dropdown-specialization"
               >
@@ -302,12 +312,12 @@ export default function TesaPage() {
                 )}
               </button>
               {specDropdownOpen && (
-                <div className="absolute top-full left-0 right-0 bg-background border-2 border-gray-300 dark:border-gray-600 rounded-md shadow-lg z-50 mt-1">
+                <div className="absolute top-full left-0 right-0 bg-background border-2 border-gray-400 dark:border-slate-500 rounded-md shadow-lg z-50 mt-1">
                   {specializations.map((spec) => (
                     <button
                       type="button"
                       key={spec.id}
-                      className={`w-full px-4 py-2 text-left text-sm hover:bg-muted/50 border-b border-gray-200 dark:border-gray-700 last:border-b-0 ${
+                      className={`w-full px-4 py-2 text-left text-sm hover:bg-muted/50 border-b border-gray-400 dark:border-slate-600 last:border-b-0 ${
                         selectedSpecialization === spec.name ? 'bg-muted/50 font-medium' : ''
                       }`}
                       onClick={() => { setSelectedSpecialization(spec.name); setSpecDropdownOpen(false); }}
@@ -321,8 +331,8 @@ export default function TesaPage() {
           </div>
         </div>
 
-        <div className="flex gap-0 border border-border rounded-lg overflow-hidden min-h-[500px]">
-          <div className="w-48 border-r border-border bg-background flex flex-col">
+        <div className="flex gap-0 border-2 border-gray-400 dark:border-slate-500 rounded-lg overflow-hidden min-h-[500px] glass-card">
+          <div className="w-48 border-r-2 border-gray-400 dark:border-slate-500 bg-background/50 backdrop-blur-sm flex flex-col">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
@@ -340,7 +350,7 @@ export default function TesaPage() {
           </div>
 
           <div className="flex-1 p-6 bg-muted/10 overflow-auto">
-            <div className="border border-border rounded-lg bg-background p-6 min-h-[450px]">
+            <div className="border-2 border-gray-400 dark:border-slate-500 rounded-lg bg-background/80 backdrop-blur-sm p-6 min-h-[450px] fade-in-up">
               {renderTabContent()}
             </div>
           </div>
