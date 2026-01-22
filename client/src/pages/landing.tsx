@@ -795,14 +795,14 @@ function LearningProgrammeSection() {
                 style={{ backgroundColor: THEME_PRIMARY }}
                 data-testid={`card-programme-${programme.id}`}
               >
-                <h3 className="text-base font-semibold text-white mb-auto" data-testid={`text-programme-name-${index}`}>
+                <h3 className="text-base font-semibold text-white mb-3" data-testid={`text-programme-name-${index}`}>
                   {programme.name}
                 </h3>
-                <p className="text-sm text-white/80 leading-relaxed mb-4" data-testid={`text-programme-description-${index}`}>
+                <p className="text-sm text-white/80 leading-relaxed flex-1" data-testid={`text-programme-description-${index}`}>
                   {programme.description}
                 </p>
-                <div 
-                  className="self-end py-1.5 px-4 rounded-full text-white text-xs font-medium border border-white/50"
+                <div
+                  className="self-end py-1.5 px-4 rounded-full text-white text-xs font-medium border border-white/50 mt-auto"
                   style={{ backgroundColor: THEME_LIGHT }}
                   data-testid={`button-programme-more-${index}`}
                 >
