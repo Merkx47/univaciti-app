@@ -1,10 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { Home, Sun, Moon, ArrowLeft } from "lucide-react";
+import { Sun, Moon, ArrowLeft, Clock, BookOpen, Target, Award } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
 import logoUrl from "@assets/logo_1769031259580.png";
 import worldMapImg from "@assets/world_map.png";
-
 const THEME_PRIMARY = "#1E9AD6";
 
 function WorldMapWatermark() {
@@ -13,7 +12,7 @@ function WorldMapWatermark() {
       <img
         src={worldMapImg}
         alt=""
-        className="w-full h-full object-cover opacity-[0.12] dark:opacity-[0.15] dark:invert"
+        className="w-full h-full object-cover opacity-[0.08] dark:opacity-[0.12] dark:invert"
         style={{ filter: 'grayscale(100%)' }}
       />
     </div>
@@ -30,33 +29,42 @@ function QAIcon({ className }: { className?: string }) {
 }
 
 const modules = [
-  { name: "QA Fundamentals", hours: "15 Hours" },
-  { name: "Test Planning & Design", hours: "20 Hours" },
-  { name: "Manual Testing", hours: "25 Hours" },
-  { name: "Automation Testing", hours: "30 Hours" },
-  { name: "API Testing", hours: "20 Hours" },
-  { name: "Performance Testing", hours: "20 Hours" },
-  { name: "CI/CD Integration", hours: "20 Hours" },
+  { name: "QA Fundamentals", hours: "15", description: "Core concepts of quality assurance and testing" },
+  { name: "Test Planning & Design", hours: "20", description: "Creating comprehensive test plans and strategies" },
+  { name: "Manual Testing", hours: "25", description: "Functional, regression, and exploratory testing" },
+  { name: "Automation Testing", hours: "30", description: "Building automated test suites with Selenium" },
+  { name: "API Testing", hours: "20", description: "Testing REST APIs using Postman and frameworks" },
+  { name: "Performance Testing", hours: "20", description: "Load and stress testing with JMeter" },
+  { name: "CI/CD Integration", hours: "20", description: "Integrating tests into continuous pipelines" },
 ];
 
 const skills = [
-  "Test Planning: Create comprehensive test plans and test cases.",
-  "Manual Testing: Execute functional, regression, and exploratory testing.",
-  "Automation: Build automated test suites using Selenium and other tools.",
-  "API Testing: Test REST APIs using Postman and automated frameworks.",
-  "Performance: Conduct load and stress testing with JMeter.",
-  "Bug Tracking: Effectively document and track defects.",
-  "CI/CD: Integrate testing into continuous integration pipelines.",
+  { title: "Test Planning", description: "Create comprehensive test plans and test cases." },
+  { title: "Manual Testing", description: "Execute functional, regression, and exploratory testing." },
+  { title: "Automation", description: "Build automated test suites using Selenium and other tools." },
+  { title: "API Testing", description: "Test REST APIs using Postman and automated frameworks." },
+  { title: "Performance", description: "Conduct load and stress testing with JMeter." },
+  { title: "Bug Tracking", description: "Effectively document and track defects." },
+  { title: "CI/CD", description: "Integrate testing into continuous integration pipelines." },
 ];
+
+const highlights = [
+  { icon: Clock, label: "Duration", value: "150 Hours" },
+  { icon: BookOpen, label: "Modules", value: "7 Modules" },
+  { icon: Target, label: "Projects", value: "3 Projects" },
+  { icon: Award, label: "Certificate", value: "Industry Recognized" },
+];
+
+const tools = ["Selenium", "Cypress", "Postman", "JMeter", "Cucumber", "Jenkins", "JIRA"];
 
 export default function QualityAssurancePage() {
   const { theme, setTheme } = useTheme();
   const isDark = theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
 
   return (
-    <div className="min-h-screen bg-background relative">
+    <div className="min-h-screen bg-muted/30 relative">
       <WorldMapWatermark />
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border/30">
+      <nav className="fixed top-0 left-0 right-0 z-50 frosted-nav border-b border-border/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-3">
@@ -67,9 +75,6 @@ export default function QualityAssurancePage() {
               >
                 <ArrowLeft className="w-5 h-5 text-slate-600 dark:text-slate-300" />
               </button>
-              <Link href="/" className="p-2 rounded-lg bg-slate-100 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors" data-testid="link-home">
-                <Home className="w-5 h-5 text-slate-600 dark:text-slate-300" />
-              </Link>
               <Link href="/" className="flex items-center gap-2">
                 <img src={logoUrl} alt="Univaciti" className="h-9 w-9 rounded-full" />
                 <span className="text-lg font-bold" style={{ color: THEME_PRIMARY }}>Univaciti</span>
@@ -95,78 +100,115 @@ export default function QualityAssurancePage() {
         </div>
       </nav>
 
-      <main className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto">
-          <div 
-            className="rounded-xl p-8 sm:p-12 mb-12 border border-white/20"
+      <main className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-5xl mx-auto space-y-8">
+          {/* Hero Section */}
+          <div
+            className="rounded-2xl p-8 sm:p-10 border border-white/20 shadow-xl"
             style={{ backgroundColor: THEME_PRIMARY }}
           >
-            <div className="flex flex-col sm:flex-row items-center gap-6 mb-8">
-              <QAIcon className="w-20 h-20 text-white" />
+            <div className="flex flex-col sm:flex-row items-center gap-6 mb-6">
+              <div className="w-20 h-20 rounded-2xl bg-white/10 flex items-center justify-center">
+                <QAIcon className="w-12 h-12 text-white" />
+              </div>
               <div className="text-center sm:text-left">
-                <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2">Quality Assurance</h1>
-                <p className="text-lg text-white/90">Software Testing Specialization</p>
+                <h1 className="text-3xl sm:text-4xl font-bold text-white mb-1">Quality Assurance</h1>
+                <p className="text-lg text-white/80">Software Testing Specialization</p>
               </div>
             </div>
-            <p className="text-white/85 text-base leading-relaxed">
-              Master the art of software quality assurance. This specialization covers 
-              manual and automated testing, test planning, API testing, performance testing, 
+            <p className="text-white/90 text-base leading-relaxed mb-8">
+              Master the art of software quality assurance. This specialization covers
+              manual and automated testing, test planning, API testing, performance testing,
               and CI/CD integration to prepare you for QA engineering roles.
             </p>
-          </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 mb-12">
-            <div>
-              <h2 className="text-xl font-semibold mb-4">Course Modules</h2>
-              <div className="border-2 border-gray-400 dark:border-slate-500 rounded-lg overflow-hidden">
-                <div className="grid grid-cols-[1fr_auto] bg-slate-100 dark:bg-slate-700 border-b-2 border-gray-400 dark:border-slate-500">
-                  <div className="px-4 py-2 font-semibold text-sm border-r border-gray-400 dark:border-slate-500">Module</div>
-                  <div className="px-4 py-2 font-semibold text-sm w-24 text-center">Duration</div>
+            {/* Highlights */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              {highlights.map((item, index) => (
+                <div key={index} className="bg-white/10 rounded-xl p-4 text-center">
+                  <item.icon className="w-6 h-6 text-white/80 mx-auto mb-2" />
+                  <div className="text-white font-semibold">{item.value}</div>
+                  <div className="text-white/60 text-xs">{item.label}</div>
                 </div>
-                {modules.map((module, index) => (
-                  <div
-                    key={index}
-                    className={`grid grid-cols-[1fr_auto] ${index !== modules.length - 1 ? 'border-b border-gray-300 dark:border-slate-600' : ''}`}
-                  >
-                    <div className="px-4 py-3 text-sm border-r border-gray-300 dark:border-slate-600">{module.name}</div>
-                    <div className="px-4 py-3 text-xs text-foreground/70 w-24 text-center">{module.hours}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h2 className="text-xl font-semibold mb-4">Skills You'll Learn</h2>
-              <div className="border-2 border-gray-400 dark:border-slate-500 rounded-lg overflow-hidden">
-                <div className="bg-slate-100 dark:bg-slate-700 px-4 py-2 font-semibold text-sm border-b-2 border-gray-400 dark:border-slate-500">
-                  Core Competencies
-                </div>
-                {skills.map((skill, index) => (
-                  <div
-                    key={index}
-                    className={`px-4 py-3 text-sm text-foreground/80 leading-relaxed ${index !== skills.length - 1 ? 'border-b border-gray-300 dark:border-slate-600' : ''}`}
-                  >
-                    <span className="inline-block w-2 h-2 rounded-full mr-2" style={{ backgroundColor: THEME_PRIMARY }}></span>
-                    {skill}
-                  </div>
-                ))}
-              </div>
+              ))}
             </div>
           </div>
 
-          <div className="rounded-lg p-6 bg-muted/30 border-2 border-gray-400 dark:border-slate-500 mb-8">
-            <h2 className="text-xl font-semibold mb-4">Tools Covered</h2>
+          {/* Course Modules */}
+          <div className="bg-card/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-border shadow-lg">
+            <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
+              <BookOpen className="w-5 h-5" style={{ color: THEME_PRIMARY }} />
+              Course Modules
+            </h2>
+            <div className="grid gap-3">
+              {modules.map((module, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-4 p-4 rounded-xl bg-muted/50 hover:bg-muted transition-colors border border-border/50"
+                >
+                  <div
+                    className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-bold text-sm"
+                    style={{ backgroundColor: THEME_PRIMARY }}
+                  >
+                    {index + 1}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-medium text-foreground">{module.name}</h3>
+                    <p className="text-sm text-muted-foreground truncate">{module.description}</p>
+                  </div>
+                  <div className="text-right">
+                    <span className="text-sm font-medium" style={{ color: THEME_PRIMARY }}>{module.hours}</span>
+                    <span className="text-xs text-muted-foreground ml-1">hrs</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Skills Section */}
+          <div className="bg-card/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-border shadow-lg">
+            <h2 className="text-xl font-semibold mb-6 flex items-center gap-2">
+              <Target className="w-5 h-5" style={{ color: THEME_PRIMARY }} />
+              Skills You'll Learn
+            </h2>
+            <div className="grid sm:grid-cols-2 gap-4">
+              {skills.map((skill, index) => (
+                <div
+                  key={index}
+                  className="p-4 rounded-xl bg-muted/50 border border-border/50 hover:border-primary/30 transition-colors"
+                >
+                  <h3 className="font-medium mb-1" style={{ color: THEME_PRIMARY }}>{skill.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{skill.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Tools Covered */}
+          <div className="bg-card/80 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-border shadow-lg">
+            <h2 className="text-xl font-semibold mb-6">Tools Covered</h2>
             <div className="flex flex-wrap gap-3">
-              {["Selenium", "Cypress", "Postman", "JMeter", "TestNG", "Cucumber", "Jenkins", "JIRA"].map((tool) => (
-                <span key={tool} className="px-3 py-1 rounded-full text-sm bg-background border-2 border-gray-400 dark:border-slate-500">
+              {tools.map((tool, index) => (
+                <span
+                  key={index}
+                  className="px-4 py-2 rounded-full text-sm font-medium bg-muted/50 border border-border/50 hover:border-primary/30 transition-colors"
+                >
                   {tool}
                 </span>
               ))}
             </div>
           </div>
 
-          <div className="text-center">
-            <Button size="lg">Get Certified</Button>
+          {/* CTA */}
+          <div className="text-center py-6">
+            <Link href="/certify">
+              <Button size="lg" className="px-8" style={{ backgroundColor: THEME_PRIMARY }}>
+                Get Certified
+              </Button>
+            </Link>
+            <p className="text-sm text-muted-foreground mt-3">
+              Schedule your certification exam today
+            </p>
           </div>
         </div>
       </main>

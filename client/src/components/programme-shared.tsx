@@ -14,14 +14,61 @@ export const programmes = [
 ];
 
 export const specializations = [
-  { id: "cloud-engineering", name: "Cloud Engineering" },
-  { id: "data-analytics", name: "Data Analytics" },
-  { id: "software-java", name: "Software Engineering - Java" },
-  { id: "quality-assurance", name: "Quality Assurance" },
-  { id: "software-react", name: "Software Engineering - React" },
-  { id: "solutions-architecture", name: "Solutions Architecture" },
-  { id: "ai-ml", name: "AI & Machine Learning" },
+  {
+    id: "cloud-engineering",
+    name: "Cloud Engineering",
+    description: "Choose from the key Hyperscalers and achieve advanced skills in designing, deploying, and managing scalable cloud infrastructure across AWS, Azure, and GCP.",
+    skills: ["AWS", "Azure", "GCP", "Terraform", "Kubernetes"],
+    programmes: ["tesa", "nest"]
+  },
+  {
+    id: "data-analytics",
+    name: "Data Analytics",
+    description: "Master the art of collecting, analyzing, and visualizing data to drive business decisions. Learn SQL, Python, and modern BI tools for actionable insights.",
+    skills: ["SQL", "Python", "Tableau", "Power BI", "Statistics"],
+    programmes: ["tesa", "stem", "nest"]
+  },
+  {
+    id: "software-java",
+    name: "Software Engineering - Java",
+    description: "Build enterprise-grade applications with Java. Cover Spring Boot, microservices, APIs, and industry best practices for scalable backend systems.",
+    skills: ["Java", "Spring Boot", "REST APIs", "Microservices", "Maven"],
+    programmes: ["tesa", "nest"]
+  },
+  {
+    id: "quality-assurance",
+    name: "Quality Assurance",
+    description: "Ensure software excellence through comprehensive testing strategies. Learn manual and automated testing, CI/CD integration, and quality metrics.",
+    skills: ["Selenium", "JUnit", "CI/CD", "Test Planning", "Automation"],
+    programmes: ["tesa", "nest"]
+  },
+  {
+    id: "software-react",
+    name: "Software Engineering - React",
+    description: "Create modern, responsive web applications with React. Master components, state management, hooks, and deployment to production environments.",
+    skills: ["React", "TypeScript", "Redux", "Next.js", "Testing"],
+    programmes: ["tesa", "stem", "nest"]
+  },
+  {
+    id: "solutions-architecture",
+    name: "Solutions Architecture",
+    description: "Design scalable, resilient, and cost-effective cloud solutions. Learn architectural patterns, security best practices, and system design principles.",
+    skills: ["System Design", "Security", "Scalability", "Cost Optimization", "Documentation"],
+    programmes: ["tesa", "nest"]
+  },
+  {
+    id: "ai-ml",
+    name: "AI & Machine Learning",
+    description: "Apply artificial intelligence and machine learning to solve real-world problems. Cover neural networks, NLP, computer vision, and model deployment.",
+    skills: ["Python", "TensorFlow", "PyTorch", "NLP", "Computer Vision"],
+    programmes: ["tesa", "stem", "nest"]
+  },
 ];
+
+// Helper function to get specializations for a specific programme
+export const getSpecializationsForProgramme = (programmeId: string) => {
+  return specializations.filter(spec => spec.programmes.includes(programmeId));
+};
 
 export const tabs = [
   { id: "home", label: "Home" },
@@ -226,7 +273,8 @@ export function CoursesContent({ specialization }: { specialization: string }) {
   const course = courseModules[specialization] || courseModules["Cloud Engineering"];
 
   // Define slides - add Cloud Platforms only for Cloud Engineering
-  const slides = specialization === "Cloud Engineering"
+  const isCloudEngineering = specialization.includes("Cloud Engineering");
+  const slides = isCloudEngineering
     ? ["modules", "skills", "tools", "platforms"] as const
     : ["modules", "skills", "tools"] as const;
 

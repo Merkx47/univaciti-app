@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation } from "wouter";
-import { GraduationCap, Users, Briefcase, Award, Receipt, HandCoins, Home, Sun, Moon, Check } from "lucide-react";
+import { GraduationCap, Users, Briefcase, Award, Receipt, HandCoins, Sun, Moon, Check, ChevronDown } from "lucide-react";
 import { useTheme } from "@/components/theme-provider";
 import logoUrl from "@assets/logo_1769031259580.png";
 import {
   THEME_PRIMARY,
   programmes,
   specializations,
+  getSpecializationsForProgramme,
   tabs,
   CalendarTimetable,
   CoursesContent,
@@ -25,12 +26,15 @@ const cohorts = [
 export default function TesaPage() {
   const [, setLocation] = useLocation();
   const [selectedProgramme, setSelectedProgramme] = useState("tesa");
-  const [selectedSpecialization, setSelectedSpecialization] = useState(specializations[0].name);
+  const availableSpecializations = getSpecializationsForProgramme("tesa");
+  const [selectedSpecialization, setSelectedSpecialization] = useState(availableSpecializations[0]?.id || "");
   const [activeTab, setActiveTab] = useState("home");
   const [programmeDropdownOpen, setProgrammeDropdownOpen] = useState(false);
   const [specDropdownOpen, setSpecDropdownOpen] = useState(false);
   const { theme, setTheme } = useTheme();
   const isDark = theme === "dark" || (theme === "system" && window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+  const currentSpec = availableSpecializations.find(s => s.id === selectedSpecialization) || availableSpecializations[0];
 
   const handleProgrammeChange = (programmeId: string) => {
     setSelectedProgramme(programmeId);
@@ -48,15 +52,25 @@ export default function TesaPage() {
             <div className="flex items-start gap-4">
               <GraduationCap className="w-12 h-12 flex-shrink-0" style={{ color: THEME_PRIMARY }} />
               <div>
-                <h2 className="text-xl font-medium mb-2 text-slate-900 dark:text-slate-100" data-testid="text-tab-title">Welcome to TESA</h2>
+                <h2 className="text-xl font-medium mb-2 text-slate-900 dark:text-slate-100" data-testid="text-tab-title">{currentSpec?.name}</h2>
                 <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
-                  The <strong>Tech Skills Accelerator (TESA)</strong> is an intensive 8-week specialization programme designed to transform passionate learners into world-class tech professionals. TESA closes the tech talent gap by providing hands-on, industry-focused training that prepares you for real-world challenges.
+                  {currentSpec?.description}
                 </p>
+              </div>
+            </div>
+            <div>
+              <h3 className="font-medium mb-3" style={{ color: THEME_PRIMARY }}>Key Skills You'll Learn</h3>
+              <div className="flex flex-wrap gap-2">
+                {currentSpec?.skills.map((skill, i) => (
+                  <span key={i} className="px-3 py-1.5 rounded-full text-sm text-white" style={{ backgroundColor: THEME_PRIMARY }}>
+                    {skill}
+                  </span>
+                ))}
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="p-4 rounded-lg border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700/30">
-                <h3 className="font-medium mb-2" style={{ color: THEME_PRIMARY }}>What is TESA?</h3>
+                <h3 className="font-medium mb-2" style={{ color: THEME_PRIMARY }}>Programme Duration</h3>
                 <p className="text-sm text-slate-600 dark:text-slate-300">8-week intensive specialization courses, curated for top quality intakes. Transform from beginner to job-ready professional.</p>
               </div>
               <div className="p-4 rounded-lg border border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700/30">
@@ -72,23 +86,13 @@ export default function TesaPage() {
                 <p className="text-sm text-slate-600 dark:text-slate-300">Near 100% employment within 3 months of course completion. We connect students directly to employers.</p>
               </div>
             </div>
-            <div>
-              <h3 className="font-medium mb-3" style={{ color: THEME_PRIMARY }}>Available Specializations</h3>
-              <div className="flex flex-wrap gap-2">
-                {specializations.map((spec, i) => (
-                  <span key={i} className="px-3 py-1.5 rounded-full text-sm text-white" style={{ backgroundColor: THEME_PRIMARY }}>
-                    {spec.name}
-                  </span>
-                ))}
-              </div>
-            </div>
           </div>
         );
       case "courses":
         return (
           <div>
-            <h2 className="text-lg font-medium mb-4 text-slate-900 dark:text-slate-100" data-testid="text-tab-title">Courses - {selectedSpecialization}</h2>
-            <CoursesContent specialization={selectedSpecialization} />
+            <h2 className="text-lg font-medium mb-4 text-slate-900 dark:text-slate-100" data-testid="text-tab-title">Courses - {currentSpec?.name}</h2>
+            <CoursesContent specialization={currentSpec?.name || ""} />
           </div>
         );
       case "structure":
@@ -246,9 +250,6 @@ export default function TesaPage() {
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-3">
               <BackButton className="bg-slate-700/50 hover:bg-slate-600" />
-              <Link href="/" className="p-2 rounded-lg bg-slate-700/50 hover:bg-slate-600 transition-colors" data-testid="link-home">
-                <Home className="w-5 h-5 text-slate-300" />
-              </Link>
               <Link href="/" className="flex items-center gap-2">
                 <img src={logoUrl} alt="Univaciti" className="h-9 w-9 rounded-full" />
                 <span className="text-lg font-bold" style={{ color: THEME_PRIMARY }}>Univaciti</span>
@@ -304,7 +305,7 @@ export default function TesaPage() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
         <div className="space-y-3 mb-6">
-          <div className="flex items-center border border-slate-600 rounded-lg overflow-hidden shadow-lg">
+          <div className="flex items-center border border-slate-600 rounded-lg shadow-lg">
             <div className="w-48 px-4 py-3 bg-slate-700 text-sm font-medium text-slate-200 border-r border-slate-600">
               Programme:
             </div>
@@ -338,7 +339,7 @@ export default function TesaPage() {
             </div>
           </div>
 
-          <div className="flex items-center border border-slate-600 rounded-lg overflow-hidden shadow-lg">
+          <div className="flex items-center border border-slate-600 rounded-lg shadow-lg">
             <div className="w-48 px-4 py-3 bg-slate-700 text-sm font-medium text-slate-200 border-r border-slate-600">
               Specialization:
             </div>
@@ -349,18 +350,19 @@ export default function TesaPage() {
                 onClick={() => { setSpecDropdownOpen(!specDropdownOpen); setProgrammeDropdownOpen(false); }}
                 data-testid="dropdown-specialization"
               >
-                <span>{selectedSpecialization}</span>
+                <span>{currentSpec?.name}</span>
+                <ChevronDown className={`w-4 h-4 transition-transform ${specDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
               {specDropdownOpen && (
-                <div className="absolute top-full left-0 right-0 bg-slate-800 border border-slate-600 rounded-lg shadow-xl z-50 mt-1 overflow-hidden">
-                  {specializations.map((spec) => (
+                <div className="absolute top-full left-0 right-0 bg-slate-800 border border-slate-600 rounded-lg shadow-xl z-50 mt-1 overflow-hidden max-h-64 overflow-y-auto">
+                  {availableSpecializations.map((spec) => (
                     <button
                       type="button"
                       key={spec.id}
                       className={`w-full px-4 py-2 text-left text-sm hover:bg-slate-700 border-b border-slate-700 last:border-b-0 text-white transition-colors ${
-                        selectedSpecialization === spec.name ? 'bg-[#1E9AD6] font-medium' : ''
+                        selectedSpecialization === spec.id ? 'bg-[#1E9AD6] font-medium' : ''
                       }`}
-                      onClick={() => { setSelectedSpecialization(spec.name); setSpecDropdownOpen(false); }}
+                      onClick={() => { setSelectedSpecialization(spec.id); setSpecDropdownOpen(false); }}
                     >
                       {spec.name}
                     </button>

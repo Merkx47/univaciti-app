@@ -52,9 +52,6 @@ export default function CertifyPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-3">
-              <Link href="/" className="p-2 rounded-lg bg-slate-100 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors" data-testid="link-home">
-                <Home className="w-5 h-5 text-slate-600 dark:text-slate-300" />
-              </Link>
               <Link href="/" className="flex items-center gap-2">
                 <img src={logoUrl} alt="Univaciti" className="h-9 w-9 rounded-full" />
                 <span className="text-lg font-bold" style={{ color: THEME_PRIMARY }}>Univaciti</span>

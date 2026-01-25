@@ -95,7 +95,7 @@ function RobotIcon({ className }: { className?: string }) {
 const specializations = [
   {
     id: "cloud-engineering",
-    name: "Cloud Engineering & Architecture",
+    name: "Cloud Engineering",
     icon: CloudIcon,
     description: "Choose from the key Hyperscalers and achieve advanced skills in designing, deploying, and managing scalable cloud infrastructure across AWS, Azure, and GCP.",
     skills: ["AWS", "Azure", "GCP", "Terraform", "Kubernetes"]
@@ -161,9 +161,6 @@ export default function CertificationsPage() {
               >
                 <ArrowLeft className="w-5 h-5 text-slate-600 dark:text-slate-300" />
               </button>
-              <Link href="/" className="p-2 rounded-lg bg-slate-100 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors" data-testid="link-home">
-                <Home className="w-5 h-5 text-slate-600 dark:text-slate-300" />
-              </Link>
               <Link href="/" className="flex items-center gap-2">
                 <img src={logoUrl} alt="Univaciti" className="h-9 w-9 rounded-full" />
                 <span className="text-lg font-bold" style={{ color: THEME_PRIMARY }}>Univaciti</span>
@@ -206,35 +203,35 @@ export default function CertificationsPage() {
           {specializations.map((spec, index) => (
             <Link key={index} href={`/certifications/${spec.id}`}>
               <div
-                className="rounded-2xl p-5 flex flex-col h-72 cursor-pointer border-2 border-white/30 shadow-lg transition-all duration-200 hover:scale-[1.02] hover:shadow-xl"
+                className="rounded-2xl p-5 flex flex-col min-h-80 cursor-pointer border-2 border-white/30 shadow-lg transition-all duration-200 hover:scale-[1.02] hover:shadow-xl"
                 style={{ backgroundColor: THEME_PRIMARY }}
               >
                 <div className="flex items-start justify-between mb-3">
-                  <h3 className="text-sm font-bold text-white leading-tight flex-1 pr-2">
+                  <h3 className="text-base font-bold text-white leading-tight flex-1 pr-2">
                     {spec.name}
                   </h3>
                   <spec.icon className="w-10 h-10 text-white flex-shrink-0" />
                 </div>
 
-                <p className="text-xs text-white/90 leading-relaxed flex-1 mb-3">
+                <p className="text-sm text-white leading-relaxed flex-1 mb-3">
                   {spec.description}
                 </p>
 
-                <div className="flex flex-wrap gap-1 mb-3">
+                <div className="flex flex-wrap gap-1.5 mb-3">
                   {spec.skills.slice(0, 3).map((skill, i) => (
-                    <span key={i} className="text-[10px] px-2 py-0.5 rounded-full bg-white/20 text-white">
+                    <span key={i} className="text-xs px-2.5 py-1 rounded-full bg-white/30 text-white font-medium">
                       {skill}
                     </span>
                   ))}
                   {spec.skills.length > 3 && (
-                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/20 text-white">
+                    <span className="text-xs px-2.5 py-1 rounded-full bg-white/30 text-white font-medium">
                       +{spec.skills.length - 3}
                     </span>
                   )}
                 </div>
 
                 <div
-                  className="self-end py-1.5 px-4 rounded-full text-white text-xs font-semibold border-2 border-white/60 hover:bg-white/20 transition-colors"
+                  className="self-end py-1.5 px-4 rounded-full text-white text-xs font-semibold border-2 border-white/80 hover:bg-white/20 transition-colors"
                   style={{ backgroundColor: THEME_LIGHT }}
                 >
                   View Details

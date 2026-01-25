@@ -14,23 +14,23 @@
   --elevate-1: rgba(0,0,0, .03);
   --elevate-2: rgba(0,0,0, .08);
 
-  --background: 0 0% 100%;
+  --background: 40 15% 94%;
 
   --foreground: 210 20% 12%;
 
-  --border: 210 15% 90%;
+  --border: 35 12% 85%;
 
-  --card: 0 0% 100%;
+  --card: 40 18% 96%;
 
   --card-foreground: 210 20% 12%;
 
-  --card-border: 210 15% 88%;
+  --card-border: 35 15% 86%;
 
-  --sidebar: 210 25% 97%;
+  --sidebar: 40 20% 96%;
 
   --sidebar-foreground: 210 20% 12%;
 
-  --sidebar-border: 210 15% 90%;
+  --sidebar-border: 35 15% 88%;
 
   --sidebar-primary: 200 89% 48%;
 
@@ -42,23 +42,23 @@
 
   --sidebar-ring: 200 89% 48%;
 
-  --popover: 0 0% 100%;
+  --popover: 40 25% 99%;
 
   --popover-foreground: 210 20% 12%;
 
-  --popover-border: 210 15% 88%;
+  --popover-border: 35 15% 86%;
 
   --primary: 200 89% 48%;
 
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 210 20% 96%;
+  --secondary: 40 15% 95%;
 
   --secondary-foreground: 210 20% 25%;
 
-  --muted: 210 15% 96%;
+  --muted: 40 12% 94%;
 
-  --muted-foreground: 210 12% 45%;
+  --muted-foreground: 30 10% 45%;
 
   --accent: 200 89% 95%;
 
@@ -259,11 +259,11 @@
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 252, 245, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(245, 240, 230, 0.5);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
 }
 
 .dark .glass-card {
@@ -501,7 +501,7 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 
 /* Frosted glass navbar */
 .frosted-nav {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 252, 248, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }

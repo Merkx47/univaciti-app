@@ -98,9 +98,6 @@ export default function ProgrammesPage() {
               >
                 <ArrowLeft className="w-5 h-5 text-slate-600 dark:text-slate-300" />
               </button>
-              <Link href="/" className="p-2 rounded-lg bg-slate-100 dark:bg-slate-700/50 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors" data-testid="link-home">
-                <Home className="w-5 h-5 text-slate-600 dark:text-slate-300" />
-              </Link>
               <Link href="/" className="flex items-center gap-2">
                 <img src={logoUrl} alt="Univaciti" className="h-9 w-9 rounded-full" />
                 <span className="text-lg font-bold" style={{ color: THEME_PRIMARY }}>Univaciti</span>
@@ -147,15 +144,15 @@ export default function ProgrammesPage() {
                   <programme.icon className="w-12 h-12 text-white" />
                   <div>
                     <h3 className="text-xl font-bold text-white">{programme.name}</h3>
-                    <p className="text-xs text-white/70">{programme.fullName}</p>
+                    <p className="text-sm text-white/90">{programme.fullName}</p>
                   </div>
                 </div>
 
-                <p className="text-sm text-white/80 leading-relaxed flex-1 mb-4">
+                <p className="text-base text-white leading-relaxed flex-1 mb-4">
                   {programme.description}
                 </p>
 
-                <div className="flex justify-between items-center text-xs text-white/60 mb-4">
+                <div className="flex justify-between items-center text-sm text-white/80 mb-4">
                   <span>{programme.duration}</span>
                   <span>{programme.format}</span>
                 </div>

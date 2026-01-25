@@ -321,6 +321,15 @@ function BuildingIcon({ className }: { className?: string }) {
   );
 }
 
+function UserIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+      <circle cx="12" cy="7" r="4"/>
+    </svg>
+  );
+}
+
 function GraduationCapIcon({ className, style }: { className?: string; style?: React.CSSProperties }) {
   return (
     <svg viewBox="0 0 64 64" className={className} style={style} fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -460,93 +469,59 @@ function Navbar() {
 }
 
 function HeroSection() {
-  const stats = [
-    { value: "8+", label: "Tech Specializations" },
-    { value: "3", label: "Learning Programmes" },
-    { value: "100%", label: "Industry Focused" },
-  ];
-
   return (
-    <section className="pt-20 min-h-screen" data-testid="section-hero">
-      {/* Two Column Layout */}
-      <div className="grid lg:grid-cols-2 min-h-[calc(100vh-80px)]">
-        {/* Left Column - Content */}
-        <div className="flex flex-col justify-center px-6 sm:px-12 lg:px-16 py-12 bg-background">
-          <div className="max-w-xl">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 dark:bg-blue-900/30 mb-6">
-              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-              <span className="text-sm font-medium" style={{ color: THEME_PRIMARY }}>Now Enrolling for 2026</span>
-            </div>
+    <section className="pt-20 relative h-[600px] sm:h-[650px]" data-testid="section-hero">
+      {/* Background Image with Dark Overlay */}
+      <div className="absolute inset-0 top-20">
+        <img
+          src={HERO_IMAGE_URL}
+          alt="Students learning tech skills"
+          className="w-full h-full object-cover object-center"
+          loading="eager"
+        />
+        {/* Dark gradient overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30" />
+      </div>
 
-            {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6" data-testid="text-hero-title">
-              <span className="text-foreground">From </span>
-              <span className="gradient-text">Novice</span>
-              <span className="text-foreground"> to </span>
-              <span className="gradient-text">Expert</span>
-              <span className="text-foreground"> in Tech</span>
+      {/* Content */}
+      <div className="relative z-10 h-[calc(100%-80px)] flex items-center">
+        <div className="w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
+          {/* Main Text Content */}
+          <div className="max-w-2xl">
+            {/* Large Headline - Udacity Style */}
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6 tracking-tight" data-testid="text-hero-title">
+              <span className="text-white">Learn. </span>
+              <span className="text-white">Grow.</span>
+              <br />
+              <span className="text-white">Transform.</span>
             </h1>
 
-            <p className="text-lg sm:text-xl text-foreground/70 mb-8 leading-relaxed" data-testid="text-hero-subtitle">
-              Get certified in Cloud Engineering, Data Analytics, Software Development, and more.
-              Industry-recognized credentials that open doors.
+            <p className="text-lg sm:text-xl text-white/80 mb-10 leading-relaxed max-w-lg" data-testid="text-hero-subtitle">
+              Build in-demand skills to unlock your potential and drive outcomes for your career and business.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4 mb-10">
+            <div className="flex flex-wrap gap-4">
               <Link href="/programmes/tesa">
                 <Button
                   size="lg"
                   style={{ backgroundColor: THEME_PRIMARY }}
-                  className="h-14 px-8 text-base font-semibold text-white"
+                  className="h-14 px-8 text-base font-semibold text-white hover:opacity-90 transition-opacity"
                 >
-                  Start Learning
+                  <UserIcon className="w-5 h-5 mr-2" />
+                  For Individuals
                 </Button>
               </Link>
               <Link href="/programmes">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="h-14 px-8 text-base font-semibold border-2"
+                  className="h-14 px-8 text-base font-semibold border-2 border-white/30 text-white bg-white/10 hover:bg-white/20 backdrop-blur-sm"
                 >
-                  View Programmes
+                  <BuildingIcon className="w-5 h-5 mr-2" />
+                  For Businesses
                 </Button>
               </Link>
-            </div>
-
-            {/* Stats */}
-            <div className="flex gap-8 pt-6 border-t border-border">
-              {stats.map((stat, index) => (
-                <div key={index}>
-                  <div className="text-3xl font-bold" style={{ color: THEME_PRIMARY }}>{stat.value}</div>
-                  <div className="text-sm text-foreground/60">{stat.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Right Column - Image */}
-        <div className="relative hidden lg:block">
-          <img
-            src={HERO_IMAGE_URL}
-            alt="Students learning tech skills"
-            className="w-full h-full object-cover"
-          />
-          {/* Subtle overlay for polish */}
-          <div className="absolute inset-0 bg-background/10" />
-
-          {/* Floating Card */}
-          <div className="absolute bottom-8 left-8 right-8 p-6 rounded-2xl bg-white/95 dark:bg-slate-800/95 backdrop-blur-sm shadow-2xl">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full flex items-center justify-center" style={{ backgroundColor: THEME_PRIMARY }}>
-                <GraduationCapIcon className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <p className="font-semibold text-foreground">Join 500+ graduates</p>
-                <p className="text-sm text-foreground/60">who launched their tech careers with Univaciti</p>
-              </div>
             </div>
           </div>
         </div>
@@ -569,7 +544,7 @@ function ThreePillarsSection() {
           {pillars.map((pillar, index) => (
             <div key={index} className={`text-center fade-in-up stagger-${index + 1}`} data-testid={`card-pillar-${index}`}>
               <div
-                className="w-24 h-24 rounded-2xl mx-auto mb-4 flex items-center justify-center glass-card hover-lift hover-spin"
+                className="w-24 h-24 rounded-2xl mx-auto mb-4 flex items-center justify-center glass-card hover-lift"
               >
                 <span style={{ color: THEME_PRIMARY }}>
                   <pillar.icon className="w-12 h-12" />
@@ -611,7 +586,7 @@ function LearningProgrammeSection() {
   ];
   
   return (
-    <section id="programmes" className="py-12 px-4 sm:px-6 lg:px-8 relative bg-gray-50 dark:bg-slate-900" data-testid="section-programmes">
+    <section id="programmes" className="py-12 px-4 sm:px-6 lg:px-8 relative bg-muted dark:bg-slate-900" data-testid="section-programmes">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8">
           <h2 className="text-2xl sm:text-3xl font-light mb-3 gradient-text" data-testid="text-programmes-title">
